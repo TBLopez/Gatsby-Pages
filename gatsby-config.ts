@@ -12,7 +12,7 @@ const config: GatsbyConfig = {
     siteTitle: `Tony AKL`,
     siteTitleAlt: `Tony K.L Portfolio`,
     siteHeadline: `Tony K.L`,
-    siteUrl: `https://tonykl.com`,
+    siteUrl: `https://cara.lekoarts.de`,
     siteDescription: `Online portfolio for cyber projects`,
     siteImage: `/banner.jpg`,
     siteLanguage: `en`,
