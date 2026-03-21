@@ -14,19 +14,28 @@ if (isNotionConnected) {
     const response = await notion.databases.query({
       database_id: import.meta.env.NOTION_DATABASE_ID,
     });
-    
     notionProjects = response.results.map((page: any) => {
       // Robust querying of standard Notion DB properties
-      // Assuming columns: "Name" (title), "Description" (Text), "URL" (URL or File)
       const nameProp = Object.values(page.properties).find((p: any) => p.type === 'title') as any;
       const descProp = Object.values(page.properties).find((p: any) => p.type === 'rich_text') as any;
+      
+      // Handle both Link (url) and Attachment (files) property types
       const urlProp = Object.values(page.properties).find((p: any) => p.type === 'url') as any;
+      const fileProp = Object.values(page.properties).find((p: any) => p.type === 'files') as any;
+      
+      let finalUrl = '#';
+      if (fileProp && fileProp.files && fileProp.files.length > 0) {
+        const fileObj = fileProp.files[0];
+        finalUrl = fileObj.file ? fileObj.file.url : (fileObj.external ? fileObj.external.url : '#');
+      } else if (urlProp && urlProp.url) {
+        finalUrl = urlProp.url;
+      }
 
       return {
         id: page.id,
         title: nameProp?.title[0]?.plain_text || 'Untitled_Log',
         description: descProp?.rich_text[0]?.plain_text || 'No intel available.',
-        url: urlProp?.url || '#'
+        url: finalUrl
       };
     });
   } catch (error) {
