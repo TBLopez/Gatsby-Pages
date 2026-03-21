@@ -363,8 +363,7 @@ const isNotionConnected = undefined;
 
       if (e.key === 'Enter') {
           e.preventDefault();
-          // We don't call handleCommand here because cmdForm submission will handle it securely.
-          // e.preventDefault is enough.
+          handleCommand();
       }
   });
 })();</script>
