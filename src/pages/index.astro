@@ -86,62 +86,17 @@ if (isNotionConnected) {
     </aside>
 
     <main id="terminal-output" class="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-hide flex flex-col gap-4 font-body pb-32 relative z-30">
-      <section class="mb-6 flex flex-col xl:flex-row gap-8 items-start" id="welcome-message">
-        <div class="flex-1">
-          <pre class="text-[#00FF41] text-[10px] md:text-[12px] font-bold leading-tight select-none">
+      <section class="mb-4" id="welcome-message">
+        <pre class="text-[#00FF41] text-[10px] sm:text-xs md:text-[14px] leading-tight font-bold whitespace-pre-wrap word-break select-none hidden sm:block">
 ████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
 ╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝    ██║     ██╔═══██╗██╔══██╗██╔════╝╚══███╔╝
    ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝     ██║     ██║   ██║██████╔╝█████╗    ███╔╝ 
    ██║   ██║   ██║██║╚██╗██║  ╚██╔╝      ██║     ██║   ██║██╔═══╝ ██╔══╝   ███╔╝  
    ██║   ╚██████╔╝██║ ╚████║   ██║       ███████╗╚██████╔╝██║     ███████╗███████╗
    ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚══════╝
-          </pre>
-          <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div>
-          <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div>
-        </div>
-        
-        <div class="w-full xl:w-80 bg-[#0E0E0E] border border-[#3b4b37]/40 relative overflow-hidden flex flex-col shrink-0 mt-4 xl:mt-0 shadow-[0_0_15px_rgba(0,255,65,0.05)]">
-          <div class="flex items-center justify-between px-4 py-2 bg-[#131313] border-b border-[#3b4b37]/40 shadow-inner">
-            <div class="flex items-center gap-3">
-              <div class="w-2 h-2 bg-[#00FF41] animate-pulse"></div>
-              <h2 class="text-[9px] font-bold tracking-widest text-[#00FF41] uppercase">ANOMALY_DETECTION_STREAM</h2>
-            </div>
-          </div>
-          <div class="flex-grow flex items-center justify-center relative p-8 min-h-[220px]">
-            <div class="scanline-widget scanline-anim"></div>
-            <pre class="anomaly-core text-[#00FF41] leading-none select-none text-[8px] font-mono transition-all duration-500 text-center">
-            .
-           _|_
-         /  |  \
-      .-'   |   '-.
-    .'      |      '.
-   /        |        \
-  ;         |         ;
-  |         |         |
-  :         |         :
-   \       / \       /
-    '.    /   \    .'
-      '-./     \.-'
-        /       \
-       /         \
-      /           \
-     /             \
-    /               \
-   /                 \
-  |      _________    |
-   \    /         \  /
-    \  /           \/
-     \/             \
-      \             /
-       \           /
-        '         '
-            </pre>
-          </div>
-          <div class="p-3 bg-[#131313] font-mono text-[8.5px] text-[#00FF41]/70 flex justify-between border-t border-[#3b4b37]/40">
-            <span>OBJ: MEDUSOZOA_NULL</span>
-            <span class="animate-pulse font-bold text-[#00FF41]">THREAD: 0xAF4</span>
-          </div>
-        </div>
+        </pre>
+        <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div>
+        <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div>
       </section>
 
         <div id="history-container" class="space-y-4"></div>
