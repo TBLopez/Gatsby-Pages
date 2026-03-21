@@ -1,9 +1,9 @@
 # Tony Khawaja-Lopez | Cybersecurity Portfolio
 
-This repository contains the source code and deployment pipeline for the professional portfolio of Tony Khawaja-Lopez. 
+This repository contains the source code and deployment pipeline for my professional portfolio. 
 
-## Architecure
-The portfolio is built as a static, high-performance web application utilizing **Astro**. It is designed for maximum speed, security, and a premium visual aesthetic.
+## Architecture
+I built this portfolio as a static, high-performance web application utilizing **Astro**. I designed it for maximum speed, security, and a premium visual aesthetic.
 
 - **Framework:** Astro JS
 - **Styling:** Tailwind CSS (Midnight Tactical Design System)
@@ -32,7 +32,7 @@ To run this project locally and view the web application:
 
 ## Design System
 
-The platform utilizes a structured, dark-mode styling interface prioritizing a "Tactical" visual hierarchy.
+My platform utilizes a structured, dark-mode styling interface prioritizing a "Tactical" visual hierarchy.
 - **Typography:** `Space Grotesk` (Headers), `Inter` (Body), `JetBrains Mono` (Labels/Tags)
 - **Core Colors:** High-contrast variants of Cyan (`#00f1fe`) operating over deep, muted navy surfaces (`#090e1c`).
 
