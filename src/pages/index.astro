@@ -85,9 +85,9 @@ if (isNotionConnected) {
       </div>
     </aside>
 
-    <main id="terminal-output" class="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-hide flex flex-col gap-4 font-body pb-32 relative z-30">
+    <main id="terminal-output" class="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-hide flex flex-col gap-4 font-body pb-40 relative z-30">
       <section class="mb-4" id="welcome-message">
-        <pre class="text-[#00FF41] text-[10px] sm:text-xs md:text-[14px] leading-tight font-bold whitespace-pre-wrap word-break select-none hidden sm:block">
+        <pre class="text-[#00FF41] text-[7px] sm:text-[9px] md:text-[12px] leading-tight font-bold whitespace-pre overflow-x-hidden select-none mb-4">
 ████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
 ╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝    ██║     ██╔═══██╗██╔══██╗██╔════╝╚══███╔╝
    ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝     ██║     ██║   ██║██████╔╝█████╗    ███╔╝ 
@@ -151,19 +151,31 @@ if (isNotionConnected) {
     'help': `
         <div class="text-[#00FF41] ml-4 mt-2">
             <div>AVAILABLE COMMANDS:</div>
-            <div class="mt-2 grid grid-cols-[120px_1fr] gap-2">
+            <div class="mt-2 grid grid-cols-[120px_1fr] gap-2 lg:gap-0 lg:grid-cols-[150px_1fr]">
                 <span class="opacity-70">whoami</span><span>Display current operator info</span>
+                <span class="opacity-70">pwd</span><span>Print working directory</span>
+                <span class="opacity-70">date</span><span>Display system time</span>
+                <span class="opacity-70">echo</span><span>Print arguments</span>
                 <span class="opacity-70">ls</span><span>List available archives (projects/blogs)</span>
-                <span class="opacity-70">cat [file]</span><span>Open a specific archive (e.g., cat capstone.pdf)</span>
+                <span class="opacity-70">cat [file]</span><span>Open archive inline (e.g., cat capstone.pdf)</span>
                 <span class="opacity-70">clear</span><span>Clear terminal output</span>
             </div>
-            <div class="mt-4 border-t border-[#3b4b37]/40 pt-2 opacity-50 text-[10px]">SOCIAL_LINKS: <a href="https://github.com/TBLopez" target="_blank" class="hover:text-white underline">github</a> | <a href="https://www.linkedin.com/in/techtony/" target="_blank" class="hover:text-white underline">linkedin</a></div>
+            <div class="mt-4 border-t border-[#3b4b37]/40 pt-2 opacity-50 text-[10px]">SOCIAL_LINKS: <a href="https://github.com/TBLopez" target="_blank" class="hover:text-white underline inline">github</a> | <a href="https://www.linkedin.com/in/techtony/" target="_blank" class="hover:text-white underline inline">linkedin</a></div>
             ${isNotionConnected ? '<div class="mt-1 opacity-50 text-[10px] text-[#00ff41]">DATABASE UPLINK ACTIVE (CMS ENABLED)</div>' : '<div class="mt-1 opacity-50 text-[10px] text-[#ffb4ab]">DATABASE UPLINK OFFLINE (NO CMS KEYS PROVIDED)</div>'}
+        </div>
+    `,
+    'pwd': `
+        <div class="text-[#00FF41] ml-4 mt-2">/home/operator/firefly/tony</div>
+    `,
+    'sudo': `
+        <div class="text-[#ffb4ab] ml-4 mt-2 font-bold select-none uppercase animate-pulse">
+           [!] SECURITY ALERT [!] <br/> 
+           ACCESS DENIED: THIS INCIDENT WILL BE REPORTED.
         </div>
     `,
     'whoami': `
         <div class="text-[#00FF41] ml-4 mt-2">
-            <span class="block">TONY LOPEZ // SYSTEM_ARCHITECT</span>
+            <span class="block">TONY LOPEZ // SECURITY_ANALYST</span>
             <span class="block opacity-70 mt-1">Specializing in security, penetration testing, and tactical development.</span>
         </div>
     `
@@ -194,6 +206,12 @@ if (isNotionConnected) {
           
           if (commands[baseCmd]) {
               responseHtml = commands[baseCmd];
+          } else if (baseCmd === 'echo') {
+              const echoText = cmd.split(' ').slice(1).join(' ').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+              responseHtml = `<div class="text-white ml-4 mt-2 whitespace-pre-wrap">${echoText}</div>`;
+          } else if (baseCmd === 'date') {
+              const d = new Date().toString();
+              responseHtml = `<div class="text-[#00FF41] ml-4 mt-2">${d}</div>`;
           } else if (baseCmd === 'ls') {
               const fileList = Object.keys(systemFiles).map(f => `
                   <div class="col-span-1 border-l-2 border-[#3b4b37] pl-2 hover:border-[#00FF41] transition-colors">
@@ -206,8 +224,23 @@ if (isNotionConnected) {
               const file = cmd.split(' ')[1];
               if (systemFiles[file]) {
                   const dest = systemFiles[file].url && systemFiles[file].url !== '#' ? systemFiles[file].url : '#';
-                  responseHtml = `<div class="text-[#ebffe2] ml-4 mt-2">Downloading ${file}... <a href="${dest}" target="_blank" class="underline hover:text-white text-[#00ff41]">Link to asset.</a></div>`;
-                  if (dest !== '#') window.open(dest, '_blank');
+                  if (dest !== '#') {
+                      responseHtml = `
+                          <div class="ml-4 mt-4 w-full max-w-4xl bg-[#131313] border border-[#3b4b37] relative group animate-fade-in mb-8">
+                              <div class="bg-[#00FF41] text-[#000000] text-[10px] font-bold px-2 py-1 flex justify-between items-center select-none uppercase tracking-widest">
+                                  <span>VIEWER_MODULE // ${file}</span>
+                                  <a href="${dest}" target="_blank" class="hover:text-white transition-colors cursor-pointer mr-2 flex items-center gap-1 bg-black/20 px-2 py-0.5 rounded">
+                                      <span class="material-symbols-outlined text-[12px]">open_in_new</span> [NEW_SYS_WINDOW]
+                                  </a>
+                              </div>
+                              <div class="w-full relative bg-[#000000] p-1">
+                                  <iframe src="${dest}" class="w-full h-[60vh] border-none bg-[#ffffff] grayscale-[0.3] contrast-[1.1] filter transition-all duration-300 hover:grayscale-0" title="${file}"></iframe>
+                              </div>
+                          </div>
+                      `;
+                  } else {
+                      responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">cat: payload missing destination url</div>`;
+                  }
               } else if (!file) {
                   responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">cat: missing file operand</div>`;
               } else {
@@ -221,12 +254,17 @@ if (isNotionConnected) {
           entry.innerHTML = promptHtml + responseHtml;
           historyContainer.appendChild(entry);
           
-      // Auto scroll
+      // Auto scroll to latest entry powerfully
       setTimeout(() => {
           terminalOutput.scrollTo({
-              top: terminalOutput.scrollHeight,
+              top: terminalOutput.scrollHeight + 1000,
               behavior: 'smooth'
           });
+          
+          // Delayed hard snap to ensure iframes that are slow-loading don't bury the prompt
+          setTimeout(() => {
+              terminalOutput.scrollTop = terminalOutput.scrollHeight + 1000;
+          }, 300);
       }, 50);
   }
 
