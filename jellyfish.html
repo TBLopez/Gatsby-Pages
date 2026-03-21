@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYS_ANOMALY_01 | TERMINAL_OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&amp;family=Space+Grotesk:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary: #78d8b6;
+        }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #131313;
+            color: #e2e2e2;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        @keyframes pulse-opacity {
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(120, 216, 182, 0.7); }
+            50% { opacity: 0.4; text-shadow: 0 0 2px rgba(120, 216, 182, 0.2); }
+        }
+
+        @keyframes float-y {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .anomaly-core {
+            animation: pulse-opacity 3s ease-in-out infinite, float-y 6s ease-in-out infinite;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(120, 216, 182, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes scan {
+            from { top: 0%; }
+            to { top: 100%; }
+        }
+
+        .scanline-anim {
+            animation: scan 8s linear infinite;
+        }
+
+        /* Brutalist Zero Radius Overrides */
+        * {
+            border-radius: 0 !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "inverse-surface": "#e2e2e2",
+                "background": "#131313",
+                "primary-container": "#5abb9a",
+                "surface-bright": "#393939",
+                "on-background": "#e2e2e2",
+                "inverse-on-surface": "#303030",
+                "surface-container-highest": "#353535",
+                "surface": "#131313",
+                "outline-variant": "#3e4944",
+                "inverse-primary": "#006c52",
+                "outline": "#87938d",
+                "on-surface": "#e2e2e2",
+                "error": "#ffb4ab",
+                "surface-dim": "#131313",
+                "on-primary-fixed-variant": "#00513d",
+                "on-primary-fixed": "#002117",
+                "secondary": "#c6c6c7",
+                "surface-variant": "#353535",
+                "surface-tint": "#78d8b6",
+                "on-secondary": "#2f3131",
+                "on-error-container": "#ffdad6",
+                "on-secondary-container": "#b4b5b5",
+                "tertiary-container": "#6ab99c",
+                "surface-container-lowest": "#0e0e0e",
+                "surface-container-high": "#2a2a2a",
+                "on-secondary-fixed-variant": "#454747",
+                "primary-fixed": "#94f5d1",
+                "secondary-fixed-dim": "#c6c6c7",
+                "on-tertiary-container": "#004836",
+                "on-tertiary": "#003829",
+                "primary-fixed-dim": "#78d8b6",
+                "secondary-fixed": "#e2e2e2",
+                "on-primary-container": "#004836",
+                "primary": "#78d8b6",
+                "surface-container": "#1f1f1f",
+                "tertiary-fixed": "#a2f3d3",
+                "on-tertiary-fixed": "#002117",
+                "on-tertiary-fixed-variant": "#00513d",
+                "surface-container-low": "#1b1b1b",
+                "secondary-container": "#454747",
+                "on-surface-variant": "#bdc9c2",
+                "on-secondary-fixed": "#1a1c1c",
+                "on-error": "#690005",
+                "tertiary-fixed-dim": "#87d6b8",
+                "error-container": "#93000a",
+                "tertiary": "#87d6b8",
+                "on-primary": "#003829"
+              },
+              fontFamily: {
+                "headline": ["JetBrains Mono"],
+                "body": ["JetBrains Mono"],
+                "label": ["JetBrains Mono"]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Anchor (from JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#131313] border-b-0">
+<div class="flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<span class="text-lg font-bold text-emerald-400 uppercase tracking-tighter">SYS_ANOMALY_01</span>
+<span class="hidden md:inline px-2 py-0.5 bg-surface-container-highest text-[10px] text-primary border border-primary/20">STATUS: ACTIVE</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-emerald-400 font-bold after:content-['_'] after:animate-pulse text-sm uppercase" href="#">DASHBOARD</a>
+<a class="text-zinc-500 hover:bg-emerald-400 hover:text-black transition-colors px-2 py-1 text-sm uppercase" href="#">LOGS</a>
+<a class="text-zinc-500 hover:bg-emerald-400 hover:text-black transition-colors px-2 py-1 text-sm uppercase" href="#">NETWORK</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform" data-icon="terminal">terminal</span>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<!-- Side Navigation Anchor (from JSON) -->
+<aside class="fixed left-0 top-0 h-screen w-64 hidden lg:flex flex-col pt-24 bg-[#0E0E0E] z-40 border-r-0 shadow-[0_0_15px_rgba(120,216,182,0.05)]">
+<div class="px-6 mb-12">
+<div class="text-emerald-400 font-black text-lg tracking-widest">TERMINAL_OS</div>
+<div class="text-emerald-400/60 text-[10px] font-mono">V2.0.4_STABLE</div>
+</div>
+<nav class="flex flex-col w-full">
+<div class="bg-emerald-400 text-black font-bold flex items-center gap-3 p-3 mx-4 mb-2 active:translate-x-1 duration-100 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-xs font-mono">DASHBOARD</span>
+</div>
+<div class="text-emerald-400/60 flex items-center gap-3 p-3 mx-4 mb-2 hover:bg-[#353535] hover:text-emerald-200 transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-xs font-mono">LOGS</span>
+</div>
+<div class="text-emerald-400/60 flex items-center gap-3 p-3 mx-4 mb-2 hover:bg-[#353535] hover:text-emerald-200 transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="lan">lan</span>
+<span class="text-xs font-mono">NETWORK</span>
+</div>
+<div class="text-emerald-400/60 flex items-center gap-3 p-3 mx-4 mb-2 hover:bg-[#353535] hover:text-emerald-200 transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="lock_open">lock_open</span>
+<span class="text-xs font-mono">DECRYPT</span>
+</div>
+</nav>
+<div class="mt-auto p-6 border-t border-outline-variant/10">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] text-primary/40">CPU LOAD</span>
+<span class="text-[10px] text-primary">42%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest">
+<div class="h-full bg-primary w-[42%]"></div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:pl-64 pt-20 min-h-screen flex items-center justify-center p-4 md:p-8">
+<div class="w-full max-w-4xl grid grid-cols-1 gap-6">
+<!-- THE WIDGET: TERMINAL ASCII ANIMATION -->
+<section class="bg-surface-container-lowest border border-outline-variant/20 relative overflow-hidden flex flex-col min-h-[600px]">
+<!-- Widget Header -->
+<div class="flex items-center justify-between px-4 py-3 bg-surface-container-low border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-primary animate-pulse"></div>
+<h2 class="text-xs font-bold tracking-widest text-primary uppercase">ANOMALY_DETECTION_STREAM // 0xAF4</h2>
+</div>
+<div class="flex gap-2">
+<div class="w-3 h-3 border border-outline-variant/40"></div>
+<div class="w-3 h-3 border border-outline-variant/40"></div>
+<div class="w-3 h-3 border border-primary/60 bg-primary/20"></div>
+</div>
+</div>
+<!-- Terminal Metadata Overlay -->
+<div class="absolute top-16 left-6 z-20 pointer-events-none space-y-1">
+<p class="text-[10px] text-primary/60 font-mono">ENCRYPTION: AES-256-GCM</p>
+<p class="text-[10px] text-primary/60 font-mono">SOURCE: DEEP_WEB_RELAY_01</p>
+<p class="text-[10px] text-primary/60 font-mono">SIGNAL_STRENGTH: <span class="text-primary">[||||||||--]</span></p>
+</div>
+<div class="absolute bottom-6 right-6 z-20 pointer-events-none text-right">
+<p class="text-[10px] text-primary font-mono leading-tight">OBJECT: MEDUSOZOA_NULL</p>
+<p class="text-[8px] text-primary/40 font-mono">COORD: 45.232N, 12.009E</p>
+</div>
+<!-- Main Visual Area -->
+<div class="flex-grow flex items-center justify-center relative p-8">
+<!-- Scanning Effect Layer -->
+<div class="scanline scanline-anim"></div>
+<!-- The ASCII Jellyfish Anomaly -->
+<pre class="anomaly-core text-primary leading-none select-none text-[8px] sm:text-[10px] md:text-xs font-mono transition-all duration-500 text-center">            .
+           _|_
+         /  |  \
+      .-'   |   '-.
+    .'      |      '.
+   /        |        \
+  ;         |         ;
+  |         |         |
+  :         |         :
+   \       / \       /
+    '.    /   \    .'
+      '-./     \.-'
+        /       \
+       /         \
+      /           \
+     /             \
+    /               \
+   /                 \
+  /                   \
+ /                     \
+|      _________      |
+ \    /         \    /
+  \  /           \  /
+   \/             \/
+    \             /
+     \           /
+      \         /
+       \       /
+        \     /
+         \   /
+          \ /
+           '
+                    </pre>
+<!-- Background Grid Glow -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, #78d8b6 1px, transparent 0); background-size: 24px 24px;"></div>
+</div>
+<!-- Data Stream Footer -->
+<div class="p-4 bg-surface-container-low/50 font-mono text-[9px] text-primary/70 flex flex-wrap gap-x-6 gap-y-2 border-t border-outline-variant/10">
+<span class="flex gap-2 items-center"><span class="w-1.5 h-1.5 bg-primary/40"></span> RUNNING_THREAD: 8802</span>
+<span class="flex gap-2 items-center"><span class="w-1.5 h-1.5 bg-primary/40"></span> MEM_ALLOC: 4.2GB</span>
+<span class="flex gap-2 items-center"><span class="w-1.5 h-1.5 bg-primary/40"></span> UPTIME: 00:42:11:09</span>
+<span class="ml-auto animate-pulse text-primary font-bold">LIVE_DATA_FEED_PENDING...</span>
+</div>
+</section>
+<!-- Asymmetric Data Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-low p-6 flex flex-col justify-between group cursor-crosshair">
+<div>
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-sm font-bold text-primary uppercase">Packet_Inspection</h3>
+<span class="text-[10px] font-mono text-outline">REF_ID: 99x-1</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[11px] font-mono border-b border-outline-variant/10 pb-1">
+<span class="text-on-surface/60">0x000101</span>
+<span class="text-primary">FF 23 A1 CC 00 12</span>
+</div>
+<div class="flex justify-between text-[11px] font-mono border-b border-outline-variant/10 pb-1">
+<span class="text-on-surface/60">0x000102</span>
+<span class="text-primary">EE 44 BB 99 21 FD</span>
+</div>
+<div class="flex justify-between text-[11px] font-mono border-b border-outline-variant/10 pb-1">
+<span class="text-on-surface/60">0x000103</span>
+<span class="text-primary">00 00 01 AF 44 CC</span>
+</div>
+</div>
+</div>
+<button class="mt-8 bg-primary text-black text-xs font-bold py-3 px-4 w-full flex items-center justify-between group-hover:bg-primary-container transition-colors">
+                        INITIATE_DEEP_SCAN
+                        <span class="animate-pulse">_</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest p-6 border border-outline-variant/20 flex flex-col items-center justify-center text-center gap-4">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="lock_open">lock_open</span>
+<div>
+<h4 class="text-xs font-bold text-on-surface uppercase mb-1">Decryption_Core</h4>
+<p class="text-[10px] text-on-surface/40 leading-relaxed font-mono">Security bypass module engaged. Waiting for key input from relay.</p>
+</div>
+<div class="w-full h-8 bg-surface-container-low flex items-center px-3 gap-2">
+<span class="text-primary font-bold">&gt;</span>
+<div class="w-2 h-4 bg-primary animate-[pulse_1s_infinite]"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant/20 flex justify-around items-center py-4 px-2 z-50">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-[8px] font-mono">DASHBOARD</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary/40">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-[8px] font-mono">LOGS</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary/40">
+<span class="material-symbols-outlined" data-icon="lan">lan</span>
+<span class="text-[8px] font-mono">NETWORK</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary/40">
+<span class="material-symbols-outlined" data-icon="lock_open">lock_open</span>
+<span class="text-[8px] font-mono">DECRYPT</span>
+</div>
+</nav>
+</body></html>
