@@ -108,10 +108,7 @@ if (isNotionConnected) {
     <div class="max-w-7xl mx-auto flex items-center gap-3 w-full font-mono text-[#00FF41]">
       <span class="font-bold shrink-0">tony@firefly:~$</span>
       <div class="relative flex-1 flex items-center whitespace-pre overflow-hidden">
-        <!-- Exact tracking span layers -->
-        <span id="cmd-text-before"></span><span id="custom-cursor" class="bg-[#00FF41] text-black cursor-blink select-none inline-block relative top-0.5" style="min-width: 9.6px; height: 18px;"> </span><span id="cmd-text-after"></span>
-        <!-- Invisible true input -->
-        <input id="cmd-input" autocomplete="off" autofocus class="absolute inset-0 w-full h-full z-20 text-[16px] outline-none border-none p-0 m-0 bg-transparent text-transparent caret-transparent cursor-text" spellcheck="false" type="text" style="color: transparent;"/>
+        <input id="cmd-input" autocomplete="off" autofocus class="w-full bg-transparent outline-none border-none text-[#00FF41] font-mono p-0 m-0 text-[16px] caret-[#00FF41] focus:ring-0" spellcheck="false" type="text"/>
       </div>
     </div>
   </footer>
@@ -119,9 +116,6 @@ if (isNotionConnected) {
 
 <script is:inline define:vars={{ notionProjects, isNotionConnected }}>
   const input = document.getElementById('cmd-input');
-  const cursor = document.getElementById('custom-cursor');
-  const textBefore = document.getElementById('cmd-text-before');
-  const textAfter = document.getElementById('cmd-text-after');
   const historyContainer = document.getElementById('history-container');
   const terminalOutput = document.getElementById('terminal-output');
   const terminalFooter = document.getElementById('terminal-footer');
@@ -135,25 +129,6 @@ if (isNotionConnected) {
       setTimeout(() => input.focus(), 50);
     }
   });
-
-  function updateCursor() {
-    const val = input.value;
-    const start = input.selectionStart || 0;
-    
-    textBefore.textContent = val.substring(0, start);
-    
-    const charAtCursor = val.substring(start, start + 1);
-    cursor.textContent = charAtCursor || ' ';
-    
-    textAfter.textContent = val.substring(start + 1);
-  }
-
-  input.addEventListener('input', updateCursor);
-  input.addEventListener('keyup', updateCursor);
-  input.addEventListener('keydown', updateCursor);
-  input.addEventListener('click', updateCursor);
-  
-  updateCursor();
 
   // Re-map internal files. If Notion is connected, append them!
   let systemFiles = {
@@ -197,7 +172,6 @@ if (isNotionConnected) {
       if (e.key === 'Enter') {
           const cmd = input.value.trim();
           input.value = '';
-          updateCursor();
           
           if (!cmd) return;
           
