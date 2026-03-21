@@ -11,7 +11,7 @@ const { title } = Astro.props;
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
@@ -23,103 +23,87 @@ const { title } = Astro.props;
             theme: {
                 extend: {
                     colors: {
-                        "on-surface": "#e1e4fa",
-                        "surface-container-low": "#0d1323",
-                        "on-error-container": "#ffa8a3",
-                        "on-primary": "#005f64",
-                        "on-primary-fixed": "#004145",
-                        "surface-tint": "#99f7ff",
-                        "on-secondary-fixed-variant": "#005966",
+                        "surface": "#0e0e0e",
+                        "secondary-fixed-dim": "#ebadff",
+                        "tertiary": "#fcf8f8",
+                        "background": "#0e0e0e",
+                        "inverse-on-surface": "#565554",
+                        "on-primary": "#006767",
                         "surface-container-lowest": "#000000",
-                        "surface-container-highest": "#1e253b",
-                        "on-secondary-container": "#eafbff",
-                        "error": "#ff716c",
-                        "background": "#090e1c",
-                        "on-primary-container": "#00555a",
-                        "on-background": "#e1e4fa",
-                        "inverse-surface": "#faf8ff",
-                        "secondary-container": "#006877",
-                        "primary-dim": "#00e2ee",
-                        "surface-variant": "#1e253b",
-                        "error-container": "#9f0519",
-                        "surface-container-high": "#181f33",
-                        "on-primary-fixed-variant": "#006065",
+                        "on-tertiary-container": "#585656",
+                        "surface-container": "#1a1919",
+                        "on-surface": "#ffffff",
+                        "secondary": "#d873ff",
+                        "secondary-container": "#9900ce",
+                        "surface-variant": "#262626",
+                        "primary-fixed-dim": "#00e6e6",
+                        "on-primary-container": "#005d5d",
+                        "inverse-primary": "#006a6a",
+                        "on-tertiary": "#605f5e",
+                        "surface-container-high": "#201f1f",
+                        "on-primary-fixed-variant": "#006262",
+                        "tertiary-fixed": "#ffffff",
+                        "tertiary-container": "#eeeae9",
+                        "on-secondary-fixed-variant": "#8400b2",
                         "error-dim": "#d7383b",
-                        "secondary-dim": "#00d1ed",
-                        "tertiary-fixed": "#6fb5ff",
-                        "on-tertiary-fixed-variant": "#003b66",
-                        "outline-variant": "#434759",
+                        "primary": "#c1fffe",
+                        "error": "#ff716c",
+                        "on-secondary": "#39004f",
+                        "surface-tint": "#c1fffe",
+                        "on-tertiary-fixed": "#515050",
+                        "on-secondary-fixed": "#580078",
+                        "inverse-surface": "#fcf8f8",
+                        "secondary-fixed": "#f1c1ff",
+                        "primary-fixed": "#00f5f5",
+                        "surface-container-highest": "#262626",
+                        "on-secondary-container": "#fff5fc",
+                        "outline": "#777575",
+                        "on-error-container": "#ffa8a3",
                         "on-error": "#490006",
-                        "surface-container": "#13192b",
-                        "primary-fixed-dim": "#00e2ee",
-                        "on-tertiary-fixed": "#001930",
-                        "secondary-fixed": "#4be4ff",
-                        "inverse-on-surface": "#505466",
-                        "tertiary-dim": "#47a2f8",
-                        "on-tertiary-container": "#002746",
-                        "secondary-fixed-dim": "#00d7f4",
-                        "primary-fixed": "#00f1fe",
-                        "primary-container": "#00f1fe",
-                        "on-surface-variant": "#a6aabf",
-                        "on-tertiary": "#003258",
-                        "secondary": "#00e0fe",
-                        "tertiary": "#6fb5ff",
-                        "primary": "#99f7ff",
-                        "on-secondary-fixed": "#003a43",
-                        "on-secondary": "#004b56",
-                        "outline": "#707588",
-                        "surface-bright": "#242b43",
-                        "surface": "#090e1c",
-                        "surface-dim": "#090e1c",
-                        "inverse-primary": "#006a70",
-                        "tertiary-fixed-dim": "#4da8fe",
-                        "tertiary-container": "#4da8fe"
+                        "surface-bright": "#2c2c2c",
+                        "primary-dim": "#00e6e6",
+                        "outline-variant": "#494847",
+                        "surface-container-low": "#131313",
+                        "on-primary-fixed": "#004343",
+                        "surface-dim": "#0e0e0e",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-dim": "#eeeae9",
+                        "on-tertiary-fixed-variant": "#6e6d6c",
+                        "primary-container": "#00ffff",
+                        "on-background": "#ffffff",
+                        "error-container": "#9f0519",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-dim": "#bc00fb"
                     },
                     fontFamily: {
                         "headline": ["Space Grotesk"],
                         "body": ["Inter"],
-                        "label": ["JetBrains Mono"]
+                        "label": ["Space Grotesk"]
                     },
-                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
                 },
             },
         }
     </script>
-    <style type="text/tailwindcss">
+    <style is:inline>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
         .glass-panel {
-            background: rgba(13, 19, 43, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(38, 38, 38, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
-        .cyan-halo {
-            box-shadow: 0 0 24px -12px rgba(153, 247, 255, 0.3);
+        .neon-glow-primary {
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
         }
-        .pulse-indicator {
-            position: relative;
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background-color: #99f7ff;
-            border-radius: 50%;
+        .grid-bg {
+            background-image: radial-gradient(circle, #494847 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
         }
-        .pulse-indicator::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #99f7ff;
-            border-radius: 50%;
-            z-index: -1;
-            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
-        }
-        @keyframes pulse-ring {
-            0% { transform: scale(0.5); opacity: 0.8; }
-            80%, 100% { transform: scale(3); opacity: 0; }
-        }
-        .text-glow {
-            text-shadow: 0 0 8px rgba(0, 241, 254, 0.5);
+        .asymmetric-shape {
+            clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%);
         }
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
@@ -130,7 +114,7 @@ const { title } = Astro.props;
         }
     </style>
   </head>
-  <body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+  <body class="bg-background text-on-background font-body min-h-screen selection:bg-primary-container selection:text-on-primary-container">
     <slot />
   </body>
 </html>

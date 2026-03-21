@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KINETIC_CIPHER | TONY KHAWAJA-LOPEZ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#0e0e0e",
+                        "secondary-fixed-dim": "#ebadff",
+                        "tertiary": "#fcf8f8",
+                        "background": "#0e0e0e",
+                        "inverse-on-surface": "#565554",
+                        "on-primary": "#006767",
+                        "surface-container-lowest": "#000000",
+                        "on-tertiary-container": "#585656",
+                        "surface-container": "#1a1919",
+                        "on-surface": "#ffffff",
+                        "secondary": "#d873ff",
+                        "secondary-container": "#9900ce",
+                        "surface-variant": "#262626",
+                        "primary-fixed-dim": "#00e6e6",
+                        "on-primary-container": "#005d5d",
+                        "inverse-primary": "#006a6a",
+                        "on-tertiary": "#605f5e",
+                        "surface-container-high": "#201f1f",
+                        "on-primary-fixed-variant": "#006262",
+                        "tertiary-fixed": "#ffffff",
+                        "tertiary-container": "#eeeae9",
+                        "on-secondary-fixed-variant": "#8400b2",
+                        "error-dim": "#d7383b",
+                        "primary": "#c1fffe",
+                        "error": "#ff716c",
+                        "on-secondary": "#39004f",
+                        "surface-tint": "#c1fffe",
+                        "on-tertiary-fixed": "#515050",
+                        "on-secondary-fixed": "#580078",
+                        "inverse-surface": "#fcf8f8",
+                        "secondary-fixed": "#f1c1ff",
+                        "primary-fixed": "#00f5f5",
+                        "surface-container-highest": "#262626",
+                        "on-secondary-container": "#fff5fc",
+                        "outline": "#777575",
+                        "on-error-container": "#ffa8a3",
+                        "on-error": "#490006",
+                        "surface-bright": "#2c2c2c",
+                        "primary-dim": "#00e6e6",
+                        "outline-variant": "#494847",
+                        "surface-container-low": "#131313",
+                        "on-primary-fixed": "#004343",
+                        "surface-dim": "#0e0e0e",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-dim": "#eeeae9",
+                        "on-tertiary-fixed-variant": "#6e6d6c",
+                        "primary-container": "#00ffff",
+                        "on-background": "#ffffff",
+                        "error-container": "#9f0519",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-dim": "#bc00fb"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.5);
+            backdrop-filter: blur(16px);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+        }
+        .grid-bg {
+            background-image: radial-gradient(circle, #494847 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
+        }
+        .asymmetric-shape {
+            clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 rounded-none bg-[#0e0e0e]/60 backdrop-blur-xl border-b border-[#c1fffe]/10 shadow-[0_0_20px_rgba(0,255,255,0.05)]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-none">
+<div class="text-2xl font-black tracking-tighter text-[#c1fffe] font-headline uppercase">
+                KINETIC_CIPHER
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline uppercase tracking-tighter font-bold text-[#00ffff] border-b-2 border-[#00ffff] pb-1 transition-all duration-300" href="#">HOME</a>
+<a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="#">ABOUT</a>
+<a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="#">PROJECTS</a>
+<a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="#">CONTACT</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#00ffff] hover:scale-110 transition-transform">sensors</button>
+<div class="h-4 w-[1px] bg-outline-variant/30"></div>
+<div class="text-[10px] font-label tracking-[0.2em] text-secondary uppercase">System_Stable</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col justify-center px-8 pt-20 overflow-hidden">
+<div class="absolute inset-0 grid-bg z-0"></div>
+<!-- Floating Geometric Primitives -->
+<div class="absolute top-1/4 right-[-5%] w-96 h-96 bg-primary/5 blur-[100px] rounded-full"></div>
+<div class="absolute bottom-1/4 left-[-5%] w-80 h-80 bg-secondary/5 blur-[100px] rounded-full"></div>
+<div class="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-highest border-l-2 border-primary mb-6">
+<span class="material-symbols-outlined text-primary text-sm">security</span>
+<span class="text-[10px] font-label tracking-widest uppercase text-on-surface-variant">Active Threat Intelligence Vector</span>
+</div>
+<h1 class="font-headline text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-8">
+                    ARCHITECTING <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">DIGITAL FORTRESSES</span>
+</h1>
+<p class="text-lg md:text-xl text-on-surface-variant max-w-2xl mb-12 border-l border-outline-variant/30 pl-6 leading-relaxed">
+                    Tony Khawaja-Lopez combines offensive depth with defensive structural integrity to engineer high-fidelity security ecosystems. Advanced persistent threat simulation and hardened infrastructure design.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary-container text-on-primary-container px-10 py-4 font-headline font-bold uppercase tracking-tighter hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all active:scale-95">
+                        Initiate Protocol_
+                    </button>
+<button class="border border-secondary/30 text-secondary px-10 py-4 font-headline font-bold uppercase tracking-tighter hover:bg-secondary/5 transition-all">
+                        Technical_Briefing
+                    </button>
+</div>
+</div>
+<div class="md:col-span-4 hidden md:block">
+<div class="glass-panel border-r-4 border-primary p-6 relative">
+<div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-primary"></div>
+<div class="space-y-4 font-label text-[11px] text-primary/70">
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-2">
+<span>OPERATOR:</span>
+<span class="text-on-surface">T_KHAWAJA_LOPEZ</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-2">
+<span>STATUS:</span>
+<span class="text-primary flex items-center gap-1">
+<span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                                ENCRYPTED
+                            </span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-2">
+<span>LOCATION:</span>
+<span class="text-on-surface">NODE_09 // GLOBAL</span>
+</div>
+<div class="mt-8">
+<div class="bg-surface-container-lowest p-4 font-mono text-xs leading-tight">
+<p class="text-secondary">&gt; boot --sys_kernel</p>
+<p class="text-on-surface-variant">&gt;&gt; initialising red_team.sh</p>
+<p class="text-on-surface-variant">&gt;&gt; bypass_firewall [OK]</p>
+<p class="text-on-surface-variant">&gt;&gt; injecting_payload [98%]</p>
+<p class="text-primary mt-2">ACCESS_GRANTED_</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-24 px-8 bg-surface-container-low relative">
+<div class="max-w-6xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<div>
+<h2 class="font-headline text-4xl md:text-5xl font-bold uppercase tracking-tighter">Core Services</h2>
+<p class="text-secondary font-label tracking-widest mt-2">STRATEGIC OFFENSIVE OPERATIONS</p>
+</div>
+<div class="text-right font-label text-xs text-on-surface-variant uppercase tracking-widest">
+                    Available for Remote Deployment / 2024
+                </div>
+</div>
+<div class="grid md:grid-cols-2 gap-px bg-outline-variant/10">
+<!-- Service 1 -->
+<div class="bg-surface p-12 group hover:bg-surface-container-highest transition-colors duration-500">
+<span class="material-symbols-outlined text-5xl text-primary mb-8" data-weight="fill">radar</span>
+<h3 class="font-headline text-3xl font-bold mb-4 uppercase tracking-tighter">Red Teaming Operations</h3>
+<p class="text-on-surface-variant leading-relaxed mb-8">Full-spectrum adversary simulation designed to challenge detection and response capabilities across physical, social, and digital layers.</p>
+<ul class="space-y-3 font-label text-sm uppercase tracking-wider text-primary/80">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary"></span> Adversary Emulation</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary"></span> Stealth Persistence</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary"></span> Exfiltration Testing</li>
+</ul>
+</div>
+<!-- Service 2 -->
+<div class="bg-surface p-12 group hover:bg-surface-container-highest transition-colors duration-500">
+<span class="material-symbols-outlined text-5xl text-secondary mb-8" data-weight="fill">target</span>
+<h3 class="font-headline text-3xl font-bold mb-4 uppercase tracking-tighter">Penetration Testing</h3>
+<p class="text-on-surface-variant leading-relaxed mb-8">Deep-dive technical assessments identifying critical vulnerabilities in web applications, mobile platforms, and cloud infrastructure.</p>
+<ul class="space-y-3 font-label text-sm uppercase tracking-wider text-secondary/80">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-secondary"></span> API Security Analysis</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-secondary"></span> Cloud Configuration Audit</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-secondary"></span> Code Review &amp; Exploit Dev</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Operations (Bento Grid) -->
+<section class="py-24 px-8 overflow-hidden">
+<div class="max-w-6xl mx-auto">
+<h2 class="font-headline text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-16">Active Operations</h2>
+<div class="grid md:grid-cols-12 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+<!-- Project Obsidian Shield -->
+<div class="md:col-span-7 md:row-span-2 relative group overflow-hidden bg-surface-container-highest border-t border-primary/20">
+<img alt="Cybersecurity command center with blue data screens" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-700" data-alt="High-tech cybersecurity command center interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIUzQFS7_5xlma7pwYhJLlIBWCbLW9UZbVokxFu1mElgQlzzDx4_UdiV1rrns5ATGdhGBvPFmx8OAJRScxZSF0Nf_Cdir8fgLAVobBiyEZRGJnPq8bG-XXhitphNCtIFHbCxVcouwXa_h5bjwaxPKzQvX1onWqguksBEroDLSAywgsnRP9Vk3cNfxq3VMsufgf8wWBVdtdNHtQiB3KmKqojvB-rtLUz9h5XW0fm_qhCqUVgTW88oBtPDvtNyCKuSD05sUIYcINDL8t"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10">
+<div class="bg-primary text-on-primary-container text-[10px] font-label font-bold tracking-widest px-2 py-1 mb-4 inline-block uppercase">Project Obsidian Shield</div>
+<h3 class="font-headline text-4xl font-bold uppercase tracking-tighter text-white">Next-Gen Perimeter Defense</h3>
+<p class="text-on-surface-variant max-w-md mt-4 text-sm">Automated mitigation system for sophisticated DDoS and injection vectors targeting financial infrastructure.</p>
+</div>
+</div>
+<!-- Sentinel AI -->
+<div class="md:col-span-5 md:row-span-1 relative group overflow-hidden bg-surface-container-high border-r border-secondary/20">
+<img alt="Abstract neural network glow" class="absolute inset-0 w-full h-full object-cover opacity-20" data-alt="Abstract glowing purple neural network pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRWxq6DQEsmk0HZgyjB1Z7Zz9GJIrBq-fdPB_h4X7wEHRj7ksAe4CgGgGqUADei3VUhcDLE0xuvtmP8rtriineKM7_N9olsWo9EpphXsWh-NiY35N3xEjrVUjfMGaW-I1XrMSI5Y1jx3CK2UB8P9Z2cOnAlHjnZS2W-k6_pV06p7WZe-2gDHxYYaaq00dpiRru_P7JKX1SzScW-w7uRJERg50SuP_AzX6a6EpLiobocNycdVEkJTbmY2-K0Gch_sK1g3DjmGgxfrGc"/>
+<div class="relative p-8 h-full flex flex-col justify-end">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 bg-secondary rounded-full"></span>
+<span class="text-secondary font-label text-[10px] uppercase tracking-widest">Sentinel AI</span>
+</div>
+<h3 class="font-headline text-2xl font-bold uppercase tracking-tighter">Behavioral Anomaly Engine</h3>
+<p class="text-on-surface-variant text-xs mt-2">Machine learning cluster for predicting lateral movement in zero-trust environments.</p>
+</div>
+</div>
+<!-- Technical Stats -->
+<div class="md:col-span-5 md:row-span-1 bg-surface-container-lowest p-8 flex flex-col justify-between border-b border-outline-variant/20">
+<div class="grid grid-cols-2 gap-8">
+<div>
+<div class="text-3xl font-headline font-black text-primary">48.2k</div>
+<div class="text-[10px] font-label text-on-surface-variant uppercase tracking-widest mt-1">Threats Blocked</div>
+</div>
+<div>
+<div class="text-3xl font-headline font-black text-secondary">0.03ms</div>
+<div class="text-[10px] font-label text-on-surface-variant uppercase tracking-widest mt-1">Response Latency</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] font-label text-on-surface-variant uppercase">Network Load</span>
+<span class="text-[10px] font-label text-primary">Stable</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full overflow-hidden">
+<div class="h-full bg-primary w-[74%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#050505] w-full border-t border-[#262626] rounded-none">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 gap-4">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="text-sm font-bold text-[#00ffff] font-headline tracking-tighter uppercase">KINETIC_CIPHER</div>
+<div class="text-[10px] font-['Space_Grotesk'] tracking-widest uppercase text-[#262626]">© 2024 OBSIDIAN ARCHITECT. SYSTEM_STABLE_V2.0.4</div>
+</div>
+<div class="flex gap-8">
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#262626] hover:text-[#d873ff] transition-colors" href="#">GITHUB</a>
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#262626] hover:text-[#d873ff] transition-colors" href="#">LINKEDIN</a>
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#262626] hover:text-[#d873ff] transition-colors" href="#">TERMINAL</a>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-1 h-1 bg-[#00ffff] rounded-full"></span>
+<span class="text-[10px] font-label text-primary/40 tracking-[0.3em]">SECURE_CONNECTION_ESTABLISHED</span>
+</div>
+</div>
+</footer>
+<!-- FAB Suppression logic applied: No FAB on landing home pages according to mandate unless specific action required -->
+</body></html>
