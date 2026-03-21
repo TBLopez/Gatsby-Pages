@@ -105,7 +105,7 @@ const isNotionConnected = undefined;
                 <span class="opacity-70">clear</span><span>Clear terminal output</span>
             </div>
             <div class="mt-4 border-t border-[#3b4b37]/40 pt-2 opacity-50 text-[10px]">SOCIAL_LINKS: <a href="https://github.com/TBLopez" target="_blank" class="hover:text-white underline">github</a> | <a href="https://www.linkedin.com/in/techtony/" target="_blank" class="hover:text-white underline">linkedin</a></div>
-            \${isNotionConnected ? '<div class="mt-1 opacity-50 text-[10px] text-[#00ff41]">NOTION UPLINK ACTIVE (CMS ENABLED)</div>' : '<div class="mt-1 opacity-50 text-[10px] text-[#ffb4ab]">NOTION UPLINK OFFLINE (NO CMS KEYS PROVIDED)</div>'}
+            ${isNotionConnected ? '<div class="mt-1 opacity-50 text-[10px] text-[#00ff41]">NOTION UPLINK ACTIVE (CMS ENABLED)</div>' : '<div class="mt-1 opacity-50 text-[10px] text-[#ffb4ab]">NOTION UPLINK OFFLINE (NO CMS KEYS PROVIDED)</div>'}
         </div>
     `,
     'whoami': `
@@ -129,12 +129,12 @@ const isNotionConnected = undefined;
               return;
           }
           
-          const promptHtml = \`
+          const promptHtml = `
               <div class="flex items-center gap-2 mt-4">
                   <span class="text-[#00FF41] font-bold">tony@firefly:~$</span>
-                  <span class="text-white">\${cmd}</span>
+                  <span class="text-white">${cmd}</span>
               </div>
-          \`;
+          `;
           
           let responseHtml = '';
           const baseCmd = cmd.split(' ')[0].toLowerCase();
@@ -142,26 +142,26 @@ const isNotionConnected = undefined;
           if (commands[baseCmd]) {
               responseHtml = commands[baseCmd];
           } else if (baseCmd === 'ls') {
-              const fileList = Object.keys(systemFiles).map(f => \`
+              const fileList = Object.keys(systemFiles).map(f => `
                   <div class="col-span-1 border-l-2 border-[#3b4b37] pl-2 hover:border-[#00FF41] transition-colors">
-                      <div class="text-[#99d688] font-bold">\${f}</div>
-                      <div class="text-[10px] text-white/50 truncate">\${systemFiles[f].desc}</div>
+                      <div class="text-[#99d688] font-bold">${f}</div>
+                      <div class="text-[10px] text-white/50 truncate">${systemFiles[f].desc}</div>
                   </div>
-              \`).join('');
-              responseHtml = \`<div class="ml-4 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">\${fileList}</div>\`;
+              `).join('');
+              responseHtml = `<div class="ml-4 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${fileList}</div>`;
           } else if (baseCmd === 'cat') {
               const file = cmd.split(' ')[1];
               if (systemFiles[file]) {
                   const dest = systemFiles[file].url && systemFiles[file].url !== '#' ? systemFiles[file].url : '#';
-                  responseHtml = \`<div class="text-[#ebffe2] ml-4 mt-2">Downloading \${file}... <a href="\${dest}" target="_blank" class="underline hover:text-white text-[#00ff41]">Link to asset.</a></div>\`;
+                  responseHtml = `<div class="text-[#ebffe2] ml-4 mt-2">Downloading ${file}... <a href="${dest}" target="_blank" class="underline hover:text-white text-[#00ff41]">Link to asset.</a></div>`;
                   if (dest !== '#') window.open(dest, '_blank');
               } else if (!file) {
-                  responseHtml = \`<div class="text-[#ffb4ab] ml-4 mt-2">cat: missing file operand</div>\`;
+                  responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">cat: missing file operand</div>`;
               } else {
-                  responseHtml = \`<div class="text-[#ffb4ab] ml-4 mt-2">cat: \${file}: No such file or directory</div>\`;
+                  responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">cat: ${file}: No such file or directory</div>`;
               }
           } else {
-              responseHtml = \`<div class="text-[#ffb4ab] ml-4 mt-2">bash: \${cmd}: command not found. Type 'help' for available commands.</div>\`;
+              responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">bash: ${cmd}: command not found. Type 'help' for available commands.</div>`;
           }
           
           const entry = document.createElement('div');
