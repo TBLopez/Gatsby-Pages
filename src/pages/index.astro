@@ -131,24 +131,25 @@ if (isNotionConnected) {
       gain.connect(audioCtx.destination);
       
       if (type === 'type') {
-          osc.type = 'square';
-          osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.05);
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + 0.03);
           gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
           osc.start();
-          osc.stop(audioCtx.currentTime + 0.05);
+          osc.stop(audioCtx.currentTime + 0.03);
       } else if (type === 'enter') {
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.15);
-          gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
           gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
           osc.start();
           osc.stop(audioCtx.currentTime + 0.15);
       } else if (type === 'done') {
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+          osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(250, audioCtx.currentTime + 0.1);
           gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
           gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
           osc.start();
