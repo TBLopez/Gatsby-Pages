@@ -1,0 +1,110 @@
+:root {
+  --primary: #5A67D8;
+  --secondary: #F6AD55;
+  --bg-color: #f9f9ff;
+  --surface: #ffffff;
+  --text-main: #181c25;
+  --text-muted: #454653;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 6rem 0;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 600px;
+}
+
+/* Card layout mimicking "The Digital Curator" */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+.card {
+  background-color: var(--surface);
+  padding: 2.5rem;
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  /* Soft lift without specific pixel shadows to mimic tonal depth */
+  box-shadow: 0 4px 20px rgba(24, 28, 37, 0.03);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(24, 28, 37, 0.08);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.card p {
+  color: var(--text-muted);
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Mobile responsive constraints */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: 3rem 0;
+    text-align: left;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .container {
+    padding: 2rem 1rem;
+  }
+}
