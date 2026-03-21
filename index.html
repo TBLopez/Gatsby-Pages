@@ -60,7 +60,7 @@ DIRECTORY
    ██║   ██║   ██║██║╚██╗██║  ╚██╔╝      ██║     ██║   ██║██╔═══╝ ██╔══╝   ███╔╝  
    ██║   ╚██████╔╝██║ ╚████║   ██║       ███████╗╚██████╔╝██║     ███████╗███████╗
    ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚══════╝
-</pre> <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div> <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div> </section> <div id="history-container" class="space-y-4"></div> <div class="h-10"></div> </main> </div> <footer id="terminal-footer" class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40 cursor-text"> <div class="max-w-7xl mx-auto flex items-center gap-3 w-full font-mono text-[#00FF41]"> <span class="font-bold shrink-0">tony@firefly:~$</span> <form id="cmd-form" class="relative flex-1 flex items-center whitespace-pre overflow-hidden m-0 p-0" onsubmit="return false;"> <input id="cmd-input" autocomplete="off" autofocus class="w-full bg-transparent outline-none border-none text-[#00FF41] font-mono p-0 m-0 text-[16px] caret-[#00FF41] focus:ring-0" spellcheck="false" type="text"> </form> </div> </footer>  </body></html> <script>(function(){const notionProjects = [];
+</pre> <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div> <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div> </section> <div id="history-container" class="space-y-4"></div> <div class="h-10"></div> </main> </div> <footer id="terminal-footer" class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40 cursor-text"> <div class="max-w-7xl mx-auto flex items-center gap-3 w-full font-mono text-[#00FF41]"> <span class="font-bold shrink-0">tony@firefly:~$</span> <form id="cmd-form" class="relative flex-1 flex items-center whitespace-pre overflow-hidden m-0 p-0"> <input id="cmd-input" autocomplete="off" autofocus class="w-full bg-transparent outline-none border-none text-[#00FF41] font-mono p-0 m-0 text-[16px] caret-[#00FF41] focus:ring-0" spellcheck="false" type="text"> <button type="submit" class="hidden"></button> </form> </div> </footer>  </body></html> <script>(function(){const notionProjects = [];
 const isNotionConnected = undefined;
 
   const input = document.getElementById('cmd-input');
@@ -118,8 +118,7 @@ const isNotionConnected = undefined;
 
   const cmdForm = document.getElementById('cmd-form');
 
-  cmdForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+  function handleCommand() {
       const cmd = input.value.trim();
       input.value = '';
       
@@ -176,5 +175,17 @@ const isNotionConnected = undefined;
               behavior: 'smooth'
           });
       }, 50);
+  }
+
+  cmdForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleCommand();
+  });
+
+  input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+          e.preventDefault();
+          handleCommand();
+      }
   });
 })();</script>
