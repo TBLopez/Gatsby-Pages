@@ -54,38 +54,13 @@
 > TONY@FIREFLY:~
 </div> <div class="flex items-center gap-6"> <div class="hidden md:flex gap-4"> <span class="text-[#00FF41] brightness-125 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">DIRECTORY</span> <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">PROCESSES</span> <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">NETSTAT</span> </div> <div class="flex gap-3"> <span class="material-symbols-outlined cursor-pointer hover:text-white">minimize</span> <span class="material-symbols-outlined cursor-pointer hover:text-white">maximize</span> <span class="material-symbols-outlined cursor-pointer hover:text-white">close</span> </div> </div> </header> <div class="flex flex-1 overflow-hidden"> <aside class="hidden md:flex flex-col h-full py-4 bg-[#131313] text-[#00FF41] font-mono uppercase text-xs tracking-tighter w-64 border-r border-[#3b4b37]/40 flex-shrink-0 relative z-30"> <div class="px-4 mb-4"> <div class="text-[#00FF41] font-black text-lg mb-1">SYSTEM_OS</div> <div class="opacity-50 text-[10px] mb-4">V.1.0.0-STABLE</div> </div> <nav class="flex-1 space-y-1"> <div class="text-[#000000] bg-[#00FF41] font-bold p-2 w-full flex items-center gap-3 cursor-pointer active:scale-95"> <span class="material-symbols-outlined">folder</span>
 DIRECTORY
-</div> </nav> <div class="mt-auto px-4 border-t border-[#3b4b37]/20 pt-4 opacity-40"> <div class="flex items-center gap-2 mb-2"> <div class="w-2 h-2 bg-[#00FF41] rounded-full animate-pulse"></div> <span>UPLINK_ESTABLISHED</span> </div> <div class="text-[9px]">LOC: 127.0.0.1</div> <div class="text-[9px]">SEC: LOCAL_MODE_ONLY</div> </div> </aside> <main id="terminal-output" class="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-hide flex flex-col gap-4 font-body pb-32 relative z-30"> <section class="mb-6 flex flex-col xl:flex-row gap-8 items-start" id="welcome-message"> <div class="flex-1"> <pre class="text-[#00FF41] text-[10px] md:text-[12px] font-bold leading-tight select-none">████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
+</div> </nav> <div class="mt-auto px-4 border-t border-[#3b4b37]/20 pt-4 opacity-40"> <div class="flex items-center gap-2 mb-2"> <div class="w-2 h-2 bg-[#00FF41] rounded-full animate-pulse"></div> <span>UPLINK_ESTABLISHED</span> </div> <div class="text-[9px]">LOC: 127.0.0.1</div> <div class="text-[9px]">SEC: LOCAL_MODE_ONLY</div> </div> </aside> <main id="terminal-output" class="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-hide flex flex-col gap-4 font-body pb-32 relative z-30"> <section class="mb-4" id="welcome-message"> <pre class="text-[#00FF41] text-[10px] sm:text-xs md:text-[14px] leading-tight font-bold whitespace-pre-wrap word-break select-none hidden sm:block">████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
 ╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝    ██║     ██╔═══██╗██╔══██╗██╔════╝╚══███╔╝
    ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝     ██║     ██║   ██║██████╔╝█████╗    ███╔╝ 
    ██║   ██║   ██║██║╚██╗██║  ╚██╔╝      ██║     ██║   ██║██╔═══╝ ██╔══╝   ███╔╝  
    ██║   ╚██████╔╝██║ ╚████║   ██║       ███████╗╚██████╔╝██║     ███████╗███████╗
    ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚══════╝
-          </pre> <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div> <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div> </div> <div class="w-full xl:w-80 bg-[#0E0E0E] border border-[#3b4b37]/40 relative overflow-hidden flex flex-col shrink-0 mt-4 xl:mt-0 shadow-[0_0_15px_rgba(0,255,65,0.05)]"> <div class="flex items-center justify-between px-4 py-2 bg-[#131313] border-b border-[#3b4b37]/40 shadow-inner"> <div class="flex items-center gap-3"> <div class="w-2 h-2 bg-[#00FF41] animate-pulse"></div> <h2 class="text-[9px] font-bold tracking-widest text-[#00FF41] uppercase">ANOMALY_DETECTION_STREAM</h2> </div> </div> <div class="flex-grow flex items-center justify-center relative p-8 min-h-[220px]"> <div class="scanline-widget scanline-anim"></div> <pre class="anomaly-core text-[#00FF41] leading-none select-none text-[8px] font-mono transition-all duration-500 text-center">            .
-           _|_
-         /  |  \
-      .-'   |   '-.
-    .'      |      '.
-   /        |        \
-  ;         |         ;
-  |         |         |
-  :         |         :
-   \       / \       /
-    '.    /   \    .'
-      '-./     \.-'
-        /       \
-       /         \
-      /           \
-     /             \
-    /               \
-   /                 \
-  |      _________    |
-   \    /         \  /
-    \  /           \/
-     \/             \
-      \             /
-       \           /
-        '         '
-            </pre> </div> <div class="p-3 bg-[#131313] font-mono text-[8.5px] text-[#00FF41]/70 flex justify-between border-t border-[#3b4b37]/40"> <span>OBJ: MEDUSOZOA_NULL</span> <span class="animate-pulse font-bold text-[#00FF41]">THREAD: 0xAF4</span> </div> </div> </section> <div id="history-container" class="space-y-4"></div> <div class="h-10"></div> </main> </div> <footer id="terminal-footer" class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40 cursor-text"> <div class="max-w-7xl mx-auto flex items-center gap-3 w-full font-mono text-[#00FF41]"> <span class="font-bold shrink-0">tony@firefly:~$</span> <form id="cmd-form" class="relative flex-1 flex items-center whitespace-pre overflow-hidden m-0 p-0"> <input id="cmd-input" autocomplete="off" autofocus class="w-full bg-transparent outline-none border-none text-[#00FF41] font-mono p-0 m-0 text-[16px] caret-[#00FF41] focus:ring-0" spellcheck="false" type="text"> <button type="submit" class="hidden"></button> </form> </div> </footer>  </body></html> <script>(function(){const notionProjects = [];
+        </pre> <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div> <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div> </section> <div id="history-container" class="space-y-4"></div> <div class="h-10"></div> </main> </div> <footer id="terminal-footer" class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40 cursor-text"> <div class="max-w-7xl mx-auto flex items-center gap-3 w-full font-mono text-[#00FF41]"> <span class="font-bold shrink-0">tony@firefly:~$</span> <form id="cmd-form" class="relative flex-1 flex items-center whitespace-pre overflow-hidden m-0 p-0"> <input id="cmd-input" autocomplete="off" autofocus class="w-full bg-transparent outline-none border-none text-[#00FF41] font-mono p-0 m-0 text-[16px] caret-[#00FF41] focus:ring-0" spellcheck="false" type="text"> <button type="submit" class="hidden"></button> </form> </div> </footer>  </body></html> <script>(function(){const notionProjects = [];
 const isNotionConnected = undefined;
 
   const input = document.getElementById('cmd-input');
