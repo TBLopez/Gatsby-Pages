@@ -2,48 +2,150 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Tony KL | Home">
-  <main class="container">
-    <section class="hero">
-      <div class="hero-text">
-        <h1 class="hero-title">Tony Khawaja-Lopez</h1>
-        <p class="hero-subtitle">Securing your digital world one click at a time. Cyber Threat Analyst & Security Specialist blending rigorous engineering with clean, accessible design.</p>
+<Layout title="Tony KL | Cybersecurity Architect">
+  <header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 py-3 bg-[#090e1c]/90 backdrop-blur-md border-b border-outline-variant/20">
+    <div class="text-sm font-bold tracking-tighter text-[#00F2FF] font-headline">TONY_KL_v1.0.0</div>
+    <div class="flex items-center gap-4">
+      <button class="material-symbols-outlined text-primary text-xl">menu</button>
+    </div>
+  </header>
+
+  <main class="pt-[52px]">
+    <!-- Hero Section -->
+    <section class="relative border-b border-outline-variant/10">
+      <div class="absolute inset-0 z-0 opacity-10">
+        <img alt="High-tech abstract networking" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtV_byHg8y-hr5qqHLHdV__t54CSJDDddykrS6ilu5pOA6PyZsFvyASJqw7EF3M6gpHMV3pXUQ8tpGbt7MGZd9I-mENuSQQMhyBtDb4NfAdfC_0JT0aXpfeVI9_3MODwEDTJEq4hYs4MDp21nQn4nGEgPS2iGORnkCsDEwsszx8QJnkK8zsy1z0B76UauBuai18OHd0ngwfOFMFC5MSnIxPvM2KrCP1WuMDRaR02FIBU6bWzt5hrN7dc0ZtPeBNhsbmANzcFf2Q-8d"/>
+      </div>
+      <div class="relative z-10 p-4 pt-6 md:p-12 md:px-8">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="pulse-indicator"></span>
+          <span class="font-label text-xs tracking-widest text-primary uppercase">Active Session</span>
+        </div>
+        <h1 class="font-headline font-bold text-5xl md:text-7xl tracking-tighter uppercase leading-none mb-4">
+          TONY <span class="text-primary text-glow block">KHAWAJA-LOPEZ</span>
+        </h1>
+        <p class="font-body text-base md:text-lg text-on-surface-variant leading-snug mb-8 border-l-2 border-primary/30 pl-4 max-w-2xl">
+          Securing your digital world one click at a time. Cyber Threat Analyst & Security Specialist blending rigorous engineering with clinical precision.
+        </p>
+        
+        <div class="flex overflow-x-auto hide-scrollbar gap-3 mb-8 -mx-4 px-4 md:mx-0 md:px-0">
+          <div class="shrink-0 flex items-center gap-2 bg-surface-container px-3 py-2 border border-outline-variant/10 rounded">
+            <span class="font-label text-[10px] text-on-surface-variant uppercase">Threat Intel</span>
+            <span class="font-label text-[10px] text-error font-bold">ANALYSIS</span>
+          </div>
+          <div class="shrink-0 flex items-center gap-2 bg-surface-container px-3 py-2 border border-outline-variant/10 rounded">
+            <span class="font-label text-[10px] text-on-surface-variant uppercase">Ops</span>
+            <span class="font-label text-[10px] text-primary">BLUE TEAM</span>
+          </div>
+          <div class="shrink-0 flex items-center gap-2 bg-surface-container px-3 py-2 border border-outline-variant/10 rounded">
+            <span class="font-label text-[10px] text-on-surface-variant uppercase">Cert</span>
+            <span class="font-label text-[10px] text-on-surface">PNPT</span>
+          </div>
+          <div class="shrink-0 flex items-center gap-2 bg-surface-container px-3 py-2 border border-outline-variant/10 rounded">
+            <span class="font-label text-[10px] text-on-surface-variant uppercase">Cert</span>
+            <span class="font-label text-[10px] text-primary">OSCP</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="projects">
-      <h2>Featured Research & Work</h2>
-      <div class="projects-grid">
-        <div class="card">
-          <h3>Flatiron Capstone</h3>
-          <p>Summarization of a breach on an organization, root cause analysis, and recommended actions.</p>
-          <a href="https://github.com/TBLopez/Projects/blob/293ff2c4905732e5eefaddcc1b04175a5110cdf4/Capstone%20Final%20Paper.pdf" target="_blank">Read Report →</a>
+    <!-- Research & Work (Tactical Modules style) -->
+    <section class="bg-surface-container-low border-b border-outline-variant/10">
+      <div class="px-4 py-10 md:px-8">
+        <div class="flex items-center gap-2 mb-8">
+          <span class="w-8 h-[2px] bg-primary"></span>
+          <h2 class="font-headline font-bold text-xl uppercase tracking-tight">Security Research</h2>
         </div>
-        <div class="card">
-          <h3>Executive Presentation</h3>
-          <p>A presentation on the capstone project geared towards all executives dealing with a mock organization breach.</p>
-          <a href="https://github.com/TBLopez/Projects/blob/293ff2c4905732e5eefaddcc1b04175a5110cdf4/ACME.pdf" target="_blank">View Docs →</a>
-        </div>
-        <div class="card">
-          <h3>APT 28 'Fancy Bear'</h3>
-          <p>Cyber Threat intelligence report covering TTPs, motivations, and famous attacks.</p>
-          <a href="https://github.com/TBLopez/Projects/blob/3f48d87f4c44c8314e3af41228f9b851916f9d25/APT%2028.pdf" target="_blank">View Intel →</a>
-        </div>
-        <div class="card">
-          <h3>APT 41 'Barium'</h3>
-          <p>A practice on CKC and The Diamond Model from a blue team perspective.</p>
-          <a href="https://github.com/TBLopez/Projects/blob/3f48d87f4c44c8314e3af41228f9b851916f9d25/APT%2041.pdf" target="_blank">View Intel →</a>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Capstone -->
+          <a href="https://github.com/TBLopez/Projects/blob/293ff2c4905732e5eefaddcc1b04175a5110cdf4/Capstone%20Final%20Paper.pdf" target="_blank" class="block bg-surface-container-high p-5 border border-outline-variant/10 hover:border-primary/50 transition-colors group">
+            <div class="flex justify-between items-start mb-4">
+              <span class="material-symbols-outlined text-2xl text-primary group-hover:text-glow">security</span>
+              <span class="font-label text-[10px] text-on-surface-variant/40 tracking-widest">DOC_01</span>
+            </div>
+            <h3 class="font-headline font-bold text-base uppercase mb-2">Flatiron Capstone</h3>
+            <p class="text-sm text-on-surface-variant leading-tight mb-5 opacity-90">Summarization of an organizational breach, root cause analysis, and recommended actions.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-background text-[10px] font-label text-primary rounded-sm uppercase">Incident Response</span>
+              <span class="px-2 py-1 bg-background text-[10px] font-label text-primary rounded-sm uppercase">RCA</span>
+            </div>
+          </a>
+
+          <!-- Executive Presentation -->
+          <a href="https://github.com/TBLopez/Projects/blob/293ff2c4905732e5eefaddcc1b04175a5110cdf4/ACME.pdf" target="_blank" class="block bg-surface-container-high p-5 border border-outline-variant/10 hover:border-primary/50 transition-colors group">
+            <div class="flex justify-between items-start mb-4">
+              <span class="material-symbols-outlined text-2xl text-primary group-hover:text-glow">presentation</span>
+              <span class="font-label text-[10px] text-on-surface-variant/40 tracking-widest">DOC_02</span>
+            </div>
+            <h3 class="font-headline font-bold text-base uppercase mb-2">Executive Presentation</h3>
+            <p class="text-sm text-on-surface-variant leading-tight mb-5 opacity-90">A presentation geared towards executives dealing with a mock organizational breach (ACME).</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-background text-[10px] font-label text-primary rounded-sm uppercase">Consulting</span>
+            </div>
+          </a>
+
+          <!-- APT 28 -->
+          <a href="https://github.com/TBLopez/Projects/blob/3f48d87f4c44c8314e3af41228f9b851916f9d25/APT%2028.pdf" target="_blank" class="block bg-surface-container-high p-5 border border-outline-variant/10 hover:border-primary/50 transition-colors group">
+            <div class="flex justify-between items-start mb-4">
+              <span class="material-symbols-outlined text-2xl text-error group-hover:text-glow">bug_report</span>
+              <span class="font-label text-[10px] text-on-surface-variant/40 tracking-widest">INTEL_01</span>
+            </div>
+            <h3 class="font-headline font-bold text-base text-error uppercase mb-2">APT 28 'Fancy Bear'</h3>
+            <p class="text-sm text-on-surface-variant leading-tight mb-5 opacity-90">Cyber Threat intelligence report covering TTPs, motivations, and famous attacks.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-background text-[10px] font-label text-error rounded-sm uppercase">Threat Intel</span>
+              <span class="px-2 py-1 bg-background text-[10px] font-label text-error rounded-sm uppercase">TTPs</span>
+            </div>
+          </a>
+
+          <!-- APT 41 -->
+          <a href="https://github.com/TBLopez/Projects/blob/3f48d87f4c44c8314e3af41228f9b851916f9d25/APT%2041.pdf" target="_blank" class="block bg-surface-container-high p-5 border border-outline-variant/10 hover:border-primary/50 transition-colors group">
+            <div class="flex justify-between items-start mb-4">
+              <span class="material-symbols-outlined text-2xl text-error group-hover:text-glow">radar</span>
+              <span class="font-label text-[10px] text-on-surface-variant/40 tracking-widest">INTEL_02</span>
+            </div>
+            <h3 class="font-headline font-bold text-base text-error uppercase mb-2">APT 41 'Barium'</h3>
+            <p class="text-sm text-on-surface-variant leading-tight mb-5 opacity-90">A practice on the Cyber Kill Chain and The Diamond Model from a blue team perspective.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-background text-[10px] font-label text-error rounded-sm uppercase">Blue Team</span>
+              <span class="px-2 py-1 bg-background text-[10px] font-label text-error rounded-sm uppercase">CKC</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <section id="contact" style="margin-top: 6rem; padding-bottom: 4rem;">
-      <h2>Connect</h2>
-      <p style="margin-top: 1rem; color: var(--text-muted); font-size: 1.125rem;">
-        Available for consulting and security infrastructure inquiries.<br/><br/>
-        <a href="https://www.linkedin.com/in/techtony/" style="color: var(--primary); font-weight: bold; text-decoration: none; margin-right: 2rem;">LinkedIn</a> 
-        <a href="https://github.com/TBLopez" style="color: var(--primary); font-weight: bold; text-decoration: none;">GitHub</a>
-      </p>
+    <!-- Connect / Contact -->
+    <section class="px-4 py-16 flex flex-col items-center text-center bg-surface">
+      <div class="w-full max-w-2xl glass-panel p-8 md:p-12 border border-primary/20 cyan-halo relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-8 h-8 flex items-center justify-center border-l border-b border-primary/20">
+          <span class="material-symbols-outlined text-xs text-primary">sensors</span>
+        </div>
+        <h2 class="font-headline font-bold text-3xl md:text-4xl uppercase tracking-tighter mb-4 leading-tight">Secure Your <br/><span class="text-primary">Perimeter.</span></h2>
+        <p class="text-base text-on-surface-variant mb-8 px-4">Available for consulting and security infrastructure inquiries. Initiate encrypted protocol now.</p>
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+            <a href="https://www.linkedin.com/in/techtony/" target="_blank" class="w-full md:w-auto px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-container rounded-sm font-headline font-bold uppercase tracking-widest text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+              LINKEDIN <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
+            <a href="https://github.com/TBLopez" target="_blank" class="w-full md:w-auto px-8 py-4 border border-outline-variant/50 text-primary rounded-sm font-headline font-bold uppercase tracking-widest text-xs hover:bg-primary/10 transition-colors flex items-center justify-center gap-2">
+              GITHUB <span class="material-symbols-outlined text-sm">code</span>
+            </a>
+        </div>
+      </div>
     </section>
   </main>
+
+  <footer class="w-full py-8 px-4 md:px-8 bg-[#0d1323] border-t border-outline-variant/10">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div>
+        <div class="text-base font-black text-[#00F2FF] font-headline mb-1">TONY_KL</div>
+        <p class="font-label text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant/40">© 2024 TACTICAL INTELLIGENCE.</p>
+      </div>
+      <div class="flex gap-6">
+        <a class="font-label text-xs uppercase text-on-surface-variant/60 hover:text-primary transition-colors" href="https://www.linkedin.com/in/techtony/">LinkedIn</a>
+        <a class="font-label text-xs uppercase text-on-surface-variant/60 hover:text-primary transition-colors" href="https://github.com/TBLopez">GitHub</a>
+      </div>
+    </div>
+  </footer>
 </Layout>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e1e4fa",
+                        "surface-container-low": "#0d1323",
+                        "on-error-container": "#ffa8a3",
+                        "on-primary": "#005f64",
+                        "on-primary-fixed": "#004145",
+                        "surface-tint": "#99f7ff",
+                        "on-secondary-fixed-variant": "#005966",
+                        "surface-container-lowest": "#000000",
+                        "surface-container-highest": "#1e253b",
+                        "on-secondary-container": "#eafbff",
+                        "error": "#ff716c",
+                        "background": "#090e1c",
+                        "on-primary-container": "#00555a",
+                        "on-background": "#e1e4fa",
+                        "inverse-surface": "#faf8ff",
+                        "secondary-container": "#006877",
+                        "primary-dim": "#00e2ee",
+                        "surface-variant": "#1e253b",
+                        "error-container": "#9f0519",
+                        "surface-container-high": "#181f33",
+                        "on-primary-fixed-variant": "#006065",
+                        "error-dim": "#d7383b",
+                        "secondary-dim": "#00d1ed",
+                        "tertiary-fixed": "#6fb5ff",
+                        "on-tertiary-fixed-variant": "#003b66",
+                        "outline-variant": "#434759",
+                        "on-error": "#490006",
+                        "surface-container": "#13192b",
+                        "primary-fixed-dim": "#00e2ee",
+                        "on-tertiary-fixed": "#001930",
+                        "secondary-fixed": "#4be4ff",
+                        "inverse-on-surface": "#505466",
+                        "tertiary-dim": "#47a2f8",
+                        "on-tertiary-container": "#002746",
+                        "secondary-fixed-dim": "#00d7f4",
+                        "primary-fixed": "#00f1fe",
+                        "primary-container": "#00f1fe",
+                        "on-surface-variant": "#a6aabf",
+                        "on-tertiary": "#003258",
+                        "secondary": "#00e0fe",
+                        "tertiary": "#6fb5ff",
+                        "primary": "#99f7ff",
+                        "on-secondary-fixed": "#003a43",
+                        "on-secondary": "#004b56",
+                        "outline": "#707588",
+                        "surface-bright": "#242b43",
+                        "surface": "#090e1c",
+                        "surface-dim": "#090e1c",
+                        "inverse-primary": "#006a70",
+                        "tertiary-fixed-dim": "#4da8fe",
+                        "tertiary-container": "#4da8fe"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["JetBrains Mono"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .glass-panel {
+            background: rgba(13, 19, 43, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .cyan-halo {
+            box-shadow: 0 0 24px -12px rgba(153, 247, 255, 0.3);
+        }
+        .pulse-indicator {
+            position: relative;
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #99f7ff;
+            border-radius: 50%;
+        }
+        .pulse-indicator::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #99f7ff;
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.5); opacity: 0.8; }
+            80%, 100% { transform: scale(3); opacity: 0; }
+        }
+        .text-glow {
+            text-shadow: 0 0 8px rgba(0, 241, 254, 0.5);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 py-3 bg-[#090e1c]/90 backdrop-blur-md border-b border-outline-variant/20">
+<div class="text-sm font-bold tracking-tighter text-[#00F2FF] font-headline">SENTINEL_v4.0.2</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary text-xl">menu</button>
+</div>
+</header>
+<main class="pt-[52px]">
+<section class="relative border-b border-outline-variant/10">
+<div class="absolute inset-0 z-0 opacity-10">
+<img alt="High-tech abstract networking" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtV_byHg8y-hr5qqHLHdV__t54CSJDDddykrS6ilu5pOA6PyZsFvyASJqw7EF3M6gpHMV3pXUQ8tpGbt7MGZd9I-mENuSQQMhyBtDb4NfAdfC_0JT0aXpfeVI9_3MODwEDTJEq4hYs4MDp21nQn4nGEgPS2iGORnkCsDEwsszx8QJnkK8zsy1z0B76UauBuai18OHd0ngwfOFMFC5MSnIxPvM2KrCP1WuMDRaR02FIBU6bWzt5hrN7dc0ZtPeBNhsbmANzcFf2Q-8d"/>
+</div>
+<div class="relative z-10 p-4 pt-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="pulse-indicator"></span>
+<span class="font-label text-[10px] tracking-widest text-primary uppercase">Active Session</span>
+</div>
+<h1 class="font-headline font-bold text-4xl tracking-tighter uppercase leading-none mb-2">
+                TONY <span class="text-primary text-glow block">KHAWAJA-LOPEZ</span>
+</h1>
+<p class="font-body text-sm text-on-surface-variant leading-snug mb-6 border-l-2 border-primary/30 pl-3">
+                Cybersecurity Architect specializing in offensive security operations. Tactical exploitation &amp; clinical precision.
+            </p>
+<div class="flex overflow-x-auto hide-scrollbar gap-2 mb-6 -mx-4 px-4">
+<div class="shrink-0 flex items-center gap-2 bg-surface-container px-3 py-2 border border-outline-variant/10 rounded">
+<span class="font-label text-[9px] text-on-surface-variant uppercase">Threat</span>
+<span class="font-label text-[9px] text-error font-bold">CRITICAL</span>
+</div>
+<div class="shrink-0 flex items-center gap-2 bg-surface-container px-3 py-2 border border-outline-variant/10 rounded">
+<span class="font-label text-[9px] text-on-surface-variant uppercase">Enc</span>
+<span class="font-label text-[9px] text-primary">AES-256</span>
+</div>
+<div class="shrink-0 flex items-center gap-2 bg-surface-container px-3 py-2 border border-outline-variant/10 rounded">
+<span class="font-label text-[9px] text-on-surface-variant uppercase">Uptime</span>
+<span class="font-label text-[9px] text-on-surface">99.9%</span>
+</div>
+<div class="shrink-0 flex items-center gap-2 bg-surface-container px-3 py-2 border border-outline-variant/10 rounded">
+<span class="font-label text-[9px] text-on-surface-variant uppercase">Lat</span>
+<span class="font-label text-[9px] text-primary">12ms</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="w-full py-3 bg-primary text-on-primary-container text-[11px] font-headline font-bold uppercase tracking-widest rounded">Initialize</button>
+<button class="w-full py-3 border border-outline-variant/20 text-primary text-[11px] font-headline font-bold uppercase tracking-widest rounded">Arsenal</button>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-low border-b border-outline-variant/10">
+<div class="px-4 py-8">
+<div class="flex items-center gap-2 mb-6">
+<span class="w-8 h-[1px] bg-primary"></span>
+<h2 class="font-headline font-bold text-lg uppercase tracking-tight">Tactical Modules</h2>
+</div>
+<div class="space-y-3">
+<div class="bg-surface-container-high p-4 border border-outline-variant/10">
+<div class="flex justify-between items-start mb-3">
+<span class="material-symbols-outlined text-2xl text-primary">security</span>
+<span class="font-label text-[8px] text-on-surface-variant/40 tracking-widest">MOD_01</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase mb-2">Red Teaming Ops</h3>
+<p class="text-[12px] text-on-surface-variant leading-tight mb-4 opacity-80">Full-spectrum adversarial simulations testing detection &amp; response.</p>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-background text-[8px] font-label text-primary rounded-sm uppercase">Phishing</span>
+<span class="px-2 py-0.5 bg-background text-[8px] font-label text-primary rounded-sm uppercase">Persistence</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 border border-outline-variant/10">
+<div class="flex justify-between items-start mb-3">
+<span class="material-symbols-outlined text-2xl text-primary">biotech</span>
+<span class="font-label text-[8px] text-on-surface-variant/40 tracking-widest">MOD_02</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase mb-2">Penetration Testing</h3>
+<p class="text-[12px] text-on-surface-variant leading-tight mb-4 opacity-80">Surgical assessments of web, mobile, and cloud infrastructure.</p>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-background text-[8px] font-label text-primary rounded-sm uppercase">Cloud</span>
+<span class="px-2 py-0.5 bg-background text-[8px] font-label text-primary rounded-sm uppercase">API</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-4 py-8 bg-surface">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline font-bold text-lg uppercase tracking-tight">Core Architecture</h2>
+<span class="font-label text-[10px] text-primary/60">ROOT_ACCESS</span>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<div class="bg-surface-container p-4 border border-outline-variant/10 flex justify-between items-center">
+<div>
+<h4 class="font-headline font-bold text-xs uppercase text-primary mb-1">Threat Modeling</h4>
+<p class="text-[11px] text-on-surface-variant">Mapping attack surfaces.</p>
+</div>
+<img alt="Tech hardware" class="w-12 h-12 object-cover rounded opacity-30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTQ2ZRAa9NB6ylAfhYuxHEQ25I8hgMhnJ_2PeOKhXvDdbao-tFWNB6YZskFA6uELY6PqsFtBhzb318q3WkeKnmDnqrMCL38D3xLrE03aoXVnR2pLf8v5DW_UTqaQX5eBiMN5QpyfVecZ5kh5-mx_cn05TeP22km93n1V99Pbt5KyJWtJmMGjLabU307m_wSTAfW5lpXBKsNpqK-87k8-KnC-IkvP0hdDi60x3-1RCiaHCsC0MHjxLP3qVIK5oXaK4w7Wp9UYq1NfQ4"/>
+</div>
+<div class="bg-primary p-4 flex justify-between items-center">
+<div>
+<h4 class="font-headline font-bold text-xs uppercase text-on-primary-container mb-1">Offensive Tooling</h4>
+<p class="text-[9px] font-label text-on-primary-container/80">RUST / GO / PY</p>
+</div>
+<span class="material-symbols-outlined text-on-primary-container">terminal</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container p-4 flex flex-col items-center justify-center border border-outline-variant/10">
+<div class="text-2xl font-headline font-bold text-primary leading-none">150+</div>
+<div class="text-[8px] font-label uppercase tracking-tighter text-on-surface-variant">CVEs FOUND</div>
+</div>
+<div class="bg-surface-container p-4 flex flex-col items-center justify-center border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary text-xl mb-1">cloud_done</span>
+<div class="text-[8px] font-label uppercase text-on-surface-variant">INFRA HARDENING</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-low px-4 py-8">
+<h2 class="font-headline font-bold text-lg uppercase tracking-tight mb-6">Intel Reports</h2>
+<div class="space-y-6">
+<div class="border-l border-outline-variant/20 pl-4">
+<div class="font-label text-[9px] text-primary mb-2 tracking-[0.2em]">REPORT_009</div>
+<h3 class="font-headline font-bold text-md uppercase leading-tight mb-3">Project Obsidian: Fortune 500 Simulation</h3>
+<div class="w-full h-32 mb-3 bg-surface-container rounded overflow-hidden">
+<img alt="Network visuals" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1KHXNhDEa_k63BMf4u87GTPiVeBo4jOgNkT-zF76uTHr_cj935CkHy71YwBRriIajZOtW5XgJR9u5ZuEiArMc1i9LTWgNberknjBl75mZUi_lZss5O_xXhe-wcLMf73kin3PxIYPEmcpcayy1Z2b2ybqgCyxk79Eijz3nBzYDOUMMaQIr1A_p7yh034sQdLS9HzzBqKAToCSJQLBMnB3Vfo352_PrlPKtDL_SODAOZUG5RmeRdYyyYg6aIsNpWolfmJoMmf1nViwj"/>
+</div>
+<p class="text-[12px] text-on-surface-variant mb-4 leading-normal">Executed stealth engagement achieving domain admin without triggering alarms.</p>
+<a class="inline-flex items-center gap-2 text-primary font-label text-[10px] uppercase font-bold" href="#">
+                    OPEN_BRIEF <span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+</div>
+</div>
+</section>
+<section class="px-4 py-12 flex flex-col items-center text-center">
+<div class="w-full glass-panel p-6 border border-primary/20 cyan-halo relative overflow-hidden">
+<div class="absolute top-0 right-0 w-8 h-8 flex items-center justify-center border-l border-b border-primary/20">
+<span class="material-symbols-outlined text-[10px] text-primary">sensors</span>
+</div>
+<h2 class="font-headline font-bold text-2xl uppercase tracking-tighter mb-4 leading-tight">Secure Your <br/><span class="text-primary">Perimeter.</span></h2>
+<p class="text-[12px] text-on-surface-variant mb-6 px-4">Limited Q4 engagement slots available. Initiate encrypted protocol now.</p>
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-container rounded-sm font-headline font-bold uppercase tracking-widest text-[11px]">
+                Establish Connection
+            </button>
+</div>
+</section>
+</main>
+<footer class="w-full py-8 px-4 bg-[#0d1323] border-t border-outline-variant/10">
+<div class="flex flex-col items-start gap-6">
+<div>
+<div class="text-sm font-black text-[#00F2FF] font-headline mb-1">CYBER_SENTINEL</div>
+<p class="font-label text-[8px] uppercase tracking-widest text-on-surface-variant/40">© 2024 TACTICAL INTELLIGENCE.</p>
+</div>
+<div class="grid grid-cols-2 gap-y-2 gap-x-8 w-full border-t border-outline-variant/5 pt-6">
+<a class="font-label text-[9px] uppercase text-on-surface-variant/60" href="#">LinkedIn</a>
+<a class="font-label text-[9px] uppercase text-on-surface-variant/60" href="#">GitHub</a>
+<a class="font-label text-[9px] uppercase text-on-surface-variant/60" href="#">PGP_KEY</a>
+<a class="font-label text-[9px] uppercase text-on-surface-variant/60" href="#">ROOT_DIR</a>
+</div>
+</div>
+</footer>
+
+</body></html>
