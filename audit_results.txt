@@ -1,0 +1,454 @@
+# npm audit report
+
+@babel/helpers  <7.26.10
+Severity: moderate
+Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups - https://github.com/advisories/GHSA-968p-4wvh-cqc8
+fix available via `npm audit fix`
+node_modules/@babel/helpers
+
+@babel/runtime  <7.26.10
+Severity: moderate
+Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups - https://github.com/advisories/GHSA-968p-4wvh-cqc8
+fix available via `npm audit fix`
+node_modules/@babel/runtime
+
+@babel/traverse  <7.23.2
+Severity: critical
+Babel vulnerable to arbitrary code execution when compiling specifically crafted malicious code - https://github.com/advisories/GHSA-67hx-6x53-jw92
+fix available via `npm audit fix`
+node_modules/@babel/traverse
+
+@parcel/reporter-dev-server  <=2.16.3
+Severity: moderate
+Parcel has an Origin Validation Error vulnerability - https://github.com/advisories/GHSA-qm9p-f9j5-w83w
+fix available via `npm audit fix`
+node_modules/@parcel/reporter-dev-server
+  gatsby-parcel-config  *
+  Depends on vulnerable versions of @gatsbyjs/parcel-namer-relative-to-cwd
+  Depends on vulnerable versions of @parcel/reporter-dev-server
+  node_modules/gatsby-parcel-config
+    gatsby  >=1.0.0-alpha.3
+    Depends on vulnerable versions of @graphql-codegen/typescript
+    Depends on vulnerable versions of @graphql-codegen/typescript-operations
+    Depends on vulnerable versions of axios
+    Depends on vulnerable versions of babel-plugin-remove-graphql-queries
+    Depends on vulnerable versions of babel-preset-gatsby
+    Depends on vulnerable versions of cookie
+    Depends on vulnerable versions of css-minimizer-webpack-plugin
+    Depends on vulnerable versions of devcert
+    Depends on vulnerable versions of gatsby-cli
+    Depends on vulnerable versions of gatsby-core-utils
+    Depends on vulnerable versions of gatsby-link
+    Depends on vulnerable versions of gatsby-page-utils
+    Depends on vulnerable versions of gatsby-parcel-config
+    Depends on vulnerable versions of gatsby-plugin-page-creator
+    Depends on vulnerable versions of gatsby-plugin-typescript
+    Depends on vulnerable versions of gatsby-plugin-utils
+    Depends on vulnerable versions of gatsby-telemetry
+    Depends on vulnerable versions of socket.io
+    Depends on vulnerable versions of socket.io-client
+    Depends on vulnerable versions of webpack-dev-middleware
+    node_modules/gatsby
+
+ajv  <6.14.0 || >=7.0.0-alpha.0 <8.18.0
+Severity: moderate
+ajv has ReDoS when using `$data` option - https://github.com/advisories/GHSA-2g4f-4pwh-qvx6
+ajv has ReDoS when using `$data` option - https://github.com/advisories/GHSA-2g4f-4pwh-qvx6
+fix available via `npm audit fix`
+node_modules/ajv
+node_modules/table/node_modules/ajv
+
+axios  <=0.30.2
+Severity: high
+Axios Cross-Site Request Forgery Vulnerability - https://github.com/advisories/GHSA-wf5p-g6vw-rhxx
+axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL - https://github.com/advisories/GHSA-jr5f-v2jv-69x6
+Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig - https://github.com/advisories/GHSA-43fc-jf86-j433
+fix available via `npm audit fix`
+node_modules/axios
+
+base-x  <=3.0.10
+Severity: high
+Homograph attack allows Unicode lookalike characters to bypass validation. - https://github.com/advisories/GHSA-xq7p-g2vc-g82p
+fix available via `npm audit fix`
+node_modules/base-x
+
+body-parser  <=1.20.3 || 2.0.0-beta.1 - 2.0.2
+Severity: high
+body-parser vulnerable to denial of service when url encoding is enabled - https://github.com/advisories/GHSA-qwcr-r2fm-qrc7
+Depends on vulnerable versions of qs
+fix available via `npm audit fix`
+node_modules/body-parser
+  express  <=4.21.2 || 5.0.0-alpha.1 - 5.0.1
+  Depends on vulnerable versions of body-parser
+  Depends on vulnerable versions of cookie
+  Depends on vulnerable versions of path-to-regexp
+  Depends on vulnerable versions of qs
+  Depends on vulnerable versions of send
+  Depends on vulnerable versions of serve-static
+  node_modules/express
+
+brace-expansion  1.0.0 - 1.1.11
+brace-expansion Regular Expression Denial of Service vulnerability - https://github.com/advisories/GHSA-v6h2-p8h4-qcjw
+fix available via `npm audit fix`
+node_modules/brace-expansion
+
+braces  <3.0.3
+Severity: high
+Uncontrolled resource consumption in braces - https://github.com/advisories/GHSA-grv7-fg5c-xmjg
+fix available via `npm audit fix`
+node_modules/braces
+
+cookie  <0.7.0
+cookie accepts cookie name, path, and domain with out of bounds characters - https://github.com/advisories/GHSA-pxg6-pf52-xh8x
+fix available via `npm audit fix`
+node_modules/cookie
+node_modules/engine.io/node_modules/cookie
+  engine.io  0.7.8 - 0.7.9 || 1.8.0 - 6.6.1
+  Depends on vulnerable versions of cookie
+  Depends on vulnerable versions of ws
+  node_modules/engine.io
+    socket.io  3.0.0 - 4.6.1
+    Depends on vulnerable versions of engine.io
+    node_modules/socket.io
+
+cross-spawn  <6.0.6 || >=7.0.0 <7.0.5
+Severity: high
+Regular Expression Denial of Service (ReDoS) in cross-spawn - https://github.com/advisories/GHSA-3xgq-45jj-v275
+Regular Expression Denial of Service (ReDoS) in cross-spawn - https://github.com/advisories/GHSA-3xgq-45jj-v275
+fix available via `npm audit fix`
+node_modules/clipboardy/node_modules/cross-spawn
+node_modules/cross-spawn
+node_modules/password-prompt/node_modules/cross-spawn
+
+diff  5.0.0 - 5.2.1
+jsdiff has a Denial of Service vulnerability in parsePatch and applyPatch - https://github.com/advisories/GHSA-73rr-hh4g-fpgx
+fix available via `npm audit fix`
+node_modules/diff
+
+
+es5-ext  0.10.1 - 0.10.62
+es5-ext vulnerable to Regular Expression Denial of Service in `function#copy` and `function#toStringTokens` - https://github.com/advisories/GHSA-4gmj-3p3h-gm8h
+fix available via `npm audit fix`
+node_modules/es5-ext
+
+
+file-type  13.0.0 - 21.3.0
+Severity: moderate
+file-type affected by infinite loop in ASF parser on malformed input with zero-size sub-header - https://github.com/advisories/GHSA-5v7r-6r5c-r473
+fix available via `npm audit fix --force`
+Will install @lekoarts/gatsby-theme-cara@1.2.18, which is a breaking change
+node_modules/file-type
+  gatsby-core-utils  >=1.11.0-next.0
+  Depends on vulnerable versions of file-type
+  node_modules/gatsby-core-utils
+    @gatsbyjs/parcel-namer-relative-to-cwd  >=0.0.2
+    Depends on vulnerable versions of gatsby-core-utils
+    node_modules/@gatsbyjs/parcel-namer-relative-to-cwd
+    babel-plugin-remove-graphql-queries  >=3.14.0-alpha-qe-sm.33
+    Depends on vulnerable versions of gatsby-core-utils
+    node_modules/babel-plugin-remove-graphql-queries
+      gatsby-plugin-typescript  >=3.14.0-alpha-qe-sm.33
+      Depends on vulnerable versions of babel-plugin-remove-graphql-queries
+      node_modules/gatsby-plugin-typescript
+    babel-preset-gatsby  >=0.13.0-next.0
+    Depends on vulnerable versions of gatsby-core-utils
+    node_modules/babel-preset-gatsby
+    gatsby-cli  >=1.1.0
+    Depends on vulnerable versions of gatsby-core-utils
+    Depends on vulnerable versions of gatsby-telemetry
+    Depends on vulnerable versions of yurnalist
+    node_modules/gatsby-cli
+    gatsby-page-utils  >=0.10.0-next.0
+    Depends on vulnerable versions of gatsby-core-utils
+    node_modules/gatsby-page-utils
+      gatsby-link  4.5.0-alpha-trailing-slash.45 - 4.5.0-next.0 || >=4.7.0-alpha-image-service.13
+      Depends on vulnerable versions of gatsby-page-utils
+      node_modules/gatsby-link
+      gatsby-plugin-page-creator  >=2.11.0-next.0
+      Depends on vulnerable versions of gatsby-core-utils
+      Depends on vulnerable versions of gatsby-page-utils
+      Depends on vulnerable versions of gatsby-plugin-utils
+      Depends on vulnerable versions of gatsby-telemetry
+      node_modules/gatsby-plugin-page-creator
+    gatsby-plugin-manifest  >=1.0.16
+    Depends on vulnerable versions of gatsby-core-utils
+    Depends on vulnerable versions of gatsby-plugin-utils
+    Depends on vulnerable versions of sharp
+    node_modules/gatsby-plugin-manifest
+    gatsby-plugin-mdx  >=1.11.0-next.0
+    Depends on vulnerable versions of gatsby-core-utils
+    Depends on vulnerable versions of gatsby-plugin-utils
+    node_modules/gatsby-plugin-mdx
+      @lekoarts/gatsby-theme-cara  >=1.2.19
+      Depends on vulnerable versions of gatsby-plugin-mdx
+      Depends on vulnerable versions of gatsby-source-filesystem
+      node_modules/@lekoarts/gatsby-theme-cara
+    gatsby-plugin-utils  3.1.0-alpha-image-service.13 - 3.1.0-next.1 || 3.2.0-alpha-image-service.24 - 3.2.0-next.1 || 3.3.0-alpha-image-cdn.32 - 3.3.0-next.0 || >=3.4.0-next.0
+    Depends on vulnerable versions of gatsby-core-utils
+    node_modules/gatsby-plugin-utils
+    gatsby-source-filesystem  >=2.6.0-next.0
+    Depends on vulnerable versions of file-type
+    Depends on vulnerable versions of gatsby-core-utils
+    node_modules/gatsby-source-filesystem
+    gatsby-telemetry  >=1.11.0-next.0
+    Depends on vulnerable versions of gatsby-core-utils
+    node_modules/gatsby-telemetry
+
+flatted  <=3.4.1
+Severity: high
+flatted vulnerable to unbounded recursion DoS in parse() revive phase - https://github.com/advisories/GHSA-25h7-pfq9-p65f
+Prototype Pollution via parse() in NodeJS flatted - https://github.com/advisories/GHSA-rf6f-7fwh-wjgh
+fix available via `npm audit fix`
+node_modules/flatted
+
+follow-redirects  <=1.15.5
+Severity: moderate
+follow-redirects' Proxy-Authorization header kept across hosts - https://github.com/advisories/GHSA-cxjh-pqwp-8mfp
+Follow Redirects improperly handles URLs in the url.parse() function - https://github.com/advisories/GHSA-jchw-25xp-jwwc
+fix available via `npm audit fix`
+node_modules/follow-redirects
+
+form-data  3.0.0 - 3.0.3
+Severity: critical
+form-data uses unsafe random function in form-data for choosing boundary - https://github.com/advisories/GHSA-fjxv-7rqg-78g4
+fix available via `npm audit fix`
+node_modules/form-data
+
+
+graphql  16.3.0 - 16.8.0
+Severity: moderate
+graphql Uncontrolled Resource Consumption vulnerability - https://github.com/advisories/GHSA-9pv7-vfvm-6vr7
+fix available via `npm audit fix`
+node_modules/graphql
+
+immutable  <3.8.3
+Severity: high
+Immutable is vulnerable to Prototype Pollution - https://github.com/advisories/GHSA-wf6x-7x77-mvgw
+fix available via `npm audit fix`
+node_modules/immutable
+  @ardatan/relay-compiler  <=12.0.3
+  Depends on vulnerable versions of immutable
+  node_modules/@ardatan/relay-compiler
+    @graphql-tools/relay-operation-optimizer  6.4.14 - 7.0.11
+    Depends on vulnerable versions of @ardatan/relay-compiler
+    node_modules/@graphql-tools/relay-operation-optimizer
+      @graphql-codegen/visitor-plugin-common  2.9.1-alpha-7a65ba05d.0 - 4.0.0-rc-20230524075940-6fc45fc42
+      Depends on vulnerable versions of @graphql-tools/relay-operation-optimizer
+      node_modules/@graphql-codegen/visitor-plugin-common
+        @graphql-codegen/typescript  1.15.1-alpha-094d4b03.0 - 1.15.1-alpha-7a8dc9a9.0 || 1.15.2-alpha-0056e97b.0 - 1.15.2-alpha-b5f29c7c.0 || 1.15.3-alpha-1ceb41cc.0 - 1.15.3-alpha-599c49ab.0 || 1.15.5-alpha-00d8f290.0 || 1.17.8-alpha-091dfeae.0 - 1.17.8-alpha-bc20b4c2.0 || 2.5.1-alpha-7a65ba05d.0 - 4.0.0-rc-20230524075940-6fc45fc42
+        Depends on vulnerable versions of @graphql-codegen/visitor-plugin-common
+        node_modules/@graphql-codegen/typescript
+          @graphql-codegen/typescript-operations  1.15.1-alpha-094d4b03.0 - 1.15.1-alpha-7a8dc9a9.0 || 1.15.2-alpha-0056e97b.0 - 1.15.2-alpha-b5f29c7c.0 || 1.15.3-alpha-1ceb41cc.0 - 1.15.3-alpha-599c49ab.0 || 1.15.5-alpha-00d8f290.0 - 1.15.5-alpha-1816020a.0 || 1.16.1-alpha-02b2f1d5.0 - 1.16.1-alpha-631150fc.0 || 1.17.2-alpha-21418116.0 - 1.17.2 || 1.17.8-alpha-091dfeae.0 - 1.17.8-alpha-bc20b4c2.0 || 2.4.2-alpha-7a65ba05d.0 - 4.0.0-rc-20230524075940-6fc45fc42 || 4.0.2-alpha-20230825000350-ed7b96b95 - 4.0.2-rc-20230825041350-c00984afa
+          Depends on vulnerable versions of @graphql-codegen/typescript
+          Depends on vulnerable versions of @graphql-codegen/visitor-plugin-common
+          node_modules/@graphql-codegen/typescript-operations
+
+js-yaml  <3.14.2
+Severity: moderate
+js-yaml has prototype pollution in merge (<<) - https://github.com/advisories/GHSA-mh29-5h37-fv8m
+fix available via `npm audit fix`
+node_modules/js-yaml
+
+lodash  4.0.0 - 4.17.21
+Severity: moderate
+Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions - https://github.com/advisories/GHSA-xxjr-mmjv-4gpg
+fix available via `npm audit fix`
+node_modules/lodash
+
+micromatch  <4.0.8
+Severity: moderate
+Regular Expression Denial of Service (ReDoS) in micromatch - https://github.com/advisories/GHSA-952p-6rrq-rcjv
+fix available via `npm audit fix`
+node_modules/micromatch
+
+minimatch  <=3.1.3
+Severity: high
+minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern - https://github.com/advisories/GHSA-3ppc-4f35-3m26
+minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments - https://github.com/advisories/GHSA-7r86-cg39-jmmj
+minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions - https://github.com/advisories/GHSA-23c5-xmqv-rm74
+fix available via `npm audit fix`
+node_modules/minimatch
+
+msgpackr  <1.10.1
+Severity: high
+msgpackr's conversion of property names to strings can trigger infinite recursion - https://github.com/advisories/GHSA-7hpj-7hhx-2fgx
+fix available via `npm audit fix`
+node_modules/msgpackr
+
+nanoid  <3.3.8
+Severity: moderate
+Predictable results in nanoid generation when given non-integer values - https://github.com/advisories/GHSA-mwcw-c2x4-8c55
+fix available via `npm audit fix`
+node_modules/nanoid
+
+on-headers  <1.1.0
+on-headers is vulnerable to http response header manipulation - https://github.com/advisories/GHSA-76c9-3jph-rj3q
+fix available via `npm audit fix`
+node_modules/on-headers
+  compression  1.0.3 - 1.8.0
+  Depends on vulnerable versions of on-headers
+  node_modules/compression
+
+path-to-regexp  <=0.1.11
+Severity: high
+path-to-regexp outputs backtracking regular expressions - https://github.com/advisories/GHSA-9wv6-86v2-598j
+path-to-regexp contains a ReDoS - https://github.com/advisories/GHSA-rhx6-c78j-4q9w
+fix available via `npm audit fix`
+node_modules/path-to-regexp
+
+postcss  <8.4.31
+Severity: moderate
+PostCSS line return parsing error - https://github.com/advisories/GHSA-7fh5-64p2-3v2j
+fix available via `npm audit fix`
+node_modules/postcss
+
+qs  <=6.14.1
+Severity: moderate
+qs's arrayLimit bypass in comma parsing allows denial of service - https://github.com/advisories/GHSA-w7fw-mjwx-w883
+qs's arrayLimit bypass in its bracket notation allows DoS via memory exhaustion - https://github.com/advisories/GHSA-6rw7-vpxm-498p
+fix available via `npm audit fix`
+node_modules/qs
+
+semver  2.0.0-alpha - 5.7.1 || 6.0.0 - 6.3.0 || 7.0.0 - 7.5.1
+Severity: high
+semver vulnerable to Regular Expression Denial of Service - https://github.com/advisories/GHSA-c2qf-rxjj-qqgw
+semver vulnerable to Regular Expression Denial of Service - https://github.com/advisories/GHSA-c2qf-rxjj-qqgw
+semver vulnerable to Regular Expression Denial of Service - https://github.com/advisories/GHSA-c2qf-rxjj-qqgw
+fix available via `npm audit fix`
+node_modules/@babel/core/node_modules/semver
+node_modules/@babel/eslint-parser/node_modules/semver
+node_modules/@babel/helper-compilation-targets/node_modules/semver
+node_modules/@babel/helper-create-class-features-plugin/node_modules/semver
+node_modules/@babel/helper-create-regexp-features-plugin/node_modules/semver
+node_modules/@babel/helper-define-polyfill-provider/node_modules/semver
+node_modules/@babel/plugin-transform-runtime/node_modules/semver
+node_modules/@babel/preset-env/node_modules/semver
+node_modules/@parcel/core/node_modules/semver
+node_modules/@parcel/node-resolver-core/node_modules/semver
+node_modules/@parcel/package-manager/node_modules/semver
+node_modules/@parcel/transformer-js/node_modules/semver
+node_modules/babel-plugin-polyfill-corejs2/node_modules/semver
+node_modules/clipboardy/node_modules/semver
+node_modules/eslint-plugin-import/node_modules/semver
+node_modules/eslint-plugin-jsx-a11y/node_modules/semver
+node_modules/eslint-plugin-react/node_modules/semver
+node_modules/gatsby-legacy-polyfills/node_modules/semver
+node_modules/make-dir/node_modules/semver
+node_modules/password-prompt/node_modules/semver
+node_modules/semver
+  core-js-compat  3.6.0 - 3.25.0
+  Depends on vulnerable versions of semver
+  node_modules/gatsby-legacy-polyfills/node_modules/core-js-compat
+    gatsby-legacy-polyfills  1.1.0-next.0 - 3.10.0-next.1
+    Depends on vulnerable versions of core-js-compat
+    node_modules/gatsby-legacy-polyfills
+
+send  <0.19.0
+send vulnerable to template injection that can lead to XSS - https://github.com/advisories/GHSA-m6fv-jmcg-4jfg
+fix available via `npm audit fix`
+node_modules/send
+  serve-static  <=1.16.0
+  Depends on vulnerable versions of send
+  node_modules/serve-static
+
+serialize-javascript  <=7.0.2
+Severity: high
+Cross-site Scripting (XSS) in serialize-javascript - https://github.com/advisories/GHSA-76p7-773f-r4q5
+Serialize JavaScript is Vulnerable to RCE via RegExp.flags and Date.prototype.toISOString() - https://github.com/advisories/GHSA-5c6j-r48x-rmvq
+fix available via `npm audit fix`
+node_modules/serialize-javascript
+node_modules/terser-webpack-plugin/node_modules/serialize-javascript
+  css-minimizer-webpack-plugin  <=7.0.4
+  Depends on vulnerable versions of serialize-javascript
+  node_modules/css-minimizer-webpack-plugin
+
+
+sharp  <0.32.6
+Severity: high
+sharp vulnerability in libwebp dependency CVE-2023-4863 - https://github.com/advisories/GHSA-54xq-cgqr-rpm3
+fix available via `npm audit fix`
+node_modules/sharp
+  gatsby-sharp  <=1.10.0-next.1
+  Depends on vulnerable versions of sharp
+  node_modules/gatsby-sharp
+
+
+socket.io-parser  4.0.0 - 4.2.5
+Severity: high
+Insufficient validation when decoding a Socket.IO packet - https://github.com/advisories/GHSA-cqmj-92xf-r6r9
+socket.io allows an unbounded number of binary attachments - https://github.com/advisories/GHSA-677m-j7p3-52f9
+fix available via `npm audit fix`
+node_modules/socket.io-parser
+
+svgo  2.1.0 - 2.8.0
+Severity: high
+SVGO DoS through entity expansion in DOCTYPE (Billion Laughs) - https://github.com/advisories/GHSA-xpqw-6gx7-v673
+fix available via `npm audit fix`
+node_modules/svgo
+
+tar-fs  2.0.0 - 2.1.3
+Severity: high
+tar-fs has a symlink validation bypass if destination directory is predictable with a specific tarball - https://github.com/advisories/GHSA-vj76-c3g6-qr5v
+tar-fs can extract outside the specified dir with a specific tarball - https://github.com/advisories/GHSA-8cj5-5rvv-wf4v
+tar-fs Vulnerable to Link Following and Path Traversal via Extracting a Crafted tar File - https://github.com/advisories/GHSA-pq67-2wwv-3xjx
+fix available via `npm audit fix`
+node_modules/tar-fs
+
+tmp  <=0.2.3
+tmp allows arbitrary temporary file / directory write via symbolic link `dir` parameter - https://github.com/advisories/GHSA-52f5-9888-hmc6
+fix available via `npm audit fix`
+node_modules/devcert/node_modules/tmp
+node_modules/external-editor/node_modules/tmp
+node_modules/tmp
+  devcert  *
+  Depends on vulnerable versions of tmp
+  node_modules/devcert
+  external-editor  >=1.1.1
+  Depends on vulnerable versions of tmp
+  node_modules/external-editor
+    inquirer  3.0.0 - 8.2.6 || 9.0.0 - 9.3.7
+    Depends on vulnerable versions of external-editor
+    node_modules/inquirer
+      yurnalist  *
+      Depends on vulnerable versions of inquirer
+      node_modules/yurnalist
+
+webpack  5.0.0-alpha.0 - 5.104.0
+Severity: moderate
+Webpack's AutoPublicPathRuntimeModule has a DOM Clobbering Gadget that leads to XSS - https://github.com/advisories/GHSA-4vvj-4cpr-p986
+webpack buildHttp: allowedUris allow-list bypass via URL userinfo (@) leading to build-time SSRF behavior - https://github.com/advisories/GHSA-8fgc-7cc6-rx7x
+webpack buildHttp HttpUriPlugin allowedUris bypass via HTTP redirects → SSRF + cache persistence - https://github.com/advisories/GHSA-38r7-794h-5758
+fix available via `npm audit fix`
+node_modules/webpack
+
+webpack-dev-middleware  <=5.3.3
+Severity: high
+Path traversal in webpack-dev-middleware - https://github.com/advisories/GHSA-wr3j-pwj9-hqq6
+fix available via `npm audit fix`
+node_modules/webpack-dev-middleware
+
+word-wrap  <1.2.4
+Severity: moderate
+word-wrap vulnerable to Regular Expression Denial of Service - https://github.com/advisories/GHSA-j8xg-fqg3-53r7
+fix available via `npm audit fix`
+node_modules/word-wrap
+
+ws  8.0.0 - 8.17.0
+Severity: high
+ws affected by a DoS when handling a request with many HTTP headers - https://github.com/advisories/GHSA-3h5v-q93c-6h6q
+fix available via `npm audit fix`
+node_modules/ws
+  engine.io-client  0.7.0 || 0.7.8 - 0.7.9 || 6.0.0 - 6.5.3
+  Depends on vulnerable versions of ws
+  node_modules/engine.io-client
+    socket.io-client  4.3.0 - 4.6.2
+    Depends on vulnerable versions of engine.io-client
+    node_modules/socket.io-client
+
+79 vulnerabilities (13 low, 31 moderate, 33 high, 2 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force

@@ -17,6 +17,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
     "@lekoarts/gatsby-theme-cara": "^5.0.5",
     "gatsby": "^5.9.0",
     "gatsby-plugin-manifest": "^5.9.0",
