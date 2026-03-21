@@ -50,58 +50,84 @@
         input:focus {
             outline: none;
         }
-    </style></head> <body class="bg-black text-[#00FF41] font-body selection:bg-[#00FF41] selection:text-black min-h-screen flex flex-col overflow-hidden m-0 p-0"> <!-- Scanline Overlay --> <div class="fixed inset-0 scanline z-50 pointer-events-none"></div>   <header class="bg-[#131313] text-[#00FF41] font-mono uppercase tracking-widest text-sm border-b border-[#3b4b37]/40 shadow-[0_0_15px_rgba(0,255,65,0.1)] flex justify-between items-center w-full px-4 h-10 sticky top-0 z-40 shrink-0"> <div class="text-[#00FF41] font-bold before:content-['>_'] flex items-center gap-2">
+    </style></head> <body class="bg-black text-[#00FF41] font-body selection:bg-[#00FF41] selection:text-black min-h-screen flex flex-col overflow-hidden m-0 p-0"> <!-- Scanline Overlay --> <div class="fixed inset-0 scanline z-50 pointer-events-none"></div>  <header class="bg-[#131313] text-[#00FF41] font-mono uppercase tracking-widest text-sm border-b border-[#3b4b37]/40 shadow-[0_0_15px_rgba(0,255,65,0.1)] flex justify-between items-center w-full px-4 h-10 sticky top-0 z-40 shrink-0"> <div class="text-[#00FF41] font-bold before:content-['>_'] flex items-center gap-2">
 > TONY@FIREFLY:~
-</div> <div class="flex items-center gap-6"> <div class="hidden md:flex gap-4"> <span class="text-[#00FF41] brightness-125 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">DIRECTORY</span> <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">PROCESSES</span> <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">NETSTAT</span> </div> <div class="flex gap-3"> <span class="material-symbols-outlined cursor-pointer hover:text-white">minimize</span> <span class="material-symbols-outlined cursor-pointer hover:text-white">maximize</span> <span class="material-symbols-outlined cursor-pointer hover:text-white">close</span> </div> </div> </header> <div class="flex flex-1 overflow-hidden"> <!-- Side Navigation Shell --> <aside class="hidden md:flex flex-col h-full py-4 bg-[#131313] text-[#00FF41] font-mono uppercase text-xs tracking-tighter w-64 border-r border-[#3b4b37]/40 flex-shrink-0 relative z-30"> <div class="px-4 mb-8"> <div class="text-[#00FF41] font-black text-lg mb-1">SYSTEM_OS</div> <div class="opacity-50 text-[10px]">V.1.0.0-STABLE</div> </div> <nav class="flex-1 space-y-1"> <div class="text-[#000000] bg-[#00FF41] font-bold p-2 w-full flex items-center gap-3 cursor-pointer active:scale-95"> <span class="material-symbols-outlined">folder</span>
+</div> <div class="flex items-center gap-6"> <div class="hidden md:flex gap-4"> <span class="text-[#00FF41] brightness-125 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">DIRECTORY</span> <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">PROCESSES</span> <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">NETSTAT</span> </div> <div class="flex gap-3"> <span class="material-symbols-outlined cursor-pointer hover:text-white">minimize</span> <span class="material-symbols-outlined cursor-pointer hover:text-white">maximize</span> <span class="material-symbols-outlined cursor-pointer hover:text-white">close</span> </div> </div> </header> <div class="flex flex-1 overflow-hidden"> <aside class="hidden md:flex flex-col h-full py-4 bg-[#131313] text-[#00FF41] font-mono uppercase text-xs tracking-tighter w-64 border-r border-[#3b4b37]/40 flex-shrink-0 relative z-30"> <div class="px-4 mb-8"> <div class="text-[#00FF41] font-black text-lg mb-1">SYSTEM_OS</div> <div class="opacity-50 text-[10px]">V.1.0.0-STABLE</div> </div> <nav class="flex-1 space-y-1"> <div class="text-[#000000] bg-[#00FF41] font-bold p-2 w-full flex items-center gap-3 cursor-pointer active:scale-95"> <span class="material-symbols-outlined">folder</span>
 DIRECTORY
-</div> </nav> <div class="mt-auto px-4 border-t border-[#3b4b37]/20 pt-4 opacity-40"> <div class="flex items-center gap-2 mb-2"> <div class="w-2 h-2 bg-[#00FF41] rounded-full animate-pulse"></div> <span>UPLINK_ESTABLISHED</span> </div> <div class="text-[9px]">LOC: 127.0.0.1</div> <div class="text-[9px]">SEC: WPA3-ENTERPRISE</div> </div> </aside> <!-- Main Terminal Canvas --> <main id="terminal-output" class="flex-1 overflow-y-auto p-6 scrollbar-hide flex flex-col gap-4 font-body pb-32 relative z-30"> <section class="mb-4" id="welcome-message"> <pre class="text-[#00FF41] text-[10px] md:text-[12px] font-bold leading-tight select-none">████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
+</div> </nav> <div class="mt-auto px-4 border-t border-[#3b4b37]/20 pt-4 opacity-40"> <div class="flex items-center gap-2 mb-2"> <div class="w-2 h-2 bg-[#00FF41] rounded-full animate-pulse"></div> <span>UPLINK_ESTABLISHED</span> </div> <div class="text-[9px]">LOC: 127.0.0.1</div> <div class="text-[9px]">SEC: LOCAL_MODE_ONLY</div> </div> </aside> <main id="terminal-output" class="flex-1 overflow-y-auto p-6 scrollbar-hide flex flex-col gap-4 font-body pb-32 relative z-30"> <section class="mb-4" id="welcome-message"> <pre class="text-[#00FF41] text-[10px] md:text-[12px] font-bold leading-tight select-none">████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
 ╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝    ██║     ██╔═══██╗██╔══██╗██╔════╝╚══███╔╝
    ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝     ██║     ██║   ██║██████╔╝█████╗    ███╔╝ 
    ██║   ██║   ██║██║╚██╗██║  ╚██╔╝      ██║     ██║   ██║██╔═══╝ ██╔══╝   ███╔╝  
    ██║   ╚██████╔╝██║ ╚████║   ██║       ███████╗╚██████╔╝██║     ███████╗███████╗
    ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚══════╝
-</pre> <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div> <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div> </section> <!-- Command History will be appended here --> <div id="history-container" class="space-y-4"></div> <!-- Spacing hack for scroll --> <div class="h-10"></div> </main> </div>  <footer class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40" onclick="document.getElementById('cmd-input').focus()"> <div class="max-w-7xl mx-auto flex items-center gap-4"> <div class="flex items-center gap-3 w-full"> <span class="text-[#00FF41] font-bold shrink-0">tony@firefly:~$</span> <div class="flex items-center w-full gap-0 relative"> <input id="cmd-input" autocomplete="off" autofocus class="bg-transparent border-none text-[#00FF41] font-mono focus:ring-0 w-full p-0 m-0 outline-none caret-transparent" spellcheck="false" type="text"> <!-- Custom block cursor --> <span id="custom-cursor" class="absolute left-0 top-0 text-[#00FF41] bg-[#00FF41] w-2.5 h-full mix-blend-difference opacity-80 cursor-blink pointer-events-none"></span> </div> </div> </div> </footer>  </body></html> <script>
+</pre> <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div> <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div> </section> <div id="history-container" class="space-y-4"></div> <div class="h-10"></div> </main> </div> <footer id="terminal-footer" class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40 cursor-text"> <div class="max-w-7xl mx-auto flex items-center gap-3 w-full font-mono text-[#00FF41]"> <span class="font-bold shrink-0">tony@firefly:~$</span> <div class="relative flex-1 flex items-center whitespace-pre overflow-hidden"> <!-- Exact tracking span layers --> <span id="cmd-text-before"></span><span id="custom-cursor" class="bg-[#00FF41] text-black cursor-blink select-none inline-block relative top-0.5" style="min-width: 9.6px; height: 18px;"></span><span id="cmd-text-after"></span> <!-- Invisible true input --> <input id="cmd-input" autocomplete="off" autofocus class="absolute inset-0 opacity-0 cursor-text w-full h-full z-10 text-[16px] outline-none border-none p-0 m-0" spellcheck="false" type="text"> </div> </div> </footer>  </body></html> <script>(function(){const notionProjects = [];
+const isNotionConnected = undefined;
+
   const input = document.getElementById('cmd-input');
   const cursor = document.getElementById('custom-cursor');
+  const textBefore = document.getElementById('cmd-text-before');
+  const textAfter = document.getElementById('cmd-text-after');
   const historyContainer = document.getElementById('history-container');
   const terminalOutput = document.getElementById('terminal-output');
+  const terminalFooter = document.getElementById('terminal-footer');
 
-  // Move the block cursor with the text
-  input.addEventListener('input', updateCursor);
-  input.addEventListener('keyup', updateCursor);
-  input.addEventListener('click', updateCursor);
+  terminalFooter.addEventListener('click', () => {
+    input.focus();
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!window.getSelection().toString() && e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
+      setTimeout(() => input.focus(), 50);
+    }
+  });
 
   function updateCursor() {
-      const textBeforeCursor = input.value.substring(0, input.selectionStart);
-      
-      const measure = document.createElement('span');
-      measure.style.fontFamily = 'JetBrains Mono, monospace';
-      measure.style.fontSize = window.getComputedStyle(input).fontSize;
-      measure.style.visibility = 'hidden';
-      measure.style.whiteSpace = 'pre';
-      // Fallback for empty width calculation
-      measure.textContent = textBeforeCursor || ' ';
-      document.body.appendChild(measure);
-      
-      const width = document.defaultView.getComputedStyle(measure).width;
-      const parsedWidth = parseFloat(width);
-      document.body.removeChild(measure);
+    const val = input.value;
+    const start = input.selectionStart || 0;
+    
+    textBefore.textContent = val.substring(0, start);
+    
+    const charAtCursor = val.substring(start, start + 1);
+    cursor.textContent = charAtCursor || ' ';
+    
+    textAfter.textContent = val.substring(start + 1);
+  }
 
-      const offset = textBeforeCursor ? parsedWidth : 0;
-      cursor.style.transform = `translateX(${offset}px)`;
+  input.addEventListener('input', updateCursor);
+  input.addEventListener('keyup', updateCursor);
+  input.addEventListener('keydown', updateCursor);
+  input.addEventListener('click', updateCursor);
+  
+  updateCursor();
+
+  // Re-map internal files. If Notion is connected, append them!
+  let systemFiles = {
+    'capstone.pdf': { desc: 'IT Capstone Report', url: '/tonylopezcapstone.pdf' },
+    'executive_pres.pdf': { desc: 'Executive Overview', url: '/IT_101_Executive_Presentation.pdf' },
+    'apt28.pdf': { desc: 'Threat Actor 28 Profile', url: '/APT_28.pdf' },
+    'apt41.pdf': { desc: 'Threat Actor 41 Profile', url: '/APT41_Case_Study.pdf' }
+  };
+
+  if (isNotionConnected && notionProjects.length > 0) {
+      notionProjects.forEach(proj => {
+          // Normalize title to a terminal friendly string without spaces
+          const filename = proj.title.toLowerCase().replace(/\\s+/g, '_') + '.md';
+          systemFiles[filename] = { desc: proj.description, url: proj.url };
+      });
   }
 
   const commands = {
     'help': `
         <div class="text-[#00FF41] ml-4 mt-2">
             <div>AVAILABLE COMMANDS:</div>
-            <div class="mt-2 grid grid-cols-[100px_1fr] gap-2">
+            <div class="mt-2 grid grid-cols-[120px_1fr] gap-2">
                 <span class="opacity-70">whoami</span><span>Display current operator info</span>
-                <span class="opacity-70">ls</span><span>List available archives (projects)</span>
+                <span class="opacity-70">ls</span><span>List available archives (projects/blogs)</span>
                 <span class="opacity-70">cat [file]</span><span>Open a specific archive (e.g., cat capstone.pdf)</span>
                 <span class="opacity-70">clear</span><span>Clear terminal output</span>
             </div>
             <div class="mt-4 border-t border-[#3b4b37]/40 pt-2 opacity-50 text-[10px]">SOCIAL_LINKS: <a href="https://github.com/TBLopez" target="_blank" class="hover:text-white underline">github</a> | <a href="https://www.linkedin.com/in/techtony/" target="_blank" class="hover:text-white underline">linkedin</a></div>
+            \${isNotionConnected ? '<div class="mt-1 opacity-50 text-[10px] text-[#00ff41]">NOTION UPLINK ACTIVE (CMS ENABLED)</div>' : '<div class="mt-1 opacity-50 text-[10px] text-[#ffb4ab]">NOTION UPLINK OFFLINE (NO CMS KEYS PROVIDED)</div>'}
         </div>
     `,
     'whoami': `
@@ -109,22 +135,7 @@ DIRECTORY
             <span class="block">TONY LOPEZ // SYSTEM_ARCHITECT</span>
             <span class="block opacity-70 mt-1">Specializing in security, penetration testing, and tactical development.</span>
         </div>
-    `,
-    'ls': `
-        <div class="text-[#00FF41] ml-4 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="text-[#99d688]">capstone.pdf</div>
-            <div class="text-[#99d688]">executive_pres.pdf</div>
-            <div class="text-[#99d688]">apt28.pdf</div>
-            <div class="text-[#99d688]">apt41.pdf</div>
-        </div>
     `
-  };
-
-  const files = {
-    'capstone.pdf': '/tonylopezcapstone.pdf',
-    'executive_pres.pdf': '/IT_101_Executive_Presentation.pdf',
-    'apt28.pdf': '/APT_28.pdf',
-    'apt41.pdf': '/APT41_Case_Study.pdf'
   };
 
   input.addEventListener('keydown', function(e) {
@@ -152,11 +163,20 @@ DIRECTORY
           
           if (commands[baseCmd]) {
               responseHtml = commands[baseCmd];
+          } else if (baseCmd === 'ls') {
+              const fileList = Object.keys(systemFiles).map(f => \`
+                  <div class="col-span-1 border-l-2 border-[#3b4b37] pl-2 hover:border-[#00FF41] transition-colors">
+                      <div class="text-[#99d688] font-bold">\${f}</div>
+                      <div class="text-[10px] text-white/50 truncate">\${systemFiles[f].desc}</div>
+                  </div>
+              \`).join('');
+              responseHtml = \`<div class="ml-4 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">\${fileList}</div>\`;
           } else if (baseCmd === 'cat') {
               const file = cmd.split(' ')[1];
-              if (files[file]) {
-                  responseHtml = \`<div class="text-[#ebffe2] ml-4 mt-2">Opening \${file}... <a href="\${files[file]}" target="_blank" class="underline hover:text-white text-[#00ff41]">Click here if pop-up blocked.</a></div>\`;
-                  window.open(files[file], '_blank');
+              if (systemFiles[file]) {
+                  const dest = systemFiles[file].url && systemFiles[file].url !== '#' ? systemFiles[file].url : '#';
+                  responseHtml = \`<div class="text-[#ebffe2] ml-4 mt-2">Downloading \${file}... <a href="\${dest}" target="_blank" class="underline hover:text-white text-[#00ff41]">Link to asset.</a></div>\`;
+                  if (dest !== '#') window.open(dest, '_blank');
               } else if (!file) {
                   responseHtml = \`<div class="text-[#ffb4ab] ml-4 mt-2">cat: missing file operand</div>\`;
               } else {
@@ -170,7 +190,7 @@ DIRECTORY
           entry.innerHTML = promptHtml + responseHtml;
           historyContainer.appendChild(entry);
           
-          // Auto scroll to bottom smoothly
+          // Auto scroll
           setTimeout(() => {
               terminalOutput.scrollTo({
                   top: terminalOutput.scrollHeight,
@@ -179,12 +199,4 @@ DIRECTORY
           }, 50);
       }
   });
-
-  // Keep focus
-  document.addEventListener('click', () => {
-      // Ignore text selection
-      if (!window.getSelection().toString()) {
-          input.focus();
-      }
-  });
-</script>
+})();</script>
