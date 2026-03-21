@@ -65,9 +65,11 @@ if (isNotionConnected) {
 
   <div class="flex flex-1 overflow-hidden">
     <aside class="hidden md:flex flex-col h-full py-4 bg-[#131313] text-[#00FF41] font-mono uppercase text-xs tracking-tighter w-64 border-r border-[#3b4b37]/40 flex-shrink-0 relative z-30">
-      <div class="px-4 mb-8">
+      <div class="px-4 mb-4">
         <div class="text-[#00FF41] font-black text-lg mb-1">SYSTEM_OS</div>
-        <div class="opacity-50 text-[10px]">V.1.0.0-STABLE</div>
+        <div class="opacity-50 text-[10px] mb-4">V.1.0.0-STABLE</div>
+        <pre id="ascii-anim" class="text-[8px] leading-[8px] text-[#00ff41] font-bold select-none h-16 pointer-events-none opacity-80 mt-2">
+        </pre>
       </div>
       <nav class="flex-1 space-y-1">
         <div class="text-[#000000] bg-[#00FF41] font-bold p-2 w-full flex items-center gap-3 cursor-pointer active:scale-95">
@@ -81,7 +83,7 @@ if (isNotionConnected) {
           <span>UPLINK_ESTABLISHED</span>
         </div>
         <div class="text-[9px]">LOC: 127.0.0.1</div>
-        <div class="text-[9px]">{isNotionConnected ? "SEC: CLOUD_SYNC_ACTIVE" : "SEC: LOCAL_MODE_ONLY"}</div>
+        <div class="text-[9px]">{isNotionConnected ? "SEC: DATABASE_SYNC_ACTIVE" : "SEC: LOCAL_MODE_ONLY"}</div>
       </div>
     </aside>
 
@@ -131,7 +133,7 @@ if (isNotionConnected) {
     }
   });
 
-  // Re-map internal files. If Notion is connected, append them!
+  // Re-map internal files. If Database is connected, append CMS items!
   let systemFiles = {
     'capstone.pdf': { desc: 'IT Capstone Report', url: '/tonylopezcapstone.pdf' },
     'executive_pres.pdf': { desc: 'Executive Overview', url: '/IT_101_Executive_Presentation.pdf' },
@@ -158,7 +160,7 @@ if (isNotionConnected) {
                 <span class="opacity-70">clear</span><span>Clear terminal output</span>
             </div>
             <div class="mt-4 border-t border-[#3b4b37]/40 pt-2 opacity-50 text-[10px]">SOCIAL_LINKS: <a href="https://github.com/TBLopez" target="_blank" class="hover:text-white underline">github</a> | <a href="https://www.linkedin.com/in/techtony/" target="_blank" class="hover:text-white underline">linkedin</a></div>
-            ${isNotionConnected ? '<div class="mt-1 opacity-50 text-[10px] text-[#00ff41]">NOTION UPLINK ACTIVE (CMS ENABLED)</div>' : '<div class="mt-1 opacity-50 text-[10px] text-[#ffb4ab]">NOTION UPLINK OFFLINE (NO CMS KEYS PROVIDED)</div>'}
+            ${isNotionConnected ? '<div class="mt-1 opacity-50 text-[10px] text-[#00ff41]">DATABASE UPLINK ACTIVE (CMS ENABLED)</div>' : '<div class="mt-1 opacity-50 text-[10px] text-[#ffb4ab]">DATABASE UPLINK OFFLINE (NO CMS KEYS PROVIDED)</div>'}
         </div>
     `,
     'whoami': `
@@ -228,6 +230,23 @@ if (isNotionConnected) {
               behavior: 'smooth'
           });
       }, 50);
+  }
+
+  // ASCII Jellyfish Animation
+  const jellyFrames = [
+    "     .----.\\n    /      \\\\n   (        )\\n    \\\\      /\\n    .`\\\"\\'\\\"´.\\n   / / | \\\\ \\\\\\n  / /  |  \\\\ \\\\",
+    "     .----.\\n    /      \\\\n   (        )\\n    \\\\      /\\n    .`\\\"\\'\\\"´.\\n    /  |  \\\\\\n   /   |   \\\\",
+    "     .----.\\n    /      \\\\n   (        )\\n    \\\\      /\\n    .`\\\"\\'\\\"´.\\n   \\\\ \\\\ | / /\\n    \\\\ \\\\|/ /",
+    "     .----.\\n    /      \\\\n   (        )\\n    \\\\      /\\n    .`\\\"\\'\\\"´.\\n    /  |  \\\\\\n   /   |   \\\\"
+  ];
+  let jellyIndex = 0;
+  const asciiElem = document.getElementById('ascii-anim');
+  if (asciiElem) {
+      asciiElem.textContent = jellyFrames[0].replace(/\\\\n/g, '\\n');
+      setInterval(() => {
+          jellyIndex = (jellyIndex + 1) % jellyFrames.length;
+          asciiElem.textContent = jellyFrames[jellyIndex].replace(/\\\\n/g, '\\n');
+      }, 400);
   }
 
   cmdForm.addEventListener('submit', function(e) {
