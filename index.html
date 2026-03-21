@@ -63,6 +63,49 @@ DIRECTORY
         </pre> <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div> <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div> </section> <div id="history-container" class="space-y-4"></div> <div class="h-10"></div> </main> </div> <footer id="terminal-footer" class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40 cursor-text"> <div class="max-w-7xl mx-auto flex items-center gap-3 w-full font-mono text-[#00FF41]"> <span class="font-bold shrink-0">tony@firefly:~$</span> <form id="cmd-form" class="relative flex-1 flex items-center whitespace-pre overflow-hidden m-0 p-0"> <input id="cmd-input" autocomplete="off" autofocus class="w-full bg-transparent outline-none border-none text-[#00FF41] font-mono p-0 m-0 text-[16px] caret-[#00FF41] focus:ring-0" spellcheck="false" type="text"> <button type="submit" class="hidden"></button> </form> </div> </footer>  </body></html> <script>(function(){const notionProjects = [];
 const isNotionConnected = undefined;
 
+  // Web Audio SFX Engine
+  let audioCtx;
+  const initAudio = () => {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+  };
+  
+  const playSfx = (type) => {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      if (type === 'type') {
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.05);
+          gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.05);
+      } else if (type === 'enter') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.15);
+      } else if (type === 'done') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+          gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.1);
+      }
+  };
+
+  document.addEventListener('keydown', initAudio, { once: true });
+  document.addEventListener('click', initAudio, { once: true });
+
   const input = document.getElementById('cmd-input');
   const historyContainer = document.getElementById('history-container');
   const terminalOutput = document.getElementById('terminal-output');
@@ -130,6 +173,50 @@ const isNotionConnected = undefined;
 
   const cmdForm = document.getElementById('cmd-form');
 
+  // Recursive Typewriter Function
+  function typewriteElement(el, speed = 10, callback) {
+      const textNodes = [];
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+      let node;
+      while(node = walker.nextNode()) {
+          if (node.nodeValue.trim() !== '') textNodes.push(node);
+      }
+      if (textNodes.length === 0) {
+          if (callback) callback();
+          return;
+      }
+      
+      const originalTexts = textNodes.map(n => n.nodeValue);
+      textNodes.forEach(n => n.nodeValue = '');
+      
+      let nodeIndex = 0;
+      let charIndex = 0;
+      
+      function typeChar() {
+          if (nodeIndex >= textNodes.length) {
+              playSfx('done');
+              if (callback) callback();
+              return;
+          }
+          
+          const currentText = originalTexts[nodeIndex];
+          if (charIndex < currentText.length) {
+              textNodes[nodeIndex].nodeValue += currentText.charAt(charIndex);
+              charIndex++;
+              if (charIndex % 3 === 0) playSfx('type');
+              
+              const terminalOutput = document.getElementById('terminal-output');
+              terminalOutput.scrollTop = terminalOutput.scrollHeight + 1000;
+              setTimeout(typeChar, speed);
+          } else {
+              nodeIndex++;
+              charIndex = 0;
+              setTimeout(typeChar, speed);
+          }
+      }
+      typeChar();
+  }
+
   function handleCommand() {
       const cmd = input.value.trim();
       input.value = '';
@@ -156,6 +243,23 @@ const isNotionConnected = undefined;
           } else if (baseCmd === 'echo') {
               const echoText = cmd.split(' ').slice(1).join(' ').replace(/</g, "&lt;").replace(/>/g, "&gt;");
               responseHtml = `<div class="text-white ml-4 mt-2 whitespace-pre-wrap">${echoText}</div>`;
+          } else if (baseCmd === 'nmap') {
+              const target = cmd.split(' ')[1] || '127.0.0.1';
+              responseHtml = `
+                  <div class="text-[#00FF41] ml-4 mt-2">
+                      <div class="opacity-70">Starting Nmap 7.92 ( https://nmap.org ) at ${new Date().toISOString()}</div>
+                      <div>Nmap scan report for ${target}</div>
+                      <div>Host is up (0.00032s latency).</div>
+                      <div class="mt-2 text-[#ffb4ab]">PORT      STATE    SERVICE</div>
+                      <div class="text-white">22/tcp    <span class="text-[#ffb4ab]">filtered</span> ssh</div>
+                      <div class="text-white">80/tcp    <span class="text-[#00FF41]">open</span>     http</div>
+                      <div class="text-white">443/tcp   <span class="text-[#00FF41]">open</span>     https</div>
+                      <div class="text-white">3306/tcp  <span class="text-[#ffb4ab]">filtered</span> mysql</div>
+                      <div class="mt-2 text-[#ffb4ab] font-bold">[!] WARNING: UNSECURE PORT DETECTED. INITIATING PAYLOAD...</div>
+                      <div class="text-white text-[10px] mt-1">[|||||||||||||||||||||||||||||||] 100% EXPLOIT SUCCESSFUL</div>
+                      <div class="mt-2 text-[#00FF41] font-bold tracking-widest uppercase mb-4">SYSTEM COMPROMISED. ROOT ACCESS GRANTED.</div>
+                  </div>
+              `;
           } else if (baseCmd === 'date') {
               const d = new Date().toString();
               responseHtml = `<div class="text-[#00FF41] ml-4 mt-2">${d}</div>`;
@@ -198,21 +302,35 @@ const isNotionConnected = undefined;
           }
           
           const entry = document.createElement('div');
-          entry.innerHTML = promptHtml + responseHtml;
-          historyContainer.appendChild(entry);
           
-      // Auto scroll to latest entry powerfully
-      setTimeout(() => {
-          terminalOutput.scrollTo({
-              top: terminalOutput.scrollHeight + 1000,
-              behavior: 'smooth'
-          });
-          
-          // Delayed hard snap to ensure iframes that are slow-loading don't bury the prompt
-          setTimeout(() => {
-              terminalOutput.scrollTop = terminalOutput.scrollHeight + 1000;
-          }, 300);
-      }, 50);
+          if (commands[baseCmd] || baseCmd === 'nmap' || baseCmd === 'echo' || baseCmd === 'date') {
+              // Extract the user prompt and append it immediately
+              const promptDiv = document.createElement('div');
+              promptDiv.innerHTML = promptHtml;
+              historyContainer.appendChild(promptDiv);
+              
+              // Create response wrapper and typewrite it
+              const responseDiv = document.createElement('div');
+              responseDiv.innerHTML = responseHtml;
+              historyContainer.appendChild(responseDiv);
+              
+              playSfx('enter');
+              input.disabled = true; // prevent typing while animating
+              typewriteElement(responseDiv, 5, () => {
+                  input.disabled = false;
+                  input.focus();
+              });
+          } else {
+              // Render instantly (for iframes and lists)
+              entry.innerHTML = promptHtml + responseHtml;
+              historyContainer.appendChild(entry);
+              playSfx('enter');
+              
+              setTimeout(() => {
+                  terminalOutput.scrollTo({ top: terminalOutput.scrollHeight + 1000, behavior: 'smooth' });
+                  setTimeout(() => terminalOutput.scrollTop = terminalOutput.scrollHeight + 1000, 300);
+              }, 50);
+          }
   }
 
   cmdForm.addEventListener('submit', function(e) {
@@ -221,9 +339,32 @@ const isNotionConnected = undefined;
   });
 
   input.addEventListener('keydown', function(e) {
+      initAudio();
+      
+      if (e.key === 'Tab') {
+          e.preventDefault();
+          const parts = input.value.split(' ');
+          
+          if (parts.length === 1) {
+              const cmdPrefix = parts[0].toLowerCase();
+              const availableCmds = Object.keys(commands).concat(['ls', 'cat', 'echo', 'date', 'pwd', 'nmap', 'clear']);
+              const match = availableCmds.find(c => c.startsWith(cmdPrefix));
+              if (match) input.value = match + ' ';
+          } else if (parts.length === 2 && parts[0].toLowerCase() === 'cat') {
+              const filePrefix = parts[1].toLowerCase();
+              const match = Object.keys(systemFiles).find(f => f.startsWith(filePrefix));
+              if (match) input.value = 'cat ' + match;
+          }
+      }
+      
+      if (e.key !== 'Enter' && e.key !== 'Tab') {
+          playSfx('type');
+      }
+
       if (e.key === 'Enter') {
           e.preventDefault();
-          handleCommand();
+          // We don't call handleCommand here because cmdForm submission will handle it securely.
+          // e.preventDefault is enough.
       }
   });
 })();</script>
