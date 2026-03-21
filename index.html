@@ -1,108 +1,190 @@
-<!DOCTYPE html><html class="dark" lang="en"> <head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>KINETIC_CIPHER | TONY KHAWAJA-LOPEZ</title><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "surface": "#0e0e0e",
-                        "secondary-fixed-dim": "#ebadff",
-                        "tertiary": "#fcf8f8",
-                        "background": "#0e0e0e",
-                        "inverse-on-surface": "#565554",
-                        "on-primary": "#006767",
-                        "surface-container-lowest": "#000000",
-                        "on-tertiary-container": "#585656",
-                        "surface-container": "#1a1919",
-                        "on-surface": "#ffffff",
-                        "secondary": "#d873ff",
-                        "secondary-container": "#9900ce",
-                        "surface-variant": "#262626",
-                        "primary-fixed-dim": "#00e6e6",
-                        "on-primary-container": "#005d5d",
-                        "inverse-primary": "#006a6a",
-                        "on-tertiary": "#605f5e",
-                        "surface-container-high": "#201f1f",
-                        "on-primary-fixed-variant": "#006262",
-                        "tertiary-fixed": "#ffffff",
-                        "tertiary-container": "#eeeae9",
-                        "on-secondary-fixed-variant": "#8400b2",
-                        "error-dim": "#d7383b",
-                        "primary": "#c1fffe",
-                        "error": "#ff716c",
-                        "on-secondary": "#39004f",
-                        "surface-tint": "#c1fffe",
-                        "on-tertiary-fixed": "#515050",
-                        "on-secondary-fixed": "#580078",
-                        "inverse-surface": "#fcf8f8",
-                        "secondary-fixed": "#f1c1ff",
-                        "primary-fixed": "#00f5f5",
-                        "surface-container-highest": "#262626",
-                        "on-secondary-container": "#fff5fc",
-                        "outline": "#777575",
-                        "on-error-container": "#ffa8a3",
-                        "on-error": "#490006",
-                        "surface-bright": "#2c2c2c",
-                        "primary-dim": "#00e6e6",
-                        "outline-variant": "#494847",
-                        "surface-container-low": "#131313",
-                        "on-primary-fixed": "#004343",
-                        "surface-dim": "#0e0e0e",
-                        "on-surface-variant": "#adaaaa",
-                        "tertiary-dim": "#eeeae9",
-                        "on-tertiary-fixed-variant": "#6e6d6c",
-                        "primary-container": "#00ffff",
-                        "on-background": "#ffffff",
-                        "error-container": "#9f0519",
-                        "tertiary-fixed-dim": "#f3f0ef",
-                        "secondary-dim": "#bc00fb"
-                    },
-                    fontFamily: {
-                        "headline": ["Space Grotesk"],
-                        "body": ["Inter"],
-                        "label": ["Space Grotesk"]
-                    },
-                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
-                },
+<!DOCTYPE html><html lang="en" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Personal Portfolio Terminal Interface"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v6.0.8"><title>TONY@KERNEL-MATRIX:~</title><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"><script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#e2e2e2",
+              "secondary": "#99d688",
+              "surface-variant": "#353535",
+              "on-surface": "#e2e2e2",
+              "surface-dim": "#131313",
+              "surface": "#131313",
+              "surface-tint": "#00e639",
+              "background": "#000000",
+              "on-surface-variant": "#b9ccb2",
+              "primary": "#ebffe2",
+              "primary-container": "#00ff41",
+              "outline": "#84967e",
+              "outline-variant": "#3b4b37",
+              "error": "#ffb4ab",
             },
-        }
+            fontFamily: {
+              "headline": ["JetBrains Mono", "monospace"],
+              "body": ["JetBrains Mono", "monospace"],
+              "label": ["JetBrains Mono", "monospace"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "0px"},
+          },
+        },
+      }
     </script><style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 18px;
         }
-        .glass-panel {
-            background: rgba(38, 38, 38, 0.5);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-        .neon-glow-primary {
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
         }
-        .grid-bg {
-            background-image: radial-gradient(circle, #494847 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.1;
+        .scanline {
+            background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(to right, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
         }
-        .asymmetric-shape {
-            clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%);
+        
+        /* Terminal input focus outline removal */
+        input:focus {
+            outline: none;
         }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style></head> <body class="bg-background text-on-background font-body min-h-screen pb-24 md:pb-0 selection:bg-primary-container selection:text-on-primary-container">   <nav class="fixed top-0 w-full z-50 rounded-none bg-[#0e0e0e]/60 backdrop-blur-xl border-b border-[#c1fffe]/10 shadow-[0_0_20px_rgba(0,255,255,0.05)]"> <div class="flex justify-between items-center w-full px-6 py-4 max-w-none"> <!-- Mobile left side (Hamburger + Title) --> <div class="flex items-center gap-3 md:hidden"> <span class="material-symbols-outlined text-[#00ffff]">menu</span> <h1 class="font-headline uppercase font-black text-xl text-[#00ffff] tracking-widest">KINETIC_CIPHER</h1> </div> <!-- Desktop left side (Title) --> <div class="hidden md:block text-2xl font-black tracking-tighter text-[#c1fffe] font-headline uppercase">
-KINETIC_CIPHER
-</div> <div class="hidden md:flex gap-8 items-center"> <a class="font-headline uppercase tracking-tighter font-bold text-[#00ffff] border-b-2 border-[#00ffff] pb-1 transition-all duration-300" href="#">HOME</a> <a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="#about">ABOUT</a> <a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="#projects">PROJECTS</a> <a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="mailto:anthony.lopez2@g.austincc.edu">CONTACT</a> </div> <div class="hidden md:flex items-center gap-4"> <button class="material-symbols-outlined text-[#00ffff] hover:scale-110 transition-transform">sensors</button> <div class="h-4 w-[1px] bg-outline-variant/30"></div> <div class="text-[10px] font-label tracking-[0.2em] text-secondary uppercase">System_Stable</div> </div> </div> </nav>  <section id="about" class="relative min-h-screen flex flex-col justify-center px-8 pt-20 overflow-hidden"> <div class="absolute inset-0 grid-bg z-0"></div> <!-- Floating Geometric Primitives --> <div class="absolute top-1/4 right-[-5%] w-96 h-96 bg-primary/5 blur-[100px] rounded-full animate-pulse"></div> <div class="absolute bottom-1/4 left-[-5%] w-80 h-80 bg-secondary/5 blur-[100px] rounded-full animate-pulse object-cover" style="animation-duration: 4s;"></div> <div class="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-12 gap-12 items-center"> <div class="md:col-span-8"> <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-highest border-l-2 border-primary mb-6 shadow-md hover:shadow-primary/20 transition-all duration-300"> <span class="material-symbols-outlined text-primary text-sm">security</span> <span class="text-[10px] font-label tracking-widest uppercase text-on-surface-variant">Active Threat Intelligence Vector</span> </div> <h1 class="font-headline text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-8 transition-transform hover:scale-[1.01] duration-500">
-ARCHITECTING <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">DIGITAL FORTRESSES</span> </h1> <p class="text-lg md:text-xl text-on-surface-variant max-w-2xl mb-12 border-l border-outline-variant/30 pl-6 leading-relaxed hover:border-primary transition-colors duration-500">
-Tony Khawaja-Lopez combines offensive depth with defensive structural integrity to engineer high-fidelity security ecosystems. Advanced persistent threat simulation and hardened infrastructure design.
-</p> <div class="flex flex-wrap gap-4"> <a href="#projects" class="bg-primary-container text-on-primary-container px-10 py-4 font-headline font-bold uppercase tracking-tighter hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all active:scale-95 inline-block cursor-pointer">
-Initiate Protocol_
-</a> <a href="mailto:anthony.lopez2@g.austincc.edu" class="border border-secondary/30 text-secondary px-10 py-4 font-headline font-bold uppercase tracking-tighter hover:bg-secondary/10 transition-all cursor-pointer">
-Technical_Briefing
-</a> </div> </div> <div class="md:col-span-4 hidden md:block"> <div class="glass-panel border-r-4 border-primary p-6 relative hover:border-r-8 transition-all duration-300 ease-in-out"> <div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-primary"></div> <div class="space-y-4 font-label text-[11px] text-primary/70"> <div class="flex justify-between items-center border-b border-outline-variant/20 pb-2"> <span>OPERATOR:</span> <span class="text-on-surface">T_KHAWAJA_LOPEZ</span> </div> <div class="flex justify-between items-center border-b border-outline-variant/20 pb-2"> <span>STATUS:</span> <span class="text-primary flex items-center gap-1"> <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-ENCRYPTED
-</span> </div> <div class="flex justify-between items-center border-b border-outline-variant/20 pb-2"> <span>LOCATION:</span> <span class="text-on-surface">NODE_09 // GLOBAL</span> </div> <div class="mt-8"> <div class="bg-surface-container-lowest p-4 font-mono text-xs leading-tight hover:shadow-[0_0_10px_rgba(0,255,255,0.1)] transition-all"> <p class="text-secondary">&gt; boot --sys_kernel</p> <p class="text-on-surface-variant">&gt;&gt; initialising red_team.sh</p> <p class="text-on-surface-variant">&gt;&gt; bypass_firewall [OK]</p> <p class="text-on-surface-variant">&gt;&gt; injecting_payload [98%]</p> <p class="text-primary mt-2 animate-pulse">ACCESS_GRANTED_</p> </div> </div> </div> </div> </div> </div> </section>  <section id="projects" class="py-24 px-8 bg-surface-container-low relative"> <div class="max-w-6xl mx-auto"> <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4"> <div> <h2 class="font-headline text-4xl md:text-5xl font-bold uppercase tracking-tighter">Academic Directives</h2> <p class="text-secondary font-label tracking-widest mt-2">STRATEGIC OFFENSIVE OPERATIONS</p> </div> <div class="text-right font-label text-xs text-on-surface-variant uppercase tracking-widest">
-Available for Remote Deployment / 2024
-</div> </div> <div class="grid md:grid-cols-2 gap-px bg-outline-variant/10"> <!-- Cybersecurity Capstone Project --> <a href="/projects/Cybersecurity Capstone Project.pdf" target="_blank" class="block bg-surface p-12 group hover:bg-surface-container-highest hover:-translate-y-1 transition-all duration-500"> <span class="material-symbols-outlined text-5xl text-primary mb-8 group-hover:rotate-12 transition-transform duration-500" data-weight="fill">radar</span> <h3 class="font-headline text-3xl font-bold mb-4 uppercase tracking-tighter text-on-surface group-hover:text-primary transition-colors">Cybersecurity Capstone Project</h3> <p class="text-on-surface-variant leading-relaxed mb-8">Full-spectrum adversary simulation designed to challenge detection and response capabilities across physical, social, and digital layers.</p> <ul class="space-y-3 font-label text-sm uppercase tracking-wider text-primary/80"> <li class="flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300"><span class="w-1.5 h-1.5 bg-primary pulse-indicator"></span> Technical Writing</li> <li class="flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300 delay-75"><span class="w-1.5 h-1.5 bg-primary"></span> Deep Analysis</li> <li class="flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300 delay-150"><span class="w-1.5 h-1.5 bg-primary"></span> Capstone Deliverable</li> </ul> </a> <!-- IT 101 Executive Presentation --> <a href="/projects/IT 101 Executive Presentation.pdf" target="_blank" class="block bg-surface p-12 group hover:bg-surface-container-highest hover:-translate-y-1 transition-all duration-500 border-l border-outline-variant/10"> <span class="material-symbols-outlined text-5xl text-secondary mb-8 group-hover:-rotate-12 transition-transform duration-500" data-weight="fill">target</span> <h3 class="font-headline text-3xl font-bold mb-4 uppercase tracking-tighter text-on-surface group-hover:text-secondary transition-colors">IT 101 Executive Presentation</h3> <p class="text-on-surface-variant leading-relaxed mb-8">Strategic presentation of critical technical assessments identifying key IT infrastructure challenges for executive leadership.</p> <ul class="space-y-3 font-label text-sm uppercase tracking-wider text-secondary/80"> <li class="flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300"><span class="w-1.5 h-1.5 bg-secondary pulse-indicator"></span> Executive Briefing</li> <li class="flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300 delay-75"><span class="w-1.5 h-1.5 bg-secondary"></span> Cloud Configuration Audit</li> <li class="flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300 delay-150"><span class="w-1.5 h-1.5 bg-secondary"></span> Threat Modeling</li> </ul> </a> </div> </div> </section>  <section class="py-24 px-8 overflow-hidden"> <div class="max-w-6xl mx-auto"> <h2 class="font-headline text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-16">Active Operations</h2> <div class="grid md:grid-cols-12 md:grid-rows-2 gap-6 h-auto md:h-[600px]"> <!-- APT 28 Presentation --> <a href="/projects/APT 28 Presentation.pdf" target="_blank" class="block md:col-span-7 md:row-span-2 relative group overflow-hidden bg-surface-container-highest border-t border-primary/20 hover:border-primary transition-colors duration-500"> <img alt="Cybersecurity command center with blue data screens" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIUzQFS7_5xlma7pwYhJLlIBWCbLW9UZbVokxFu1mElgQlzzDx4_UdiV1rrns5ATGdhGBvPFmx8OAJRScxZSF0Nf_Cdir8fgLAVobBiyEZRGJnPq8bG-XXhitphNCtIFHbCxVcouwXa_h5bjwaxPKzQvX1onWqguksBEroDLSAywgsnRP9Vk3cNfxq3VMsufgf8wWBVdtdNHtQiB3KmKqojvB-rtLUz9h5XW0fm_qhCqUVgTW88oBtPDvtNyCKuSD05sUIYcINDL8t"> <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> <div class="absolute bottom-0 left-0 p-10 transform group-hover:translate-y-[-10px] transition-transform duration-500"> <div class="bg-primary text-on-primary-container text-[10px] font-label font-bold tracking-widest px-2 py-1 mb-4 inline-block uppercase">Advanced Persistent Threat // FANCY BEAR</div> <h3 class="font-headline text-4xl font-bold uppercase tracking-tighter text-white group-hover:text-primary transition-colors">APT 28 Presentation</h3> <p class="text-on-surface-variant max-w-md mt-4 text-sm group-hover:text-white transition-colors delay-100">Automated mitigation system for sophisticated DDoS and injection vectors. Deep dive analysis of Russian GRU-affiliated threat actor tactics, techniques, and procedures (TTPs).</p> </div> </a> <!-- APT 41 Attack Case Study --> <a href="/projects/APT 41 Attack Case Study.pdf" target="_blank" class="block md:col-span-5 md:row-span-1 relative group overflow-hidden bg-surface-container-high border-r border-secondary/20 hover:border-secondary transition-colors duration-500"> <img alt="Abstract neural network glow" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRWxq6DQEsmk0HZgyjB1Z7Zz9GJIrBq-fdPB_h4X7wEHRj7ksAe4CgGgGqUADei3VUhcDLE0xuvtmP8rtriineKM7_N9olsWo9EpphXsWh-NiY35N3xEjrVUjfMGaW-I1XrMSI5Y1jx3CK2UB8P9Z2cOnAlHjnZS2W-k6_pV06p7WZe-2gDHxYYaaq00dpiRru_P7JKX1SzScW-w7uRJERg50SuP_AzX6a6EpLiobocNycdVEkJTbmY2-K0Gch_sK1g3DjmGgxfrGc"> <div class="relative p-8 h-full flex flex-col justify-end transform group-hover:translate-x-2 transition-transform duration-500"> <div class="flex items-center gap-2 mb-2"> <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span> <span class="text-secondary font-label text-[10px] uppercase tracking-widest">State Actor // WICKED PANDA</span> </div> <h3 class="font-headline text-2xl font-bold uppercase tracking-tighter text-on-surface group-hover:text-secondary transition-colors">APT 41 Case Study</h3> <p class="text-on-surface-variant text-xs mt-2 group-hover:text-white transition-colors delay-100">Machine learning cluster for predicting lateral movement in zero-trust environments. Comprehensive intelligence breakdown of suspected Chinese state-sponsored cyber espionage operations.</p> </div> </a> <!-- Technical Stats --> <div class="md:col-span-5 md:row-span-1 bg-surface-container-lowest p-8 flex flex-col justify-between border-b border-outline-variant/20 hover:bg-surface-container-low transition-colors duration-[1s]"> <div class="grid grid-cols-2 gap-8"> <div> <div class="text-3xl font-headline font-black text-primary hover:text-white transition-colors cursor-default">48.2k</div> <div class="text-[10px] font-label text-on-surface-variant uppercase tracking-widest mt-1 group-hover:text-primary">Threats Blocked</div> </div> <div> <div class="text-3xl font-headline font-black text-secondary hover:text-white transition-colors cursor-default">0.03ms</div> <div class="text-[10px] font-label text-on-surface-variant uppercase tracking-widest mt-1 group-hover:text-secondary">Response Latency</div> </div> </div> <div class="mt-4 pt-4 border-t border-outline-variant/10"> <div class="flex justify-between items-center mb-2"> <span class="text-[10px] font-label text-on-surface-variant uppercase">Network Load</span> <span class="text-[10px] font-label text-primary animate-pulse">Stable</span> </div> <div class="h-1 bg-surface-container-highest w-full overflow-hidden"> <div class="h-full bg-primary w-[74%] transform origin-left hover:scale-x-110 transition-transform duration-1000"></div> </div> </div> </div> </div> </div> </section>  <footer class="bg-[#050505] w-full border-t border-[#262626] rounded-none"> <div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 gap-4"> <div class="flex flex-col items-center md:items-start gap-2 group"> <div class="text-sm font-bold text-[#00ffff] font-headline tracking-tighter uppercase group-hover:text-secondary transition-colors">KINETIC_CIPHER</div> <div class="text-[10px] font-['Space_Grotesk'] tracking-widest uppercase text-[#262626] group-hover:text-outline transition-colors">© 2024 TONY KHAWAJA-LOPEZ. SYSTEM_STABLE_V2.0.4</div> </div> <div class="flex gap-8"> <a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#262626] hover:text-[#d873ff] hover:scale-110 transition-all duration-300" href="https://github.com/TBLopez" target="_blank">GITHUB</a> <a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#262626] hover:text-[#d873ff] hover:scale-110 transition-all duration-300" href="https://www.linkedin.com/in/techtony/" target="_blank">LINKEDIN</a> <a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#262626] hover:text-[#d873ff] hover:scale-110 transition-all duration-300" href="#">TERMINAL</a> </div> <div class="flex items-center gap-2 hover:opacity-80 transition-opacity"> <span class="w-1 h-1 bg-[#00ffff] rounded-full animate-ping"></span> <span class="text-[10px] font-label text-primary/40 tracking-[0.3em]">SECURE_CONNECTION_ESTABLISHED</span> </div> </div> </footer>  <nav class="md:hidden fixed bottom-0 left-0 w-full glass-panel flex justify-around items-center px-4 py-3 z-50 border-t border-white/5 bg-[#0e0e0e]/90 pb-safe"> <div class="flex flex-col items-center text-[#c1fffe] drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]"> <span class="material-symbols-outlined text-2xl">terminal</span> <span class="font-label text-[8px] tracking-widest mt-1">TERMINAL</span> </div> <div class="flex flex-col items-center text-outline"> <span class="material-symbols-outlined text-2xl">lock</span> <span class="font-label text-[8px] tracking-widest mt-1 uppercase">ENCRYPT</span> </div> <a href="#projects" class="flex flex-col items-center text-outline hover:text-primary transition-colors"> <span class="material-symbols-outlined text-2xl">database</span> <span class="font-label text-[8px] tracking-widest mt-1 uppercase">ARCHIVE</span> </a> <a href="#about" class="flex flex-col items-center text-outline hover:text-primary transition-colors"> <span class="material-symbols-outlined text-2xl">person</span> <span class="font-label text-[8px] tracking-widest mt-1 uppercase">OPERATOR</span> </a> </nav>  </body></html>
+    </style></head> <body class="bg-black text-[#00FF41] font-body selection:bg-[#00FF41] selection:text-black min-h-screen flex flex-col overflow-hidden m-0 p-0"> <!-- Scanline Overlay --> <div class="fixed inset-0 scanline z-50 pointer-events-none"></div>   <header class="bg-[#131313] text-[#00FF41] font-mono uppercase tracking-widest text-sm border-b border-[#3b4b37]/40 shadow-[0_0_15px_rgba(0,255,65,0.1)] flex justify-between items-center w-full px-4 h-10 sticky top-0 z-40 shrink-0"> <div class="text-[#00FF41] font-bold before:content-['>_'] flex items-center gap-2">
+> TONY@KERNEL-MATRIX:~
+</div> <div class="flex items-center gap-6"> <div class="hidden md:flex gap-4"> <span class="text-[#00FF41] brightness-125 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">DIRECTORY</span> <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">PROCESSES</span> <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">NETSTAT</span> </div> <div class="flex gap-3"> <span class="material-symbols-outlined cursor-pointer hover:text-white">minimize</span> <span class="material-symbols-outlined cursor-pointer hover:text-white">maximize</span> <span class="material-symbols-outlined cursor-pointer hover:text-white">close</span> </div> </div> </header> <div class="flex flex-1 overflow-hidden"> <!-- Side Navigation Shell --> <aside class="hidden md:flex flex-col h-full py-4 bg-[#131313] text-[#00FF41] font-mono uppercase text-xs tracking-tighter w-64 border-r border-[#3b4b37]/40 flex-shrink-0 relative z-30"> <div class="px-4 mb-8"> <div class="text-[#00FF41] font-black text-lg mb-1">SYSTEM_OS</div> <div class="opacity-50 text-[10px]">V.1.0.0-STABLE</div> </div> <nav class="flex-1 space-y-1"> <div class="text-[#000000] bg-[#00FF41] font-bold p-2 w-full flex items-center gap-3 cursor-pointer active:scale-95"> <span class="material-symbols-outlined">folder</span>
+DIRECTORY
+</div> </nav> <div class="mt-auto px-4 border-t border-[#3b4b37]/20 pt-4 opacity-40"> <div class="flex items-center gap-2 mb-2"> <div class="w-2 h-2 bg-[#00FF41] rounded-full animate-pulse"></div> <span>UPLINK_ESTABLISHED</span> </div> <div class="text-[9px]">LOC: 127.0.0.1</div> <div class="text-[9px]">SEC: WPA3-ENTERPRISE</div> </div> </aside> <!-- Main Terminal Canvas --> <main id="terminal-output" class="flex-1 overflow-y-auto p-6 scrollbar-hide flex flex-col gap-4 font-body pb-32 relative z-30"> <section class="mb-4" id="welcome-message"> <pre class="text-[#00FF41] text-[10px] md:text-[12px] font-bold leading-tight select-none">████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
+╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝    ██║     ██╔═══██╗██╔══██╗██╔════╝╚══███╔╝
+   ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝     ██║     ██║   ██║██████╔╝█████╗    ███╔╝ 
+   ██║   ██║   ██║██║╚██╗██║  ╚██╔╝      ██║     ██║   ██║██╔═══╝ ██╔══╝   ███╔╝  
+   ██║   ╚██████╔╝██║ ╚████║   ██║       ███████╗╚██████╔╝██║     ███████╗███████╗
+   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚══════╝
+</pre> <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div> <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div> </section> <!-- Command History will be appended here --> <div id="history-container" class="space-y-4"></div> <!-- Spacing hack for scroll --> <div class="h-10"></div> </main> </div>  <footer class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40" onclick="document.getElementById('cmd-input').focus()"> <div class="max-w-7xl mx-auto flex items-center gap-4"> <div class="flex items-center gap-3 w-full"> <span class="text-[#00FF41] font-bold shrink-0">tony@kernel-matrix:~$</span> <div class="flex items-center w-full gap-0 relative"> <input id="cmd-input" autocomplete="off" autofocus class="bg-transparent border-none text-[#00FF41] font-mono focus:ring-0 w-full p-0 m-0 outline-none caret-transparent" spellcheck="false" type="text"> <!-- Custom block cursor --> <span id="custom-cursor" class="absolute left-0 top-0 text-[#00FF41] bg-[#00FF41] w-2.5 h-full mix-blend-difference opacity-80 cursor-blink pointer-events-none"></span> </div> </div> </div> </footer>  </body></html> <script>
+  const input = document.getElementById('cmd-input');
+  const cursor = document.getElementById('custom-cursor');
+  const historyContainer = document.getElementById('history-container');
+  const terminalOutput = document.getElementById('terminal-output');
+
+  // Move the block cursor with the text
+  input.addEventListener('input', updateCursor);
+  input.addEventListener('keyup', updateCursor);
+  input.addEventListener('click', updateCursor);
+
+  function updateCursor() {
+      const textBeforeCursor = input.value.substring(0, input.selectionStart);
+      
+      const measure = document.createElement('span');
+      measure.style.fontFamily = 'JetBrains Mono, monospace';
+      measure.style.fontSize = window.getComputedStyle(input).fontSize;
+      measure.style.visibility = 'hidden';
+      measure.style.whiteSpace = 'pre';
+      // Fallback for empty width calculation
+      measure.textContent = textBeforeCursor || ' ';
+      document.body.appendChild(measure);
+      
+      const width = document.defaultView.getComputedStyle(measure).width;
+      const parsedWidth = parseFloat(width);
+      document.body.removeChild(measure);
+
+      const offset = textBeforeCursor ? parsedWidth : 0;
+      cursor.style.transform = `translateX(${offset}px)`;
+  }
+
+  const commands = {
+    'help': `
+        <div class="text-[#00FF41] ml-4 mt-2">
+            <div>AVAILABLE COMMANDS:</div>
+            <div class="mt-2 grid grid-cols-[100px_1fr] gap-2">
+                <span class="opacity-70">whoami</span><span>Display current operator info</span>
+                <span class="opacity-70">ls</span><span>List available archives (projects)</span>
+                <span class="opacity-70">cat [file]</span><span>Open a specific archive (e.g., cat capstone.pdf)</span>
+                <span class="opacity-70">clear</span><span>Clear terminal output</span>
+            </div>
+            <div class="mt-4 border-t border-[#3b4b37]/40 pt-2 opacity-50 text-[10px]">SOCIAL_LINKS: <a href="https://github.com/TBLopez" target="_blank" class="hover:text-white underline">github</a> | <a href="https://www.linkedin.com/in/techtony/" target="_blank" class="hover:text-white underline">linkedin</a></div>
+        </div>
+    `,
+    'whoami': `
+        <div class="text-[#00FF41] ml-4 mt-2">
+            <span class="block">TONY LOPEZ // SYSTEM_ARCHITECT</span>
+            <span class="block opacity-70 mt-1">Specializing in security, penetration testing, and tactical development.</span>
+        </div>
+    `,
+    'ls': `
+        <div class="text-[#00FF41] ml-4 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="text-[#99d688]">capstone.pdf</div>
+            <div class="text-[#99d688]">executive_pres.pdf</div>
+            <div class="text-[#99d688]">apt28.pdf</div>
+            <div class="text-[#99d688]">apt41.pdf</div>
+        </div>
+    `
+  };
+
+  const files = {
+    'capstone.pdf': '/tonylopezcapstone.pdf',
+    'executive_pres.pdf': '/IT_101_Executive_Presentation.pdf',
+    'apt28.pdf': '/APT_28.pdf',
+    'apt41.pdf': '/APT41_Case_Study.pdf'
+  };
+
+  input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+          const cmd = input.value.trim();
+          input.value = '';
+          updateCursor();
+          
+          if (!cmd) return;
+          
+          if (cmd === 'clear') {
+              historyContainer.innerHTML = '';
+              return;
+          }
+          
+          const promptHtml = \`
+              <div class="flex items-center gap-2 mt-4">
+                  <span class="text-[#00FF41] font-bold">tony@kernel-matrix:~$</span>
+                  <span class="text-white">\${cmd}</span>
+              </div>
+          \`;
+          
+          let responseHtml = '';
+          const baseCmd = cmd.split(' ')[0].toLowerCase();
+          
+          if (commands[baseCmd]) {
+              responseHtml = commands[baseCmd];
+          } else if (baseCmd === 'cat') {
+              const file = cmd.split(' ')[1];
+              if (files[file]) {
+                  responseHtml = \`<div class="text-[#ebffe2] ml-4 mt-2">Opening \${file}... <a href="\${files[file]}" target="_blank" class="underline hover:text-white text-[#00ff41]">Click here if pop-up blocked.</a></div>\`;
+                  window.open(files[file], '_blank');
+              } else if (!file) {
+                  responseHtml = \`<div class="text-[#ffb4ab] ml-4 mt-2">cat: missing file operand</div>\`;
+              } else {
+                  responseHtml = \`<div class="text-[#ffb4ab] ml-4 mt-2">cat: \${file}: No such file or directory</div>\`;
+              }
+          } else {
+              responseHtml = \`<div class="text-[#ffb4ab] ml-4 mt-2">bash: \${cmd}: command not found. Type 'help' for available commands.</div>\`;
+          }
+          
+          const entry = document.createElement('div');
+          entry.innerHTML = promptHtml + responseHtml;
+          historyContainer.appendChild(entry);
+          
+          // Auto scroll to bottom smoothly
+          setTimeout(() => {
+              terminalOutput.scrollTo({
+                  top: terminalOutput.scrollHeight,
+                  behavior: 'smooth'
+              });
+          }, 50);
+      }
+  });
+
+  // Keep focus
+  document.addEventListener('click', () => {
+      // Ignore text selection
+      if (!window.getSelection().toString()) {
+          input.focus();
+      }
+  });
+</script>
