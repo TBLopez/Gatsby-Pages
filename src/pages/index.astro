@@ -6,16 +6,25 @@ import Layout from '../layouts/Layout.astro';
   <!-- Top Navigation Shell -->
   <nav class="fixed top-0 w-full z-50 rounded-none bg-[#0e0e0e]/60 backdrop-blur-xl border-b border-[#c1fffe]/10 shadow-[0_0_20px_rgba(0,255,255,0.05)]">
     <div class="flex justify-between items-center w-full px-6 py-4 max-w-none">
-      <div class="text-2xl font-black tracking-tighter text-[#c1fffe] font-headline uppercase">
+      
+      <!-- Mobile left side (Hamburger + Title) -->
+      <div class="flex items-center gap-3 md:hidden">
+        <span class="material-symbols-outlined text-[#00ffff]">menu</span>
+        <h1 class="font-headline uppercase font-black text-xl text-[#00ffff] tracking-widest">KINETIC_CIPHER</h1>
+      </div>
+
+      <!-- Desktop left side (Title) -->
+      <div class="hidden md:block text-2xl font-black tracking-tighter text-[#c1fffe] font-headline uppercase">
         KINETIC_CIPHER
       </div>
+
       <div class="hidden md:flex gap-8 items-center">
         <a class="font-headline uppercase tracking-tighter font-bold text-[#00ffff] border-b-2 border-[#00ffff] pb-1 transition-all duration-300" href="#">HOME</a>
         <a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="#about">ABOUT</a>
         <a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="#projects">PROJECTS</a>
         <a class="font-headline uppercase tracking-tighter font-bold text-[#c1fffe]/60 hover:text-[#00ffff] hover:bg-[#c1fffe]/5 transition-all duration-300" href="mailto:anthony.lopez2@g.austincc.edu">CONTACT</a>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-4">
         <button class="material-symbols-outlined text-[#00ffff] hover:scale-110 transition-transform">sensors</button>
         <div class="h-4 w-[1px] bg-outline-variant/30"></div>
         <div class="text-[10px] font-label tracking-[0.2em] text-secondary uppercase">System_Stable</div>
@@ -207,4 +216,24 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </footer>
+
+  <!-- BottomNavBar (Mobile Only) -->
+  <nav class="md:hidden fixed bottom-0 left-0 w-full glass-panel flex justify-around items-center px-4 py-3 z-50 border-t border-white/5 bg-[#0e0e0e]/90 pb-safe">
+    <div class="flex flex-col items-center text-[#c1fffe] drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]">
+      <span class="material-symbols-outlined text-2xl">terminal</span>
+      <span class="font-label text-[8px] tracking-widest mt-1">TERMINAL</span>
+    </div>
+    <div class="flex flex-col items-center text-outline">
+      <span class="material-symbols-outlined text-2xl">lock</span>
+      <span class="font-label text-[8px] tracking-widest mt-1 uppercase">ENCRYPT</span>
+    </div>
+    <a href="#projects" class="flex flex-col items-center text-outline hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-2xl">database</span>
+      <span class="font-label text-[8px] tracking-widest mt-1 uppercase">ARCHIVE</span>
+    </a>
+    <a href="#about" class="flex flex-col items-center text-outline hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-2xl">person</span>
+      <span class="font-label text-[8px] tracking-widest mt-1 uppercase">OPERATOR</span>
+    </a>
+  </nav>
 </Layout>
