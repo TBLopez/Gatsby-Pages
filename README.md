@@ -1,43 +1,40 @@
-# Astro Starter Kit: Minimal
+# Tony Khawaja-Lopez | Cybersecurity Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
-```
+This repository contains the source code and deployment pipeline for the professional portfolio of Tony Khawaja-Lopez. 
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Architecure
+The portfolio is built as a static, high-performance web application utilizing **Astro**. It is designed for maximum speed, security, and a premium visual aesthetic.
 
-## 🚀 Project Structure
+- **Framework:** Astro JS
+- **Styling:** Tailwind CSS (Midnight Tactical Design System)
+- **Deployment:** GitHub Pages (`gh-pages` branch)
+- **CI/CD:** Automated via standard NPM build scripts.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Local Development
+To run this project locally and view the web application:
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/TBLopez/Astro-Portfolio.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the local development server:
+   ```bash
+   npm run dev
+   ```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Design System
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The platform utilizes a structured, dark-mode styling interface prioritizing a "Tactical" visual hierarchy.
+- **Typography:** `Space Grotesk` (Headers), `Inter` (Body), `JetBrains Mono` (Labels/Tags)
+- **Core Colors:** High-contrast variants of Cyan (`#00f1fe`) operating over deep, muted navy surfaces (`#090e1c`).
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## License
+© 2024 Tony Khawaja-Lopez. All rights reserved.
