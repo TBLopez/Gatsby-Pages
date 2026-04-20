@@ -1,0 +1,41 @@
+---
+interface Props {
+  lastLogin: string;
+}
+
+const { lastLogin } = Astro.props;
+---
+
+<section class="mb-4" id="welcome-message" aria-label="Session banner">
+  {/* Full-size ASCII banner for tablets and up */}
+  <pre
+    class="hidden sm:block text-primary-container text-[9px] md:text-[12px] leading-tight font-bold whitespace-pre overflow-x-hidden select-none mb-4"
+    aria-hidden="true"
+  >
+{`████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
+╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝    ██║     ██╔═══██╗██╔══██╗██╔════╝╚══███╔╝
+   ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝     ██║     ██║   ██║██████╔╝█████╗    ███╔╝
+   ██║   ██║   ██║██║╚██╗██║  ╚██╔╝      ██║     ██║   ██║██╔═══╝ ██╔══╝   ███╔╝
+   ██║   ╚██████╔╝██║ ╚████║   ██║       ███████╗╚██████╔╝██║     ███████╗███████╗
+   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚══════╝`}
+  </pre>
+
+  {/* Compact banner for phones */}
+  <pre
+    class="sm:hidden text-primary-container text-[10px] leading-tight font-bold whitespace-pre select-none mb-4"
+    aria-hidden="true"
+  >
+{`╔════════════════════════╗
+║   TONY // LOPEZ // SEC   ║
+║   > FIREFLY TERMINAL     ║
+╚════════════════════════╝`}
+  </pre>
+
+  <h1 class="sr-only">Tony Khawaja-Lopez — Security Analyst Portfolio</h1>
+  <div class="mt-4 opacity-60 text-xs text-white">
+    LAST LOGIN: {lastLogin}
+  </div>
+  <div class="mt-2 text-primary-container font-bold">
+    Type <code>help</code> to see a list of available commands.
+  </div>
+</section>

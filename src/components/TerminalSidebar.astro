@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  notionConnected: boolean;
+}
+
+const { notionConnected } = Astro.props;
+---
+
+<aside
+  id="sidebar"
+  aria-label="System navigation"
+  aria-hidden="true"
+  class="fixed md:static inset-y-0 left-0 z-40 -translate-x-full md:translate-x-0 transform transition-transform duration-200 flex flex-col h-full py-4 bg-surface text-primary-container font-mono uppercase text-xs tracking-tighter w-64 border-r border-outline-variant/40 flex-shrink-0 md:aria-hidden:translate-x-0"
+>
+  <div class="px-4 mb-4">
+    <div class="text-primary-container font-black text-lg mb-1">SYSTEM_OS</div>
+    <div class="opacity-50 text-[10px]">V.1.0.0-STABLE</div>
+  </div>
+  <nav aria-label="Directory" class="flex-1 space-y-1">
+    <div
+      class="text-black bg-primary-container font-bold p-2 w-full flex items-center gap-3"
+    >
+      <Icon name="folder" size={16} />
+      <span>Directory</span>
+    </div>
+  </nav>
+  <div
+    class="mt-auto px-4 border-t border-outline-variant/20 pt-4 opacity-60"
+  >
+    <div class="flex items-center gap-2 mb-2">
+      <div
+        class="w-2 h-2 bg-primary-container rounded-full motion-safe:animate-pulse"
+        aria-hidden="true"
+      >
+      </div>
+      <span>UPLINK_ESTABLISHED</span>
+    </div>
+    <div class="text-[9px]">LOC: 127.0.0.1</div>
+    <div class="text-[9px]">
+      {notionConnected ? 'SEC: DATABASE_SYNC_ACTIVE' : 'SEC: LOCAL_MODE_ONLY'}
+    </div>
+  </div>
+</aside>

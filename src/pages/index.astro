@@ -1,33 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TerminalHeader from '../components/TerminalHeader.astro';
+import TerminalSidebar from '../components/TerminalSidebar.astro';
+import TerminalFooter from '../components/TerminalFooter.astro';
+import WelcomeBanner from '../components/WelcomeBanner.astro';
 import { Client } from '@notionhq/client';
+import type { NotionProject } from '../scripts/terminal';
 
-// Notion setup 
-// The site will load your Notion Database if the variables are set in a `.env` file.
-const isNotionConnected = import.meta.env.NOTION_API_KEY && import.meta.env.NOTION_DATABASE_ID;
+// Notion SDK v5 renamed `databases.query` to `dataSources.query`.
+// Accept either env var name so existing deployments keep working.
+const notionDataSourceId =
+  import.meta.env.NOTION_DATA_SOURCE_ID || import.meta.env.NOTION_DATABASE_ID;
+const notionConnected = !!(import.meta.env.NOTION_API_KEY && notionDataSourceId);
 
-let notionProjects = [];
+let notionProjects: NotionProject[] = [];
 
-if (isNotionConnected) {
+if (notionConnected) {
   try {
     const notion = new Client({ auth: import.meta.env.NOTION_API_KEY });
-    const response = await notion.databases.query({
-      database_id: import.meta.env.NOTION_DATABASE_ID,
+    const response = await notion.dataSources.query({
+      data_source_id: notionDataSourceId,
     });
     notionProjects = response.results.map((page: any) => {
-      // Robust querying of standard Notion DB properties
-      const nameProp = Object.values(page.properties).find((p: any) => p.type === 'title') as any;
-      const descProp = Object.values(page.properties).find((p: any) => p.type === 'rich_text') as any;
-      
-      // Handle both Link (url) and Attachment (files) property types
-      const urlProp = Object.values(page.properties).find((p: any) => p.type === 'url') as any;
-      const fileProp = Object.values(page.properties).find((p: any) => p.type === 'files') as any;
-      
+      const nameProp = Object.values(page.properties).find(
+        (p: any) => p.type === 'title',
+      ) as any;
+      const descProp = Object.values(page.properties).find(
+        (p: any) => p.type === 'rich_text',
+      ) as any;
+      const urlProp = Object.values(page.properties).find(
+        (p: any) => p.type === 'url',
+      ) as any;
+      const fileProp = Object.values(page.properties).find(
+        (p: any) => p.type === 'files',
+      ) as any;
+
       let finalUrl = '#';
-      if (fileProp && fileProp.files && fileProp.files.length > 0) {
-        const fileObj = fileProp.files[0];
-        finalUrl = fileObj.file ? fileObj.file.url : (fileObj.external ? fileObj.external.url : '#');
-      } else if (urlProp && urlProp.url) {
+      if (fileProp?.files?.length > 0) {
+        const f = fileProp.files[0];
+        finalUrl = f.file ? f.file.url : f.external ? f.external.url : '#';
+      } else if (urlProp?.url) {
         finalUrl = urlProp.url;
       }
 
@@ -35,389 +47,63 @@ if (isNotionConnected) {
         id: page.id,
         title: nameProp?.title[0]?.plain_text || 'Untitled_Log',
         description: descProp?.rich_text[0]?.plain_text || 'No intel available.',
-        url: finalUrl
+        url: finalUrl,
       };
     });
   } catch (error) {
-    console.error("Notion Connection Error:", error);
+    console.error('Notion Connection Error:', error);
   }
 }
+
+const lastLogin = new Date()
+  .toUTCString()
+  .replace('GMT', 'UTC')
+  .toUpperCase();
 ---
 
-<Layout title="TONY@FIREFLY:~">
-  <header class="bg-[#131313] text-[#00FF41] font-mono uppercase tracking-widest text-sm border-b border-[#3b4b37]/40 shadow-[0_0_15px_rgba(0,255,65,0.1)] flex justify-between items-center w-full px-4 h-10 sticky top-0 z-40 shrink-0">
-    <div class="text-[#00FF41] font-bold before:content-['>_'] flex items-center gap-2">
-        > TONY@FIREFLY:~
-    </div>
-    <div class="flex items-center gap-6">
-      <div class="hidden md:flex gap-4">
-        <span class="text-[#00FF41] brightness-125 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">DIRECTORY</span>
-        <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">PROCESSES</span>
-        <span class="text-[#00FF41]/60 cursor-pointer hover:bg-[#00FF41] hover:text-[#000000] px-2 transition-all duration-50 step-end">NETSTAT</span>
-      </div>
-      <div class="flex gap-3">
-        <span class="material-symbols-outlined cursor-pointer hover:text-white">minimize</span>
-        <span class="material-symbols-outlined cursor-pointer hover:text-white">maximize</span>
-        <span class="material-symbols-outlined cursor-pointer hover:text-white">close</span>
-      </div>
-    </div>
-  </header>
+<Layout>
+  <TerminalHeader />
 
-  <div class="flex flex-1 overflow-hidden">
-    <aside class="hidden md:flex flex-col h-full py-4 bg-[#131313] text-[#00FF41] font-mono uppercase text-xs tracking-tighter w-64 border-r border-[#3b4b37]/40 flex-shrink-0 relative z-30">
-      <div class="px-4 mb-4">
-        <div class="text-[#00FF41] font-black text-lg mb-1">SYSTEM_OS</div>
-        <div class="opacity-50 text-[10px] mb-4">V.1.0.0-STABLE</div>
-      </div>
-      <nav class="flex-1 space-y-1">
-        <div class="text-[#000000] bg-[#00FF41] font-bold p-2 w-full flex items-center gap-3 cursor-pointer active:scale-95">
-          <span class="material-symbols-outlined">folder</span>
-          DIRECTORY
-        </div>
-      </nav>
-      <div class="mt-auto px-4 border-t border-[#3b4b37]/20 pt-4 opacity-40">
-        <div class="flex items-center gap-2 mb-2">
-          <div class="w-2 h-2 bg-[#00FF41] rounded-full animate-pulse"></div>
-          <span>UPLINK_ESTABLISHED</span>
-        </div>
-        <div class="text-[9px]">LOC: 127.0.0.1</div>
-        <div class="text-[9px]">{isNotionConnected ? "SEC: DATABASE_SYNC_ACTIVE" : "SEC: LOCAL_MODE_ONLY"}</div>
-      </div>
-    </aside>
+  <div class="flex flex-1 overflow-hidden relative">
+    <TerminalSidebar notionConnected={notionConnected} />
 
-    <main id="terminal-output" class="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-hide flex flex-col gap-4 font-body pb-40 relative z-30">
-      <section class="mb-4" id="welcome-message">
-        <pre class="text-[#00FF41] text-[7px] sm:text-[9px] md:text-[12px] leading-tight font-bold whitespace-pre overflow-x-hidden select-none mb-4">
-████████╗ ██████╗ ███╗   ██╗██╗   ██╗    ██╗      ██████╗ ██████╗ ███████╗███████╗
-╚══██╔══╝██╔═══██╗████╗  ██║╚██╗ ██╔╝    ██║     ██╔═══██╗██╔══██╗██╔════╝╚══███╔╝
-   ██║   ██║   ██║██╔██╗ ██║ ╚████╔╝     ██║     ██║   ██║██████╔╝█████╗    ███╔╝ 
-   ██║   ██║   ██║██║╚██╗██║  ╚██╔╝      ██║     ██║   ██║██╔═══╝ ██╔══╝   ███╔╝  
-   ██║   ╚██████╔╝██║ ╚████║   ██║       ███████╗╚██████╔╝██║     ███████╗███████╗
-   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚══════╝
-        </pre>
-        <div class="mt-4 opacity-60 text-xs text-white">LAST LOGIN: TUE OCT 24 14:02:11 ON TTY001</div>
-        <div class="mt-2 text-[#00ff41] font-bold">Type 'help' to see a list of available commands.</div>
-      </section>
+    <main
+      id="terminal-output"
+      class="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col gap-4 font-body pb-40 relative z-30"
+    >
+      <WelcomeBanner lastLogin={lastLogin} />
 
-        <div id="history-container" class="space-y-4"></div>
-        <div class="h-10"></div>
+      <div
+        id="history-container"
+        role="log"
+        aria-live="polite"
+        aria-atomic="false"
+        aria-label="Terminal output"
+        class="space-y-4"
+      >
+      </div>
+      <div class="h-10"></div>
     </main>
   </div>
 
-  <footer id="terminal-footer" class="bg-[#000000] border-t border-[#3b4b37]/40 p-4 absolute bottom-0 w-full z-40 cursor-text">
-    <div class="max-w-7xl mx-auto flex items-center gap-3 w-full font-mono text-[#00FF41]">
-      <span class="font-bold shrink-0">tony@firefly:~$</span>
-      <form id="cmd-form" class="relative flex-1 flex items-center whitespace-pre overflow-hidden m-0 p-0">
-        <input id="cmd-input" autocomplete="off" autofocus class="w-full bg-transparent outline-none border-none text-[#00FF41] font-mono p-0 m-0 text-[16px] caret-[#00FF41] focus:ring-0" spellcheck="false" type="text"/>
-        <button type="submit" class="hidden"></button>
-      </form>
-    </div>
-  </footer>
+  <TerminalFooter />
 </Layout>
 
-<script is:inline define:vars={{ notionProjects, isNotionConnected }}>
-  // Web Audio SFX Engine
-  let audioCtx;
-  const initAudio = () => {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-  };
-  
-  const playSfx = (type) => {
-      if (!audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      
-      if (type === 'type') {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(180, audioCtx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + 0.03);
-          gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
-          osc.start();
-          osc.stop(audioCtx.currentTime + 0.03);
-      } else if (type === 'enter') {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.15);
-          gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
-          osc.start();
-          osc.stop(audioCtx.currentTime + 0.15);
-      } else if (type === 'done') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(300, audioCtx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(250, audioCtx.currentTime + 0.1);
-          gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
-          gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
-          osc.start();
-          osc.stop(audioCtx.currentTime + 0.1);
-      }
-  };
-
-  document.addEventListener('keydown', initAudio, { once: true });
-  document.addEventListener('click', initAudio, { once: true });
-
-  const input = document.getElementById('cmd-input');
-  const historyContainer = document.getElementById('history-container');
-  const terminalOutput = document.getElementById('terminal-output');
-  const terminalFooter = document.getElementById('terminal-footer');
-
-  terminalFooter.addEventListener('click', () => {
-    input.focus();
-  });
-  
-  document.addEventListener('click', (e) => {
-    if (!window.getSelection().toString() && e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
-      setTimeout(() => input.focus(), 50);
-    }
-  });
-
-  // Re-map internal files. If Database is connected, append CMS items!
-  let systemFiles = {
-    'capstone.pdf': { desc: 'IT Capstone Report', url: '/tonylopezcapstone.pdf' },
-    'executive_pres.pdf': { desc: 'Executive Overview', url: '/IT_101_Executive_Presentation.pdf' },
-    'apt28.pdf': { desc: 'Threat Actor 28 Profile', url: '/APT_28.pdf' },
-    'apt41.pdf': { desc: 'Threat Actor 41 Profile', url: '/APT41_Case_Study.pdf' }
-  };
-
-  if (isNotionConnected && notionProjects.length > 0) {
-      notionProjects.forEach(proj => {
-          // Normalize title to a terminal friendly string without spaces
-          const filename = proj.title.toLowerCase().replace(/\\s+/g, '_') + '.md';
-          systemFiles[filename] = { desc: proj.description, url: proj.url };
-      });
+<script>
+  import { initTerminal } from '../scripts/terminal';
+  const root = document.getElementById('cmd-input');
+  if (root) {
+    const dataEl = document.getElementById('terminal-data');
+    const data = dataEl?.textContent
+      ? JSON.parse(dataEl.textContent)
+      : { notionProjects: [], notionConnected: false };
+    initTerminal(data);
   }
-
-  const commands = {
-    'help': `
-        <div class="text-[#00FF41] ml-4 mt-2">
-            <div>AVAILABLE COMMANDS:</div>
-            <div class="mt-2 grid grid-cols-[120px_1fr] gap-2 lg:gap-0 lg:grid-cols-[150px_1fr]">
-                <span class="opacity-70">whoami</span><span>Display current operator info</span>
-                <span class="opacity-70">pwd</span><span>Print working directory</span>
-                <span class="opacity-70">date</span><span>Display system time</span>
-                <span class="opacity-70">echo</span><span>Print arguments</span>
-                <span class="opacity-70">ls</span><span>List available archives (projects/blogs)</span>
-                <span class="opacity-70">cat [file]</span><span>Open archive inline (e.g., cat capstone.pdf)</span>
-                <span class="opacity-70">clear</span><span>Clear terminal output</span>
-            </div>
-            <div class="mt-4 border-t border-[#3b4b37]/40 pt-2 opacity-50 text-[10px]">SOCIAL_LINKS: <a href="https://github.com/TBLopez" target="_blank" class="hover:text-white underline inline">github</a> | <a href="https://www.linkedin.com/in/techtony/" target="_blank" class="hover:text-white underline inline">linkedin</a></div>
-            ${isNotionConnected ? '<div class="mt-1 opacity-50 text-[10px] text-[#00ff41]">DATABASE UPLINK ACTIVE (CMS ENABLED)</div>' : '<div class="mt-1 opacity-50 text-[10px] text-[#ffb4ab]">DATABASE UPLINK OFFLINE (NO CMS KEYS PROVIDED)</div>'}
-        </div>
-    `,
-    'pwd': `
-        <div class="text-[#00FF41] ml-4 mt-2">/home/operator/firefly/tony</div>
-    `,
-    'sudo': `
-        <div class="text-[#ffb4ab] ml-4 mt-2 font-bold select-none uppercase animate-pulse">
-           [!] SECURITY ALERT [!] <br/> 
-           ACCESS DENIED: THIS INCIDENT WILL BE REPORTED.
-        </div>
-    `,
-    'whoami': `
-        <div class="text-[#00FF41] ml-4 mt-2">
-            <span class="block">TONY LOPEZ // SECURITY_ANALYST</span>
-            <span class="block opacity-70 mt-1">Specializing in security, penetration testing, and tactical development.</span>
-        </div>
-    `
-  };
-
-  const cmdForm = document.getElementById('cmd-form');
-
-  // Recursive Typewriter Function
-  function typewriteElement(el, speed = 10, callback) {
-      const textNodes = [];
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-      let node;
-      while(node = walker.nextNode()) {
-          if (node.nodeValue.trim() !== '') textNodes.push(node);
-      }
-      if (textNodes.length === 0) {
-          if (callback) callback();
-          return;
-      }
-      
-      const originalTexts = textNodes.map(n => n.nodeValue);
-      textNodes.forEach(n => n.nodeValue = '');
-      
-      let nodeIndex = 0;
-      let charIndex = 0;
-      
-      function typeChar() {
-          if (nodeIndex >= textNodes.length) {
-              playSfx('done');
-              if (callback) callback();
-              return;
-          }
-          
-          const currentText = originalTexts[nodeIndex];
-          if (charIndex < currentText.length) {
-              textNodes[nodeIndex].nodeValue += currentText.charAt(charIndex);
-              charIndex++;
-              if (charIndex % 3 === 0) playSfx('type');
-              
-              const terminalOutput = document.getElementById('terminal-output');
-              terminalOutput.scrollTop = terminalOutput.scrollHeight + 1000;
-              setTimeout(typeChar, speed);
-          } else {
-              nodeIndex++;
-              charIndex = 0;
-              setTimeout(typeChar, speed);
-          }
-      }
-      typeChar();
-  }
-
-  function handleCommand() {
-      const cmd = input.value.trim();
-      input.value = '';
-      
-      if (!cmd) return;
-          
-          if (cmd === 'clear') {
-              historyContainer.innerHTML = '';
-              return;
-          }
-          
-          const promptHtml = `
-              <div class="flex items-center gap-2 mt-4">
-                  <span class="text-[#00FF41] font-bold">tony@firefly:~$</span>
-                  <span class="text-white">${cmd}</span>
-              </div>
-          `;
-          
-          let responseHtml = '';
-          const baseCmd = cmd.split(' ')[0].toLowerCase();
-          
-          if (commands[baseCmd]) {
-              responseHtml = commands[baseCmd];
-          } else if (baseCmd === 'echo') {
-              const echoText = cmd.split(' ').slice(1).join(' ').replace(/</g, "&lt;").replace(/>/g, "&gt;");
-              responseHtml = `<div class="text-white ml-4 mt-2 whitespace-pre-wrap">${echoText}</div>`;
-          } else if (baseCmd === 'nmap') {
-              const target = cmd.split(' ')[1] || '127.0.0.1';
-              responseHtml = `
-                  <div class="text-[#00FF41] ml-4 mt-2">
-                      <div class="opacity-70">Starting Nmap 7.92 ( https://nmap.org ) at ${new Date().toISOString()}</div>
-                      <div>Nmap scan report for ${target}</div>
-                      <div>Host is up (0.00032s latency).</div>
-                      <div class="mt-2 text-[#ffb4ab]">PORT      STATE    SERVICE</div>
-                      <div class="text-white">22/tcp    <span class="text-[#ffb4ab]">filtered</span> ssh</div>
-                      <div class="text-white">80/tcp    <span class="text-[#00FF41]">open</span>     http</div>
-                      <div class="text-white">443/tcp   <span class="text-[#00FF41]">open</span>     https</div>
-                      <div class="text-white">3306/tcp  <span class="text-[#ffb4ab]">filtered</span> mysql</div>
-                      <div class="mt-2 text-[#ffb4ab] font-bold">[!] WARNING: UNSECURE PORT DETECTED. INITIATING PAYLOAD...</div>
-                      <div class="text-white text-[10px] mt-1">[|||||||||||||||||||||||||||||||] 100% EXPLOIT SUCCESSFUL</div>
-                      <div class="mt-2 text-[#00FF41] font-bold tracking-widest uppercase mb-4">SYSTEM COMPROMISED. ROOT ACCESS GRANTED.</div>
-                  </div>
-              `;
-          } else if (baseCmd === 'date') {
-              const d = new Date().toString();
-              responseHtml = `<div class="text-[#00FF41] ml-4 mt-2">${d}</div>`;
-          } else if (baseCmd === 'ls') {
-              const fileList = Object.keys(systemFiles).map(f => `
-                  <div class="col-span-1 border-l-2 border-[#3b4b37] pl-2 hover:border-[#00FF41] transition-colors">
-                      <div class="text-[#99d688] font-bold">${f}</div>
-                      <div class="text-[10px] text-white/50 truncate">${systemFiles[f].desc}</div>
-                  </div>
-              `).join('');
-              responseHtml = `<div class="ml-4 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${fileList}</div>`;
-          } else if (baseCmd === 'cat') {
-              const file = cmd.split(' ')[1];
-              if (systemFiles[file]) {
-                  const dest = systemFiles[file].url && systemFiles[file].url !== '#' ? systemFiles[file].url : '#';
-                  if (dest !== '#') {
-                      responseHtml = `
-                          <div class="ml-4 mt-4 w-full max-w-4xl bg-[#131313] border border-[#3b4b37] relative group animate-fade-in mb-8">
-                              <div class="bg-[#00FF41] text-[#000000] text-[10px] font-bold px-2 py-1 flex justify-between items-center select-none uppercase tracking-widest">
-                                  <span>VIEWER_MODULE // ${file}</span>
-                                  <a href="${dest}" target="_blank" class="hover:text-white transition-colors cursor-pointer mr-2 flex items-center gap-1 bg-black/20 px-2 py-0.5 rounded">
-                                      <span class="material-symbols-outlined text-[12px]">open_in_new</span> [NEW_SYS_WINDOW]
-                                  </a>
-                              </div>
-                              <div class="w-full relative bg-[#000000] p-1">
-                                  <iframe src="${dest}" class="w-full h-[60vh] border-none bg-[#ffffff] grayscale-[0.3] contrast-[1.1] filter transition-all duration-300 hover:grayscale-0" title="${file}"></iframe>
-                              </div>
-                          </div>
-                      `;
-                  } else {
-                      responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">cat: payload missing destination url</div>`;
-                  }
-              } else if (!file) {
-                  responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">cat: missing file operand</div>`;
-              } else {
-                  responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">cat: ${file}: No such file or directory</div>`;
-              }
-          } else {
-              responseHtml = `<div class="text-[#ffb4ab] ml-4 mt-2">bash: ${cmd}: command not found. Type 'help' for available commands.</div>`;
-          }
-          
-          const entry = document.createElement('div');
-          
-          if (commands[baseCmd] || baseCmd === 'nmap' || baseCmd === 'echo' || baseCmd === 'date') {
-              // Extract the user prompt and append it immediately
-              const promptDiv = document.createElement('div');
-              promptDiv.innerHTML = promptHtml;
-              historyContainer.appendChild(promptDiv);
-              
-              // Create response wrapper and typewrite it
-              const responseDiv = document.createElement('div');
-              responseDiv.innerHTML = responseHtml;
-              historyContainer.appendChild(responseDiv);
-              
-              playSfx('enter');
-              input.disabled = true; // prevent typing while animating
-              typewriteElement(responseDiv, 5, () => {
-                  input.disabled = false;
-                  input.focus();
-              });
-          } else {
-              // Render instantly (for iframes and lists)
-              entry.innerHTML = promptHtml + responseHtml;
-              historyContainer.appendChild(entry);
-              playSfx('enter');
-              
-              setTimeout(() => {
-                  terminalOutput.scrollTo({ top: terminalOutput.scrollHeight + 1000, behavior: 'smooth' });
-                  setTimeout(() => terminalOutput.scrollTop = terminalOutput.scrollHeight + 1000, 300);
-              }, 50);
-          }
-  }
-
-  cmdForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      handleCommand();
-  });
-
-  input.addEventListener('keydown', function(e) {
-      initAudio();
-      
-      if (e.key === 'Tab') {
-          e.preventDefault();
-          const parts = input.value.split(' ');
-          
-          if (parts.length === 1) {
-              const cmdPrefix = parts[0].toLowerCase();
-              const availableCmds = Object.keys(commands).concat(['ls', 'cat', 'echo', 'date', 'pwd', 'nmap', 'clear']);
-              const match = availableCmds.find(c => c.startsWith(cmdPrefix));
-              if (match) input.value = match + ' ';
-          } else if (parts.length === 2 && parts[0].toLowerCase() === 'cat') {
-              const filePrefix = parts[1].toLowerCase();
-              const match = Object.keys(systemFiles).find(f => f.startsWith(filePrefix));
-              if (match) input.value = 'cat ' + match;
-          }
-      }
-      
-      if (e.key !== 'Enter' && e.key !== 'Tab') {
-          playSfx('type');
-      }
-
-      if (e.key === 'Enter') {
-          e.preventDefault();
-          handleCommand();
-      }
-  });
 </script>
+
+<script
+  id="terminal-data"
+  type="application/json"
+  is:inline
+  set:html={JSON.stringify({ notionProjects, notionConnected })}
+/>
