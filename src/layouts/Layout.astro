@@ -13,10 +13,10 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" class="dark h-full">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#000000" />
     <meta name="color-scheme" content="dark" />
@@ -26,7 +26,7 @@ const {
     <meta name="generator" content={Astro.generator} />
   </head>
   <body
-    class="bg-black text-primary-container font-body selection:bg-primary-container selection:text-black min-h-screen flex flex-col overflow-hidden m-0 p-0"
+    class="bg-black text-primary-container font-body selection:bg-primary-container selection:text-black min-h-dvh flex flex-col m-0 p-0"
   >
     <a href="#cmd-input" class="skip-link">Skip to terminal input</a>
     <canvas id="matrix-rain" aria-hidden="true"></canvas>

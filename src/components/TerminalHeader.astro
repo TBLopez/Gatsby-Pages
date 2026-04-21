@@ -3,26 +3,26 @@ import Icon from './Icon.astro';
 ---
 
 <header
-  class="bg-surface text-primary-container font-mono uppercase tracking-widest text-sm border-b border-outline-variant/40 shadow-[0_0_15px_rgba(0,255,65,0.1)] flex justify-between items-center w-full px-4 h-10 sticky top-0 z-40 shrink-0"
+  class="bg-surface text-primary-container font-mono uppercase tracking-widest text-sm border-b border-outline-variant/40 shadow-[0_0_15px_rgba(0,255,65,0.1)] flex justify-between items-center w-full px-3 md:px-4 h-12 md:h-10 sticky top-0 z-40 shrink-0"
 >
-  <div class="flex items-center gap-3">
+  <div class="flex items-center gap-2 md:gap-3 min-w-0">
     <button
       id="sidebar-toggle"
       type="button"
-      class="md:hidden p-1 -ml-1 hover:bg-primary-container hover:text-black transition-colors"
+      class="md:hidden p-2.5 md:p-1 -ml-1 hover:bg-primary-container hover:text-black transition-colors"
       aria-label="Toggle navigation sidebar"
       aria-expanded="false"
       aria-controls="sidebar"
     >
-      <Icon name="menu" size={18} />
+      <Icon name="menu" size={20} />
     </button>
-    <div class="text-primary-container font-bold flex items-center gap-2">
+    <div class="text-primary-container font-bold flex items-center gap-2 truncate">
       <span aria-hidden="true">&gt;_</span>
-      <span>TONY@FIREFLY:~</span>
+      <span class="truncate">TONY@FIREFLY:~</span>
     </div>
   </div>
 
-  <nav aria-label="Primary" class="flex items-center gap-6">
+  <nav aria-label="Primary" class="flex items-center gap-3 md:gap-6 shrink-0">
     <ul class="hidden md:flex gap-4 m-0 p-0 list-none">
       <li>
         <button
@@ -56,13 +56,13 @@ import Icon from './Icon.astro';
     <button
       id="sfx-toggle"
       type="button"
-      class="text-[10px] text-primary-container/70 hover:text-primary-container px-2"
+      class="text-[11px] md:text-[10px] text-primary-container/70 hover:text-primary-container px-2 py-2 md:py-0"
       aria-pressed="true"
       aria-label="Toggle sound effects"
     >
       [SFX:ON]
     </button>
-    <div class="flex gap-2" aria-hidden="true">
+    <div class="hidden sm:flex gap-2" aria-hidden="true">
       <span class="p-1 text-primary-container/60"
         ><Icon name="minimize" size={16} /></span
       >

@@ -129,16 +129,20 @@ export function initTerminal(init: TerminalInit): void {
     void runBoot();
   }
 
-  // Focus input on first interaction; also on clicks anywhere not selecting text or hitting a control
+  // Focus input on first interaction; also on clicks anywhere not selecting text or hitting a control.
+  // Skip the document-wide handler on touch devices — otherwise every tap pops the soft keyboard.
   const focusInput = () => setTimeout(() => input.focus(), 0);
+  const hasFinePointer = window.matchMedia?.('(hover: hover) and (pointer: fine)').matches ?? false;
 
   terminalFooter.addEventListener('click', focusInput);
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (window.getSelection()?.toString()) return;
-    if (target.closest('a, button, input, iframe, [data-no-focus]')) return;
-    focusInput();
-  });
+  if (hasFinePointer) {
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (window.getSelection()?.toString()) return;
+      if (target.closest('a, button, input, iframe, [data-no-focus]')) return;
+      focusInput();
+    });
+  }
 
   // Audio init on first interaction
   const oneShotInit = () => audio.init();
@@ -163,19 +167,26 @@ export function initTerminal(init: TerminalInit): void {
   // Mobile sidebar drawer
   const sidebar = document.getElementById('sidebar');
   const sidebarToggle = document.getElementById('sidebar-toggle');
+  const sidebarScrim = document.getElementById('sidebar-scrim');
   const openSidebar = () => {
     sidebar?.classList.remove('-translate-x-full');
     sidebar?.setAttribute('aria-hidden', 'false');
     sidebarToggle?.setAttribute('aria-expanded', 'true');
+    sidebarScrim?.removeAttribute('hidden');
   };
   const closeSidebar = () => {
     sidebar?.classList.add('-translate-x-full');
     sidebar?.setAttribute('aria-hidden', 'true');
     sidebarToggle?.setAttribute('aria-expanded', 'false');
+    sidebarScrim?.setAttribute('hidden', '');
   };
   sidebarToggle?.addEventListener('click', () => {
     const expanded = sidebarToggle.getAttribute('aria-expanded') === 'true';
     expanded ? closeSidebar() : openSidebar();
+  });
+  sidebarScrim?.addEventListener('click', () => {
+    closeSidebar();
+    sidebarToggle?.focus();
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && sidebar?.getAttribute('aria-hidden') === 'false') {

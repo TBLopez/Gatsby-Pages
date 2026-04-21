@@ -8,6 +8,14 @@ interface Props {
 const { notionConnected } = Astro.props;
 ---
 
+<div
+  id="sidebar-scrim"
+  class="fixed inset-0 z-30 bg-black/60 md:hidden"
+  aria-hidden="true"
+  hidden
+>
+</div>
+
 <aside
   id="sidebar"
   aria-label="System navigation"

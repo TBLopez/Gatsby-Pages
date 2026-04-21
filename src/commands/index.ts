@@ -75,7 +75,8 @@ const helpRows: Array<[string, string]> = [
 export const commands: Record<string, Command> = {
   help(_args, ctx) {
     const grid = el('div', {
-      class: 'mt-2 grid grid-cols-[140px_1fr] gap-y-1 lg:grid-cols-[200px_1fr]',
+      class:
+        'mt-2 grid grid-cols-[110px_1fr] gap-y-1 gap-x-2 sm:grid-cols-[140px_1fr] lg:grid-cols-[200px_1fr]',
     });
     for (const [name, desc] of helpRows) {
       grid.append(
@@ -525,7 +526,7 @@ export const commands: Record<string, Command> = {
       'div',
       {
         class:
-          'mt-2 grid grid-cols-[60px_60px_60px_1fr] gap-2 text-secondary border-b border-outline-variant/40 pb-1',
+          'mt-2 grid grid-cols-[44px_52px_52px_1fr] sm:grid-cols-[60px_60px_60px_1fr] gap-2 text-secondary border-b border-outline-variant/40 pb-1',
       },
       el('span', {}, 'PID'),
       el('span', {}, 'CPU%'),
@@ -575,7 +576,7 @@ export const commands: Record<string, Command> = {
             'div',
             {
               class:
-                'grid grid-cols-[60px_60px_60px_1fr] gap-2 text-white/90',
+                'grid grid-cols-[44px_52px_52px_1fr] sm:grid-cols-[60px_60px_60px_1fr] gap-2 text-white/90',
             },
             el('span', {}, String(p.pid)),
             el(

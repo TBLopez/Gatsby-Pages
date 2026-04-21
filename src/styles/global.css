@@ -121,6 +121,14 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* Pin outer containers to the dynamic viewport so iOS URL-bar collapse
+   doesn't hide the last ~90px of layout. */
+html { height: 100%; }
+@supports (height: 100dvh) {
+  html,
+  body { height: 100dvh; }
+}
+
 /* Scanline overlay (theme-aware tint) */
 .scanline {
   background:
@@ -272,14 +280,23 @@ input:focus { outline: none; }
   font-size: 10px;
   line-height: 1.45;
   background: rgb(var(--c-surface));
-  border-left: 1px solid rgb(var(--c-outline-variant) / 0.5);
+  /* Border hugs whichever edge touches the main column.
+     On mobile (stacked) the pane sits below main → top border.
+     On md+ (row) it sits to the right → left border. */
+  border-top: 1px solid rgb(var(--c-outline-variant) / 0.5);
   color: rgb(var(--c-on-surface-variant));
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
   transition: width 0.2s ease;
 }
-#log-pane[hidden] { display: none; }
+@media (min-width: 768px) {
+  #log-pane {
+    border-top: none;
+    border-left: 1px solid rgb(var(--c-outline-variant) / 0.5);
+  }
+}
+#log-pane[hidden] { display: none !important; }
 #log-pane .log-header {
   position: sticky;
   top: 0;

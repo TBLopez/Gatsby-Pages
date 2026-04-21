@@ -35,7 +35,8 @@ export function getMatrixRain(): Engine {
 
   const resize = () => {
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const maxDpr = window.innerWidth < 768 ? 1 : 2;
+    const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
     ctx?.scale(dpr, dpr);
