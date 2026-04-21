@@ -1,24 +1,28 @@
 /** @type {import('tailwindcss').Config} */
+
+const cssVar = (name) => `rgb(var(${name}) / <alpha-value>)`;
+
 export default {
   darkMode: 'class',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
-        'on-background': '#e2e2e2',
-        secondary: '#99d688',
-        'surface-variant': '#353535',
-        'on-surface': '#e2e2e2',
-        'surface-dim': '#131313',
-        surface: '#131313',
-        'surface-tint': '#00e639',
-        background: '#000000',
-        'on-surface-variant': '#b9ccb2',
-        primary: '#ebffe2',
-        'primary-container': '#00ff41',
-        outline: '#84967e',
-        'outline-variant': '#3b4b37',
-        error: '#ffb4ab',
+        // Theme-aware colors driven by CSS variables in global.css
+        background: cssVar('--c-bg'),
+        surface: cssVar('--c-surface'),
+        'surface-dim': cssVar('--c-surface-dim'),
+        'surface-variant': cssVar('--c-surface-variant'),
+        'on-background': cssVar('--c-on-bg'),
+        'on-surface': cssVar('--c-on-surface'),
+        'on-surface-variant': cssVar('--c-on-surface-variant'),
+        primary: cssVar('--c-primary'),
+        'primary-container': cssVar('--c-primary-container'),
+        secondary: cssVar('--c-secondary'),
+        'surface-tint': cssVar('--c-surface-tint'),
+        outline: cssVar('--c-outline'),
+        'outline-variant': cssVar('--c-outline-variant'),
+        error: cssVar('--c-error'),
       },
       fontFamily: {
         headline: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],

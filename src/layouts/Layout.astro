@@ -29,7 +29,16 @@ const {
     class="bg-black text-primary-container font-body selection:bg-primary-container selection:text-black min-h-screen flex flex-col overflow-hidden m-0 p-0"
   >
     <a href="#cmd-input" class="skip-link">Skip to terminal input</a>
+    <canvas id="matrix-rain" aria-hidden="true"></canvas>
     <div class="scanline fixed inset-0 z-50 pointer-events-none" aria-hidden="true"></div>
     <slot />
+    <div
+      id="achievement-stack"
+      aria-live="polite"
+      aria-atomic="false"
+      aria-label="Achievement notifications"
+    >
+    </div>
+    <div id="boot-overlay" role="presentation" aria-hidden="true"></div>
   </body>
 </html>

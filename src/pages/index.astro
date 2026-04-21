@@ -84,6 +84,19 @@ const lastLogin = new Date()
       </div>
       <div class="h-10"></div>
     </main>
+
+    <aside
+      id="log-pane"
+      aria-label="Live system log feed"
+      class="hidden lg:block w-[320px]"
+      hidden
+    >
+      <div class="log-header">
+        <span>/var/log/firefly.log</span>
+        <span aria-hidden="true">●●●</span>
+      </div>
+      <div id="log-stream" class="log-stream"></div>
+    </aside>
   </div>
 
   <TerminalFooter />

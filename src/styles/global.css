@@ -6,18 +6,122 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* ----------------------------------------------------------------
+   Theme palettes — exposed as `R G B` triplets so Tailwind classes
+   like `text-primary-container/60` resolve via rgb(var() / alpha).
+   Switch themes by setting [data-theme="..."] on <html>.
+---------------------------------------------------------------- */
+:root,
+[data-theme='matrix'] {
   color-scheme: dark;
+  --c-bg: 0 0 0;
+  --c-surface: 19 19 19;
+  --c-surface-dim: 19 19 19;
+  --c-surface-variant: 53 53 53;
+  --c-on-bg: 226 226 226;
+  --c-on-surface: 226 226 226;
+  --c-on-surface-variant: 185 204 178;
+  --c-primary: 235 255 226;
+  --c-primary-container: 0 255 65;
+  --c-secondary: 153 214 136;
+  --c-surface-tint: 0 230 57;
+  --c-outline: 132 150 126;
+  --c-outline-variant: 59 75 55;
+  --c-error: 255 180 171;
+  --scanline-tint-a: 255 0 0;
+  --scanline-tint-b: 0 255 0;
+  --scanline-tint-c: 0 0 255;
+}
+
+[data-theme='amber'] {
+  --c-bg: 12 7 0;
+  --c-surface: 26 13 0;
+  --c-surface-dim: 26 13 0;
+  --c-surface-variant: 56 32 6;
+  --c-on-bg: 255 224 178;
+  --c-on-surface: 255 224 178;
+  --c-on-surface-variant: 215 175 110;
+  --c-primary: 255 230 168;
+  --c-primary-container: 255 176 0;
+  --c-secondary: 255 138 0;
+  --c-surface-tint: 255 176 0;
+  --c-outline: 142 99 30;
+  --c-outline-variant: 76 47 8;
+  --c-error: 255 120 100;
+  --scanline-tint-a: 255 100 0;
+  --scanline-tint-b: 255 200 100;
+  --scanline-tint-c: 120 60 0;
+}
+
+[data-theme='ice'] {
+  --c-bg: 0 12 22;
+  --c-surface: 0 21 32;
+  --c-surface-dim: 0 21 32;
+  --c-surface-variant: 12 44 64;
+  --c-on-bg: 220 240 255;
+  --c-on-surface: 220 240 255;
+  --c-on-surface-variant: 150 196 224;
+  --c-primary: 220 240 255;
+  --c-primary-container: 79 195 247;
+  --c-secondary: 132 230 255;
+  --c-surface-tint: 79 195 247;
+  --c-outline: 80 130 168;
+  --c-outline-variant: 30 70 100;
+  --c-error: 255 138 162;
+  --scanline-tint-a: 0 200 255;
+  --scanline-tint-b: 100 255 255;
+  --scanline-tint-c: 0 100 200;
+}
+
+[data-theme='dracula'] {
+  --c-bg: 17 18 25;
+  --c-surface: 40 42 54;
+  --c-surface-dim: 40 42 54;
+  --c-surface-variant: 68 71 90;
+  --c-on-bg: 248 248 242;
+  --c-on-surface: 248 248 242;
+  --c-on-surface-variant: 189 147 249;
+  --c-primary: 248 248 242;
+  --c-primary-container: 255 121 198;
+  --c-secondary: 80 250 123;
+  --c-surface-tint: 255 121 198;
+  --c-outline: 98 114 164;
+  --c-outline-variant: 68 71 90;
+  --c-error: 255 85 85;
+  --scanline-tint-a: 255 121 198;
+  --scanline-tint-b: 189 147 249;
+  --scanline-tint-c: 80 250 123;
+}
+
+[data-theme='mono'] {
+  --c-bg: 0 0 0;
+  --c-surface: 16 16 16;
+  --c-surface-dim: 16 16 16;
+  --c-surface-variant: 36 36 36;
+  --c-on-bg: 230 230 230;
+  --c-on-surface: 230 230 230;
+  --c-on-surface-variant: 170 170 170;
+  --c-primary: 255 255 255;
+  --c-primary-container: 255 255 255;
+  --c-secondary: 200 200 200;
+  --c-surface-tint: 255 255 255;
+  --c-outline: 120 120 120;
+  --c-outline-variant: 60 60 60;
+  --c-error: 255 110 110;
+  --scanline-tint-a: 255 255 255;
+  --scanline-tint-b: 200 200 200;
+  --scanline-tint-c: 120 120 120;
 }
 
 html,
 body {
-  background-color: #000;
-  color: #00ff41;
+  background-color: rgb(var(--c-bg));
+  color: rgb(var(--c-primary-container));
   font-family: 'JetBrains Mono', ui-monospace, monospace;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Scanline overlay */
+/* Scanline overlay (theme-aware tint) */
 .scanline {
   background:
     linear-gradient(
@@ -27,9 +131,9 @@ body {
     ),
     linear-gradient(
       to right,
-      rgba(255, 0, 0, 0.06),
-      rgba(0, 255, 0, 0.02),
-      rgba(0, 0, 255, 0.06)
+      rgb(var(--scanline-tint-a) / 0.06),
+      rgb(var(--scanline-tint-b) / 0.02),
+      rgb(var(--scanline-tint-c) / 0.06)
     );
   background-size:
     100% 4px,
@@ -37,15 +141,11 @@ body {
   pointer-events: none;
 }
 
-/* Blinking caret utility (used sparingly) */
+/* Blinking caret utility */
 @keyframes blink {
   0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+  100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 .cursor-blink {
   animation: blink 1s step-end infinite;
@@ -57,8 +157,8 @@ body {
   top: 0;
   left: 0;
   padding: 0.5rem 1rem;
-  background: #00ff41;
-  color: #000;
+  background: rgb(var(--c-primary-container));
+  color: rgb(var(--c-bg));
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -72,34 +172,157 @@ body {
   outline-offset: 2px;
 }
 
-/* Visible focus ring for keyboard users on every interactive element.
-   The input keeps its custom caret-based affordance. */
 :where(a, button, [role='button']):focus-visible {
-  outline: 2px solid #00ff41;
+  outline: 2px solid rgb(var(--c-primary-container));
   outline-offset: 2px;
 }
 
-input:focus {
-  outline: none;
-}
+input:focus { outline: none; }
 
-/* Hide scrollbars on the terminal region but keep the scroll behavior */
-#terminal-output::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-#terminal-output {
-  scrollbar-width: none;
-}
+#terminal-output::-webkit-scrollbar { width: 0; height: 0; }
+#terminal-output { scrollbar-width: none; }
 
-/* Reduced motion: freeze all the retro effects */
+/* Matrix rain canvas */
+#matrix-rain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+#matrix-rain.active { opacity: 0.55; }
+
+/* Boot overlay */
+#boot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgb(var(--c-bg));
+  color: rgb(var(--c-primary-container));
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  padding: 2rem 1.5rem;
+  overflow: hidden;
+  display: none;
+}
+#boot-overlay.active { display: block; }
+#boot-overlay .boot-line {
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.95;
+}
+#boot-overlay .boot-line.ok::after {
+  content: ' [ OK ]';
+  color: rgb(var(--c-primary-container));
+}
+#boot-overlay .boot-line.warn::after {
+  content: ' [ WARN ]';
+  color: rgb(var(--c-error));
+}
+#boot-overlay .boot-skip {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 10px;
+  opacity: 0.7;
+  background: transparent;
+  border: 1px solid rgb(var(--c-outline-variant));
+  color: rgb(var(--c-primary-container));
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+#boot-overlay .boot-skip:hover { opacity: 1; }
+
+/* Achievement toast */
+#achievement-stack {
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+  z-index: 60;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  pointer-events: none;
+  max-width: min(360px, calc(100vw - 2rem));
+}
+.achievement-toast {
+  background: rgb(var(--c-surface));
+  border: 1px solid rgb(var(--c-primary-container));
+  color: rgb(var(--c-primary-container));
+  padding: 0.6rem 0.8rem;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 0 25px rgb(var(--c-primary-container) / 0.18);
+  transform: translateX(120%);
+  animation: slide-in 0.35s ease forwards, slide-out 0.35s ease forwards 4.5s;
+}
+.achievement-toast .label { display: block; opacity: 0.7; font-size: 9px; }
+.achievement-toast .name { display: block; font-weight: 700; }
+@keyframes slide-in { to { transform: translateX(0); } }
+@keyframes slide-out { to { transform: translateX(120%); opacity: 0; } }
+
+/* Live log feed pane */
+#log-pane {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 1.45;
+  background: rgb(var(--c-surface));
+  border-left: 1px solid rgb(var(--c-outline-variant) / 0.5);
+  color: rgb(var(--c-on-surface-variant));
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  transition: width 0.2s ease;
+}
+#log-pane[hidden] { display: none; }
+#log-pane .log-header {
+  position: sticky;
+  top: 0;
+  background: rgb(var(--c-surface));
+  border-bottom: 1px solid rgb(var(--c-outline-variant) / 0.5);
+  padding: 0.5rem 0.75rem;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgb(var(--c-primary-container));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+#log-pane .log-stream {
+  height: calc(100% - 32px);
+  overflow: hidden;
+  padding: 0.5rem 0.75rem;
+  position: relative;
+}
+#log-pane .log-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  animation: log-fade 0.3s ease forwards;
+}
+#log-pane .log-line .ts { opacity: 0.4; margin-right: 0.5rem; }
+#log-pane .log-line.warn { color: rgb(var(--c-error)); }
+#log-pane .log-line.info { color: rgb(var(--c-secondary)); }
+@keyframes log-fade { to { opacity: 1; } }
+
+/* Reduced motion: freeze the retro effects */
 @media (prefers-reduced-motion: reduce) {
-  .scanline {
-    display: none;
+  .scanline { display: none; }
+  .cursor-blink { animation: none !important; }
+  #matrix-rain { display: none !important; }
+  .achievement-toast {
+    animation: none;
+    transform: translateX(0);
   }
-  .cursor-blink {
-    animation: none !important;
-  }
+  .log-line { animation: none; opacity: 1; }
   * {
     transition-duration: 0.001ms !important;
     animation-duration: 0.001ms !important;

@@ -5,6 +5,17 @@ import {
   type CommandContext,
 } from '../commands/index';
 import { localFiles, type SystemFile } from '../data/systemFiles';
+import { getMatrixRain } from './matrixRain';
+import { getLogFeed, initLogFeedFromStorage } from './logFeed';
+import {
+  THEMES,
+  applyTheme,
+  getTheme,
+  initThemeFromStorage,
+  type ThemeName,
+} from './themes';
+import { trackCommand, trackTheme, unlock } from './achievements';
+import { runBoot, shouldShowBoot } from './boot';
 
 export type NotionProject = {
   id: string;
@@ -83,6 +94,13 @@ export function initTerminal(init: TerminalInit): void {
   let historyCursor = history.length;
   let activeTypewriter: { skip: () => void } | null = null;
 
+  // Boot theme + log feed from storage before anything paints text
+  initThemeFromStorage();
+  initLogFeedFromStorage();
+
+  const matrix = getMatrixRain();
+  const logFeed = getLogFeed();
+
   const ctx: CommandContext = {
     files,
     notionConnected: init.notionConnected,
@@ -90,7 +108,26 @@ export function initTerminal(init: TerminalInit): void {
     clear: () => {
       historyContainer.innerHTML = '';
     },
+    toggleMatrix: () => matrix.toggle(),
+    toggleLogFeed: () => logFeed.toggle(),
+    setTheme: (name: ThemeName) => {
+      applyTheme(name);
+      trackTheme(name, THEMES);
+    },
+    themes: THEMES,
+    currentTheme: () => getTheme(),
+    triggerReboot: async () => {
+      await runBoot();
+    },
   };
+
+  // Track current theme on first load so the wardrobe achievement can progress.
+  trackTheme(getTheme(), THEMES);
+
+  // Boot sequence on first visit of the session
+  if (shouldShowBoot()) {
+    void runBoot();
+  }
 
   // Focus input on first interaction; also on clicks anywhere not selecting text or hitting a control
   const focusInput = () => setTimeout(() => input.focus(), 0);
@@ -119,6 +156,7 @@ export function initTerminal(init: TerminalInit): void {
   audio.onChange(syncSfxBtn);
   sfxBtn?.addEventListener('click', () => {
     audio.toggle();
+    if (audio.isMuted()) unlock('go_dark');
     if (!audio.isMuted()) audio.init();
   });
 
@@ -239,6 +277,10 @@ export function initTerminal(init: TerminalInit): void {
 
     const [base, ...args] = cmd.split(/\s+/);
     const baseCmd = base.toLowerCase();
+
+    if (commands[baseCmd]) {
+      trackCommand(baseCmd, commandNames.length);
+    }
 
     if (baseCmd === 'clear') {
       commands.clear([], ctx);

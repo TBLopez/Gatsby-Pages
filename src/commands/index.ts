@@ -1,10 +1,24 @@
 import type { SystemFile } from '../data/systemFiles';
+import type { ThemeName } from '../scripts/themes';
+import {
+  ACHIEVEMENTS,
+  getAll,
+  getUnlocked,
+  isUnlocked,
+  unlock,
+} from '../scripts/achievements';
 
 export type CommandContext = {
   files: Record<string, SystemFile>;
   notionConnected: boolean;
   history: string[];
   clear: () => void;
+  toggleMatrix: () => boolean;
+  toggleLogFeed: () => boolean;
+  setTheme: (name: ThemeName) => void;
+  themes: readonly ThemeName[];
+  currentTheme: () => ThemeName;
+  triggerReboot: () => Promise<void>;
 };
 
 export type CommandResult = {
@@ -45,15 +59,23 @@ const helpRows: Array<[string, string]> = [
   ['echo [text]', 'Print arguments'],
   ['ls', 'List available archives'],
   ['cat [file]', 'Open archive inline'],
-  ['history', 'Show recent commands'],
+  ['nmap [host]', 'Scan a host (simulated)'],
+  ['top', 'Live process list'],
+  ['neofetch', 'System information'],
+  ['matrix', 'Toggle matrix rain effect'],
+  ['theme [name]', 'Switch palette: matrix/amber/ice/dracula/mono'],
+  ['tail', 'Toggle live log feed pane'],
+  ['reboot', 'Replay the boot sequence'],
+  ['achievements', 'Show operator badges'],
   ['contact', 'Show contact channels'],
+  ['history', 'Show recent commands'],
   ['clear', 'Clear terminal output (Ctrl+L)'],
 ];
 
 export const commands: Record<string, Command> = {
   help(_args, ctx) {
     const grid = el('div', {
-      class: 'mt-2 grid grid-cols-[120px_1fr] gap-y-1 lg:grid-cols-[180px_1fr]',
+      class: 'mt-2 grid grid-cols-[140px_1fr] gap-y-1 lg:grid-cols-[200px_1fr]',
     });
     for (const [name, desc] of helpRows) {
       grid.append(
@@ -136,6 +158,7 @@ export const commands: Record<string, Command> = {
   },
 
   sudo() {
+    unlock('oops');
     return {
       node: output(
         'text-error font-bold select-none uppercase',
@@ -261,6 +284,7 @@ export const commands: Record<string, Command> = {
         'SYSTEM COMPROMISED. ROOT ACCESS GRANTED.',
       ),
     );
+    unlock('recon');
     return { node: box, typewrite: true };
   },
 
@@ -349,6 +373,280 @@ export const commands: Record<string, Command> = {
     });
     frameBox.append(iframe);
     wrapper.append(header, frameBox);
+    unlock('archivist');
+    return { node: wrapper, typewrite: false };
+  },
+
+  matrix(args, ctx) {
+    const arg = (args[0] || '').toLowerCase();
+    let on: boolean;
+    if (arg === 'on') {
+      ctx.toggleMatrix(); // ensure on
+      on = true;
+    } else if (arg === 'off') {
+      // call toggle if currently on; cheap approach: set explicitly via toggle if needed
+      const isOn = (document.getElementById('matrix-rain') as HTMLElement | null)?.classList.contains('active');
+      if (isOn) ctx.toggleMatrix();
+      on = false;
+    } else {
+      on = ctx.toggleMatrix();
+    }
+    if (on) unlock('rainmaker');
+    return {
+      node: output(
+        'text-primary-container',
+        on ? 'matrix: rain enabled — wake up, neo.' : 'matrix: rain disabled.',
+      ),
+      typewrite: false,
+    };
+  },
+
+  theme(args, ctx) {
+    const requested = (args[0] || '').toLowerCase();
+    if (!requested) {
+      const box = output('text-primary-container');
+      box.append(
+        el('div', {}, `current theme: ${ctx.currentTheme()}`),
+        el(
+          'div',
+          { class: 'opacity-70 mt-1' },
+          `available: ${ctx.themes.join(', ')}`,
+        ),
+        el(
+          'div',
+          { class: 'opacity-50 text-[10px] mt-1' },
+          'usage: theme <name>',
+        ),
+      );
+      return { node: box, typewrite: false };
+    }
+    if (!(ctx.themes as readonly string[]).includes(requested)) {
+      return {
+        node: errorLine(
+          `theme: unknown palette "${requested}". try: ${ctx.themes.join(', ')}`,
+        ),
+        typewrite: false,
+      };
+    }
+    ctx.setTheme(requested as ThemeName);
+    return {
+      node: output(
+        'text-primary-container',
+        `theme: switched to ${requested}.`,
+      ),
+      typewrite: false,
+    };
+  },
+
+  tail(_args, ctx) {
+    const visible = ctx.toggleLogFeed();
+    if (visible) unlock('packet_sniffer');
+    return {
+      node: output(
+        'text-primary-container',
+        visible
+          ? 'tail -f /var/log/firefly.log — feed engaged.'
+          : 'tail: feed detached.',
+      ),
+      typewrite: false,
+    };
+  },
+
+  reboot(_args, ctx) {
+    unlock('reboot_loop');
+    void ctx.triggerReboot();
+    return {
+      node: output('text-primary-container', 'reboot: signaling kernel ...'),
+      typewrite: false,
+    };
+  },
+
+  neofetch() {
+    const ua = navigator.userAgent;
+    const platform = navigator.platform || 'unknown';
+    const lang = navigator.language || 'en-US';
+    const cores = (navigator.hardwareConcurrency || 1) + ' threads';
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    const browser = (() => {
+      if (/firefox/i.test(ua)) return 'Firefox';
+      if (/edg/i.test(ua)) return 'Edge';
+      if (/chrome/i.test(ua)) return 'Chrome';
+      if (/safari/i.test(ua)) return 'Safari';
+      return 'Unknown';
+    })();
+    const logo = [
+      '    ╔═══════════╗',
+      '    ║ ░░▒▒▓▓██  ║',
+      '    ║ ▓▓██▒▒░░  ║',
+      '    ║   FIREFLY ║',
+      '    ║   v.1.0.0 ║',
+      '    ╚═══════════╝',
+    ];
+    const stats: Array<[string, string]> = [
+      ['operator', 'tony@firefly'],
+      ['os', 'FireflyOS x86_64'],
+      ['kernel', '6.0.8-firefly'],
+      ['shell', '/bin/firefly-sh'],
+      ['terminal', browser],
+      ['platform', platform],
+      ['language', lang],
+      ['cpu', cores],
+      ['resolution', `${w}x${h} @ ${dpr}x`],
+      ['uptime', `${Math.floor(performance.now() / 1000)}s`],
+    ];
+    const wrapper = el('div', { class: 'ml-4 mt-2 flex gap-4 flex-wrap' });
+    const logoCol = el('pre', {
+      class: 'text-primary-container text-[11px] leading-tight m-0',
+    });
+    logoCol.textContent = logo.join('\n');
+    const statsCol = el('div', { class: 'text-[12px] flex flex-col gap-0.5' });
+    for (const [k, v] of stats) {
+      statsCol.append(
+        el(
+          'div',
+          { class: 'flex gap-2' },
+          el('span', { class: 'text-secondary w-24' }, k),
+          el('span', { class: 'text-white' }, v),
+        ),
+      );
+    }
+    wrapper.append(logoCol, statsCol);
+    return { node: wrapper, typewrite: false };
+  },
+
+  top() {
+    const wrapper = el('div', {
+      class: 'ml-4 mt-2 text-primary-container font-mono text-[12px]',
+    });
+    const summary = el('div', { class: 'opacity-70' });
+    const headerRow = el(
+      'div',
+      {
+        class:
+          'mt-2 grid grid-cols-[60px_60px_60px_1fr] gap-2 text-secondary border-b border-outline-variant/40 pb-1',
+      },
+      el('span', {}, 'PID'),
+      el('span', {}, 'CPU%'),
+      el('span', {}, 'MEM%'),
+      el('span', {}, 'COMMAND'),
+    );
+    const body = el('div', { class: 'space-y-0.5 mt-1' });
+    const footer = el(
+      'div',
+      { class: 'mt-2 opacity-60 text-[10px]' },
+      'press q in real life · auto-stops in 8s',
+    );
+    wrapper.append(summary, headerRow, body, footer);
+
+    type Proc = {
+      pid: number;
+      cmd: string;
+      cpu: number;
+      mem: number;
+    };
+    const procs: Proc[] = [
+      { pid: 1, cmd: '/sbin/firefly-init', cpu: 0.1, mem: 0.5 },
+      { pid: 217, cmd: 'sshd', cpu: 0.0, mem: 0.4 },
+      { pid: 411, cmd: 'firefly-shell', cpu: 0.3, mem: 0.6 },
+      { pid: 612, cmd: 'notion-uplink', cpu: 1.2, mem: 1.4 },
+      { pid: 808, cmd: 'tail -f /var/log/firefly.log', cpu: 0.4, mem: 0.3 },
+      { pid: 901, cmd: 'matrix-rain --renderer=canvas', cpu: 8.7, mem: 2.1 },
+      { pid: 1024, cmd: 'audio-synth --triangle', cpu: 0.6, mem: 0.7 },
+      { pid: 1337, cmd: 'recon-daemon --target=lan', cpu: 4.2, mem: 1.9 },
+      { pid: 2048, cmd: 'opsec-monitor --strict', cpu: 2.1, mem: 1.2 },
+      { pid: 4096, cmd: 'gh-pages --watch', cpu: 0.2, mem: 0.5 },
+    ];
+
+    const tickProcs = () => {
+      const now = new Date().toLocaleTimeString();
+      const load = (Math.random() * 1.5 + 0.2).toFixed(2);
+      summary.textContent = `top - ${now}  load avg: ${load}, ${(parseFloat(load) * 1.1).toFixed(2)}, ${(parseFloat(load) * 1.3).toFixed(2)}  ·  ${procs.length} tasks`;
+      // jitter cpu/mem a bit
+      for (const p of procs) {
+        p.cpu = Math.max(0, p.cpu + (Math.random() - 0.5) * 1.5);
+        p.mem = Math.max(0, p.mem + (Math.random() - 0.5) * 0.4);
+      }
+      const sorted = [...procs].sort((a, b) => b.cpu - a.cpu);
+      body.replaceChildren(
+        ...sorted.map((p) =>
+          el(
+            'div',
+            {
+              class:
+                'grid grid-cols-[60px_60px_60px_1fr] gap-2 text-white/90',
+            },
+            el('span', {}, String(p.pid)),
+            el(
+              'span',
+              {
+                class:
+                  p.cpu > 5 ? 'text-error' : 'text-primary-container',
+              },
+              p.cpu.toFixed(1),
+            ),
+            el('span', {}, p.mem.toFixed(1)),
+            el('span', { class: 'truncate opacity-90' }, p.cmd),
+          ),
+        ),
+      );
+    };
+
+    tickProcs();
+    const id = window.setInterval(tickProcs, 900);
+    window.setTimeout(() => {
+      window.clearInterval(id);
+      footer.textContent = '— stopped —';
+      footer.classList.add('opacity-40');
+    }, 8000);
+
+    unlock('process_killer');
+    return { node: wrapper, typewrite: false };
+  },
+
+  achievements() {
+    const all = getAll();
+    const wrapper = el('div', {
+      class: 'ml-4 mt-2 text-primary-container',
+    });
+    wrapper.append(
+      el(
+        'div',
+        { class: 'text-secondary' },
+        `OPERATOR BADGES — ${getUnlocked().length}/${all.length}`,
+      ),
+      el(
+        'div',
+        {
+          class:
+            'mt-2 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 text-[12px]',
+        },
+        ...all.map((a) => {
+          const got = isUnlocked(a.id);
+          return el(
+            'div',
+            {
+              class: got
+                ? 'text-primary-container'
+                : 'text-white/40',
+            },
+            el(
+              'span',
+              { class: 'inline-block w-5 opacity-80' },
+              got ? '◉' : '◌',
+            ),
+            el('span', { class: 'font-bold' }, a.name),
+            el(
+              'span',
+              { class: 'block opacity-60 ml-5 text-[10px]' },
+              got ? 'UNLOCKED' : a.hint,
+            ),
+          );
+        }),
+      ),
+    );
+    void ACHIEVEMENTS; // referenced for potential future use
     return { node: wrapper, typewrite: false };
   },
 };
