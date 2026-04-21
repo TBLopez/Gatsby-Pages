@@ -1,40 +1,31 @@
-# Tony Khawaja-Lopez | Cybersecurity Portfolio
+# tonykl.com
 
-This repository contains the source code and deployment pipeline for my professional portfolio. 
+Source for my personal site — a terminal-themed portfolio built with Astro.
 
-## Architecture
-I built this portfolio as a static, high-performance web application utilizing **Astro**. I designed it for maximum speed, security, and a premium visual aesthetic.
+Type `help` once it loads.
 
-- **Framework:** Astro JS
-- **Styling:** Tailwind CSS (Midnight Tactical Design System)
-- **Deployment:** GitHub Pages (`gh-pages` branch)
-- **CI/CD:** Automated via standard NPM build scripts.
+## Stack
 
-## Local Development
-To run this project locally and view the web application:
+- Astro (static output)
+- Tailwind CSS
+- Notion API for the project list
+- GitHub Pages for hosting
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/TBLopez/Astro-Portfolio.git
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the local development server:
-   ```bash
-   npm run dev
-   ```
-4. Build for production:
-   ```bash
-   npm run build
-   ```
+## Local
 
-## Design System
+```bash
+npm install
+npm run dev
+```
 
-My platform utilizes a structured, dark-mode styling interface prioritizing a "Tactical" visual hierarchy.
-- **Typography:** `Space Grotesk` (Headers), `Inter` (Body), `JetBrains Mono` (Labels/Tags)
-- **Core Colors:** High-contrast variants of Cyan (`#00f1fe`) operating over deep, muted navy surfaces (`#090e1c`).
+Optional: set `NOTION_API_KEY` and `NOTION_DATA_SOURCE_ID` in `.env` to pull the
+project list from Notion. Without those, the terminal falls back to the local
+file registry.
 
-## License
-© 2024 Tony Khawaja-Lopez. All rights reserved.
+## Deploy
+
+```bash
+npm run deploy
+```
+
+Builds to `dist/` and pushes it to the `gh-pages` branch.
