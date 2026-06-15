@@ -149,9 +149,6 @@ export function getLogFeed(): Feed {
 
 export function initLogFeedFromStorage(): void {
   const feed = getLogFeed();
-  // Default off on mobile, default on for desktop if user hasn't chosen otherwise
   const stored = localStorage.getItem(STORAGE_KEY);
-  const isWide = window.matchMedia('(min-width: 1024px)').matches;
   if (stored === '1') feed.show();
-  else if (stored === null && isWide) feed.show();
 }
