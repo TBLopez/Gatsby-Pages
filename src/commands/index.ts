@@ -291,19 +291,19 @@ export const commands: Record<string, Command> = {
 
   ls(_args, ctx) {
     const grid = el('div', {
-      class: 'ml-4 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4',
+      class: 'ml-4 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3',
     });
     for (const [name, file] of Object.entries(ctx.files)) {
       const card = el(
         'div',
         {
           class:
-            'border-l-2 border-outline-variant pl-2 hover:border-primary-container transition-colors',
+            'bento-card hover-lift',
         },
         el(
           'div',
           {
-            class: `font-bold ${file.available ? 'text-secondary' : 'text-secondary/60'}`,
+            class: `font-bold text-sm ${file.available ? 'text-primary-container' : 'text-primary-container/60'}`,
           },
           name,
           file.available
@@ -312,7 +312,7 @@ export const commands: Record<string, Command> = {
         ),
         el(
           'div',
-          { class: 'text-[10px] text-white/50 truncate' },
+          { class: 'text-[10px] text-white/50 truncate mt-1' },
           file.desc,
         ),
       );

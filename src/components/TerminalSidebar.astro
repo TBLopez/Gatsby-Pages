@@ -20,15 +20,15 @@ const { notionConnected } = Astro.props;
   id="sidebar"
   aria-label="System navigation"
   aria-hidden="true"
-  class="fixed md:static inset-y-0 left-0 z-40 -translate-x-full md:translate-x-0 transform transition-transform duration-200 flex flex-col h-full py-4 bg-surface text-primary-container font-mono uppercase text-xs tracking-tighter w-64 border-r border-outline-variant/40 flex-shrink-0 md:aria-hidden:translate-x-0"
+  class="fixed md:static inset-y-0 left-0 z-40 -translate-x-full md:translate-x-0 transform transition-transform duration-200 flex flex-col h-full py-4 glass-strong rounded-r-lg md:rounded-none font-ui text-xs tracking-tighter w-64 border-r border-outline-variant/20 flex-shrink-0 md:aria-hidden:translate-x-0"
 >
   <div class="px-4 mb-4">
-    <div class="text-primary-container font-black text-lg mb-1">SYSTEM_OS</div>
+    <div class="text-primary-container font-black text-lg mb-1 glow-text-strong">SYSTEM_OS</div>
     <div class="opacity-50 text-[10px]">V.1.0.0-STABLE</div>
   </div>
-  <nav aria-label="Directory" class="flex-1 space-y-1">
+  <nav aria-label="Directory" class="flex-1 space-y-1 px-2">
     <div
-      class="text-black bg-primary-container font-bold p-2 w-full flex items-center gap-3"
+      class="text-black bg-primary-container font-bold p-2 w-full flex items-center gap-3 rounded-sm glow-border"
     >
       <Icon name="folder" size={16} />
       <span>Directory</span>
@@ -39,7 +39,7 @@ const { notionConnected } = Astro.props;
   >
     <div class="flex items-center gap-2 mb-2">
       <div
-        class="w-2 h-2 bg-primary-container rounded-full motion-safe:animate-pulse"
+        class="w-2 h-2 bg-primary-container rounded-full motion-safe:animate-pulse glow-sm"
         aria-hidden="true"
       >
       </div>

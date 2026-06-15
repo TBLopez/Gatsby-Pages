@@ -261,8 +261,8 @@ export function initTerminal(init: TerminalInit): void {
     const line = document.createElement('div');
     line.className = 'flex items-center gap-2 mt-4';
     const prefix = document.createElement('span');
-    prefix.className = 'text-primary-container font-bold';
     prefix.textContent = 'tony@firefly:~$';
+    prefix.className = 'text-primary-container font-bold glow-text';
     const echo = document.createElement('span');
     echo.className = 'text-white';
     echo.textContent = cmd;

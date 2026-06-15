@@ -8,7 +8,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Theme-aware colors driven by CSS variables in global.css
         background: cssVar('--c-bg'),
         surface: cssVar('--c-surface'),
         'surface-dim': cssVar('--c-surface-dim'),
@@ -25,12 +24,39 @@ export default {
         error: cssVar('--c-error'),
       },
       fontFamily: {
-        headline: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        headline: ['Inter', 'system-ui', 'sans-serif'],
         body: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
         label: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        ui: ['Inter', 'system-ui', 'sans-serif'],
       },
-      borderRadius: { DEFAULT: '0px', lg: '0px', xl: '0px', full: '0px' },
+      borderRadius: {
+        DEFAULT: '4px',
+        sm: '2px',
+        md: '4px',
+        lg: '8px',
+        xl: '12px',
+      },
+      boxShadow: {
+        glow: '0 0 15px rgb(var(--c-primary-container) / 0.15)',
+        'glow-sm': '0 0 8px rgb(var(--c-primary-container) / 0.1)',
+        'glow-lg': '0 0 25px rgb(var(--c-primary-container) / 0.2)',
+        card: '0 2px 8px rgb(0 0 0 / 0.3)',
+      },
+      keyframes: {
+        'glow-pulse': {
+          '0%, 100%': { boxShadow: '0 0 8px rgb(var(--c-primary-container) / 0.1)' },
+          '50%': { boxShadow: '0 0 20px rgb(var(--c-primary-container) / 0.25)' },
+        },
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+        'fade-in-up': 'fade-in-up 0.3s ease-out',
+      },
     },
   },
   plugins: [],

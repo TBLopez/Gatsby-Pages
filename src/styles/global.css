@@ -1,3 +1,7 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
 @import '@fontsource/jetbrains-mono/400.css';
 @import '@fontsource/jetbrains-mono/700.css';
 @import '@fontsource/jetbrains-mono/800.css';
@@ -129,7 +133,96 @@ html { height: 100%; }
   body { height: 100dvh; }
 }
 
-/* Scanline overlay (theme-aware tint) */
+/* ──────────────────────────────────────────────────────────────
+   GRID BACKGROUND — subtle terminal-style grid overlay
+   Positioned behind the matrix rain, themed via scanline colors
+   ────────────────────────────────────────────────────────────── */
+#bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgb(var(--c-primary-container) / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--c-primary-container) / 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transition: opacity 0.4s ease;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   GLASSMORPHISM — subtle backdrop blur for sidebar/panels
+   ────────────────────────────────────────────────────────────── */
+.glass {
+  background: rgb(var(--c-surface) / 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgb(var(--c-outline-variant) / 0.3);
+}
+
+.glass-strong {
+  background: rgb(var(--c-surface) / 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgb(var(--c-outline-variant) / 0.4);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   GLOW EFFECTS — themed glow on interactive elements
+   ────────────────────────────────────────────────────────────── */
+.glow-border {
+  box-shadow: 0 0 0 1px rgb(var(--c-primary-container) / 0.1),
+              0 0 15px rgb(var(--c-primary-container) / 0.08);
+  transition: box-shadow 0.3s ease;
+}
+.glow-border:hover {
+  box-shadow: 0 0 0 1px rgb(var(--c-primary-container) / 0.25),
+              0 0 25px rgb(var(--c-primary-container) / 0.15);
+}
+
+.glow-text {
+  text-shadow: 0 0 8px rgb(var(--c-primary-container) / 0.4);
+}
+
+.glow-text-strong {
+  text-shadow: 0 0 15px rgb(var(--c-primary-container) / 0.6),
+               0 0 30px rgb(var(--c-primary-container) / 0.2);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   HOVER TRANSFORM — slight Y-shift on interactive elements
+   ────────────────────────────────────────────────────────────── */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+}
+.hover-lift:active {
+  transform: translateY(0);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   CARDS — bento-style cards for ls / project display
+   ────────────────────────────────────────────────────────────── */
+.bento-card {
+  background: rgb(var(--c-surface));
+  border: 1px solid rgb(var(--c-outline-variant) / 0.3);
+  border-radius: 6px;
+  padding: 1rem;
+  transition: all 0.25s ease;
+}
+.bento-card:hover {
+  border-color: rgb(var(--c-primary-container) / 0.4);
+  box-shadow: 0 0 20px rgb(var(--c-primary-container) / 0.1),
+              0 4px 16px rgb(0 0 0 / 0.25);
+  transform: translateY(-2px);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Scanline overlay (theme-aware tint)
+   ────────────────────────────────────────────────────────────── */
 .scanline {
   background:
     linear-gradient(
@@ -157,6 +250,14 @@ html { height: 100%; }
 }
 .cursor-blink {
   animation: blink 1s step-end infinite;
+}
+
+/* Glow cursor (terminal input caret) */
+#cmd-input {
+  caret-color: rgb(var(--c-primary-container));
+}
+#cmd-input:focus {
+  box-shadow: 0 0 12px rgb(var(--c-primary-container) / 0.2);
 }
 
 /* Skip link: visible only when focused */
@@ -266,6 +367,7 @@ input:focus { outline: none; }
   text-transform: uppercase;
   letter-spacing: 0.1em;
   box-shadow: 0 0 25px rgb(var(--c-primary-container) / 0.18);
+  border-radius: 4px;
   transform: translateX(120%);
   animation: slide-in 0.35s ease forwards, slide-out 0.35s ease forwards 4.5s;
 }
@@ -279,11 +381,10 @@ input:focus { outline: none; }
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 10px;
   line-height: 1.45;
-  background: rgb(var(--c-surface));
-  /* Border hugs whichever edge touches the main column.
-     On mobile (stacked) the pane sits below main → top border.
-     On md+ (row) it sits to the right → left border. */
-  border-top: 1px solid rgb(var(--c-outline-variant) / 0.5);
+  background: rgb(var(--c-surface) / 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgb(var(--c-outline-variant) / 0.4);
   color: rgb(var(--c-on-surface-variant));
   overflow: hidden;
   position: relative;
@@ -293,15 +394,17 @@ input:focus { outline: none; }
 @media (min-width: 768px) {
   #log-pane {
     border-top: none;
-    border-left: 1px solid rgb(var(--c-outline-variant) / 0.5);
+    border-left: 1px solid rgb(var(--c-outline-variant) / 0.4);
   }
 }
 #log-pane[hidden] { display: none !important; }
 #log-pane .log-header {
   position: sticky;
   top: 0;
-  background: rgb(var(--c-surface));
-  border-bottom: 1px solid rgb(var(--c-outline-variant) / 0.5);
+  background: rgb(var(--c-surface) / 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgb(var(--c-outline-variant) / 0.4);
   padding: 0.5rem 0.75rem;
   font-size: 10px;
   text-transform: uppercase;
@@ -330,7 +433,18 @@ input:focus { outline: none; }
 #log-pane .log-line.info { color: rgb(var(--c-secondary)); }
 @keyframes log-fade { to { opacity: 1; } }
 
-/* Reduced motion: freeze the retro effects */
+/* Theme-aware scrollbar for terminal output */
+#terminal-output::-webkit-scrollbar { width: 4px; }
+#terminal-output::-webkit-scrollbar-track { background: transparent; }
+#terminal-output::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-outline-variant) / 0.4);
+  border-radius: 2px;
+}
+#terminal-output::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--c-outline-variant) / 0.6);
+}
+
+/* Reduced motion: freeze all retro effects */
 @media (prefers-reduced-motion: reduce) {
   .scanline { display: none; }
   .cursor-blink { animation: none !important; }
